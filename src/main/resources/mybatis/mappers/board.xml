@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.board">
+	
+	<resultMap id="articleResult"  type="articleVO" >
+		<result property="levelNO" column="levelNO"/>
+		<result property="articleNO" column="articleNO"/>
+		<result property="groupNO" column="groupNO"/>
+		<result property="parentNO" column="parentNO"/>
+		<result property="id" column="id"/>
+		<result property="sido" column="sido"/>
+		<result property="gugun" column="gugun"/>
+		<result property="title" column="title"/>
+		<result property="content" column="content"/>
+		<result property="imageFileName" column="imageFileName"/>		
+		<result property="authNum" column="authNum"/>
+		<result property="writeDate" column="writeDate"/>
+	</resultMap>
+
+	<!-- 게시판 전체리스트  -->
+	<select id="selectAllArticlesList" resultMap="articleResult">
+		<![CDATA[		
+			select levelNO, articleNO, groupNO, parentNO, sido, gugun, title, content, writeDate, imageFileName, id, authNum
+			from order_board2
+			start with parentNO=0
+			connect by prior articleNO=parentNO
+			order siblings by groupNO desc
+		]]>
+	</select>
+	
+	<!-- 검색  -->
+	<select id="searchList" parameterType="criteriaVO" resultMap="articleResult">
+		<!-- <![CDATA[			
+				select a.*
+				from	 (select rownum rn, order_board2.*
+								from order_board2
+								start with parentNO=0
+								connect by prior articleNO=parentNO
+								order siblings by groupNO desc) a 
+				where id like '%'||#{keyword}||'%' or title like '%'||#{keyword}||'%' or content like '%'||#{keyword}||'%'
+						 or sido like '%'||#{keyword}||'%' or gugun like '%'||#{keyword}||'%' 
+		]]>	 -->
+		     select a.*
+			from	 (select rownum rn, order_board2.*
+						from order_board2
+					  <where>
+					  <choose>
+					  <when test="keyword!=null and keyword !=''">
+					  id like '%'||#{keyword}||'%' or title like '%'||#{keyword}||'%' or content like '%'||#{keyword}||'%'
+						         or sido like '%'||#{keyword}||'%' or gugun like '%'||#{keyword}||'%' 
+					  </when>
+					  </choose>
+					  </where> 
+						start with parentNO=0
+						connect by prior articleNO=parentNO
+						order siblings by groupNO desc) a
+			where rn between #{pageStart} and #{pageStart}+#{perPageNum}-1	
+	
+		<!-- 	<![CDATA[	
+			select level, articleNO, parentNO, sido, gugun, title, content, writeDate, imageFileName, id, authNum
+			from order_board2
+			]]>
+			<include refid="search"></include>
+			<![CDATA[	
+			start with parentNO=0 
+			connect by prior articleNO=parentNO
+			order siblings by articleNO desc
+			]]> -->
+	</select>
+
+<!-- 	<sql id="search">
+		<choose>
+			<when test="searchOption == 'all' ">
+				where id like '%'||#{keyword}||'%'
+					or title like '%'||#{keyword}||'%'
+					or content like '%'||#{keyword}||'%'
+			</when>
+			<otherwise>
+				where ${searchOption} like '%'||#{keyword}||'%'
+			</otherwise>
+		</choose>
+	</sql> -->
+	
+	<!-- 게시글 읽기 -->
+	<select id="selectArticle" parameterType="int" resultType="articleVO">
+		<![CDATA[
+			select *
+			from (select levelNO, articleNO, groupNO, parentNO, sido, gugun, title, content, writeDate, imageFileName, id, authNum 
+					 from order_board2)
+				where articleNO=#{articleNO}					
+		]]>	
+	</select>
+	
+	<!-- selectNewArticleNO 번호 추출후 articleNO와 groupNO 넘기기  -->
+	<insert id="insertNewArticle" parameterType="java.util.Map">
+		<![CDATA[
+			insert into order_board2(articleNO, groupNO, parentNO, sido, gugun, title, content, writeDate, imageFileName, id, authNum) 
+				    values(#{articleNO}, #{articleNO}, #{parentNO, jdbcType=INTEGER},
+							#{sido, jdbcType=VARCHAR},#{gugun, jdbcType=VARCHAR},
+							 #{title, jdbcType=VARCHAR}, #{content, jdbcType=VARCHAR},
+								sysdate, #{imageFileName, jdbcType=VARCHAR},
+								#{id, jdbcType=VARCHAR},#{authNum, jdbcType=VARCHAR})
+		]]>
+	</insert>
+	
+	<select id="selectNewArticleNO" resultType="int">
+		<![CDATA[
+		 	select max(articleNO)+1 from order_board2
+		]]>	
+	</select>	
+	
+	<!-- 답글  -->
+	<insert id="insertReply" parameterType="java.util.Map">
+		<![CDATA[
+			insert into order_board2(levelNO, articleNO, groupNO, parentNO, sido, gugun, title, content, writeDate, imageFileName, id, authNum) 
+			values(#{levelNO}, seq_no.nextval, #{groupNO}, #{parentNO}, 
+					#{sido, jdbcType=VARCHAR}, #{gugun, jdbcType=VARCHAR}, #{title}, #{content}, 
+					sysdate, #{imageFileName, jdbcType=VARCHAR}, #{id, jdbcType=VARCHAR}, #{authNum, jdbcType=VARCHAR}) 
+		]]> 
+	</insert>			
+
+	<!-- 삭제  -->
+	<delete id="deleteArticle" parameterType="int">
+		<![CDATA[
+			delete from order_board2
+			where articleNO in (
+				select articleNO from order_board2
+				start with articleNO = #{articleNO}
+				connect by prior articleNO = parentNO)
+		]]>
+	</delete>
+	
+	<!-- 수정 -->
+	<update id="updateArticle" parameterType="java.util.Map">
+		update order_board2
+			set id=#{id}, title=#{title}, content=#{content}
+			<!-- , imageFileName = #{imageFileName} -->
+		<if test="imageFileName!='' and imageFileName != null">
+			, imageFileName = #{imageFileName, jdbcType=VARCHAR}
+		</if>
+			where articleNO = #{articleNO}
+	</update>
+	
+	<!-- 게시판 페이징 처리 -->
+	<select id="listPaging" resultType="ArticleVO">
+		<![CDATA[					
+			select a.*
+			from	 (select rownum rn, order_board2.*
+						from order_board2
+						start with parentNO=0
+						connect by prior articleNO=parentNO
+						order siblings by groupNO desc) a
+			where rn between #{page}*11-10 and #{page}*10;	
+		]]>		
+	</select>
+	
+	<select id="listCriteria" resultType="ArticleVO">
+		
+			select a.*
+			from	 (select rownum rn, order_board2.*
+						from order_board2
+					  <where>
+					  <choose>
+					  <when test="keyword!=null and keyword !=''">
+					  id like '%'||#{keyword}||'%' or title like '%'||#{keyword}||'%' or content like '%'||#{keyword}||'%'
+						         or sido like '%'||#{keyword}||'%' or gugun like '%'||#{keyword}||'%' 
+					  </when>
+					  </choose>
+					  </where> 
+						start with parentNO=0
+						connect by prior articleNO=parentNO
+						order siblings by groupNO desc) a
+			where rn between #{pageStart} and #{pageStart}+#{perPageNum}-1		
+	</select>
+	
+	<select id="countArticles" resultType="int">
+			select count(*)
+			from	 (select rownum rn, order_board2.*
+						from order_board2
+					  <where>
+					  <choose>
+					  <when test="keyword!=null and keyword !=''">
+					  id like '%'||#{keyword}||'%' or title like '%'||#{keyword}||'%' or content like '%'||#{keyword}||'%'
+						         or sido like '%'||#{keyword}||'%' or gugun like '%'||#{keyword}||'%' 
+					  </when>
+					  </choose>
+					  </where> 
+						start with parentNO=0
+						connect by prior articleNO=parentNO
+						order siblings by groupNO desc) a
+	</select>
+	
+
+</mapper> 

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration 	PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+	<typeAliases>
+		<typeAlias type="com.myspring.FinalProject.member.General.vo.GenerVO"  alias="generVO" />
+		<typeAlias type="com.myspring.FinalProject.member.Company.vo.ComVO"  alias="comVO" />
+		<typeAlias type="com.myspring.FinalProject.member.Admin.vo.AdminVO"  alias="adminVO" />
+		
+		<typeAlias type="com.myspring.FinalProject.board.vo.ArticleVO" alias="articleVO"/>
+		<typeAlias type="com.myspring.FinalProject.board.vo.ImageVO" alias="imageVO"/>
+		<typeAlias type="com.myspring.FinalProject.board.vo.PageVO" alias="pageVO"/>
+		<typeAlias type="com.myspring.FinalProject.common.paging.Criteria" alias="criteriaVO"/>
+		
+		<typeAlias alias="reviewVO" type="com.myspring.FinalProject.review.vo.ReviewVO"/>
+		<typeAlias alias="imageFileVO" type="com.myspring.FinalProject.review.vo.ImageFileVO"/>	
+
+		<typeAlias alias="primaryVO" type="com.myspring.FinalProject.Item.VO.primaryVO"/>
+		<typeAlias alias="CompanyMemberVO" type="com.myspring.FinalProject.CompanyMember.VO.CompanyMemberVO"/>
+		
+	</typeAliases>
+
+</configuration>
+

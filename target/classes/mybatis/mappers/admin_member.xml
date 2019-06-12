@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.admin">
+	<resultMap id="adminResult" type="adminVO">
+		<result property="id" column="id" />
+		<result property="name" column="name" />
+		<result property="pwd" column="pwd" />
+        <result property="pwd_confirm" column="pwd_confirm" />
+        <result property="joinDate" column="joinDate" />
+	</resultMap> 
+	
+	<select id="adminList" resultMap="adminResult">
+<![CDATA[
+select *from Admin_Member order by joinDate desc
+]]>
+</select>
+
+
+<insert id="insertAdmin" parameterType="adminVO">
+<![CDATA[
+insert into Admin_Member(id,name,pwd,pwd_confirm) 
+                values(#{id},#{name},#{pwd},#{pwd_confirm})
+]]>
+</insert>
+
+
+<select id="updateAdminForm" parameterType="String" resultType="adminVO" >
+<![CDATA[
+select *from Admin_Member where id=#{id}
+]]>
+
+</select>
+
+
+<update id="updateAdmin" parameterType="adminVO" >
+  <![CDATA[
+  	update Admin_Member set id=#{id},pwd=#{pwd} where id=#{id}
+  ]]>
+</update>
+
+
+<delete id="deleteAdmin" parameterType="String">
+  <![CDATA[
+  	 delete from Admin_Member where id=#{id}
+  ]]>
+</delete>
+
+	<select id="loginById" parameterType="adminVO" resultType="adminVO">
+  <![CDATA[
+  	select * from Admin_Member where id=#{id} and pwd=#{pwd}
+    ]]>	
+</select>
+	
+	<insert id="adminAuthNum" parameterType="adminVO">
+<![CDATA[
+insert into Admin_Member(adminAuth) values(#{adminAuth})
+]]>
+</insert>
+	
+	
+	</mapper>

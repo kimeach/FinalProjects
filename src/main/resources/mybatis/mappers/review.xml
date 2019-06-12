@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.review">
+	<resultMap id="imageResult" type="imageFileVO">
+		<result property="imageFileNO" column="imageFileNO" />
+		<result property="imagefileName" column="imagefileName" />
+		<result property="regDate" column="regDate" />
+		<result property="reviewNO" column="reviewNO" />
+	</resultMap>	
+	<resultMap id="reviewResult" type="reviewVO">
+		<result property="imageFileName" column="imageFileName" />
+		<result property="reviewNO" column="reviewNO" />
+		<result property="name" column="name" />
+		<result property="zipcode" column="zipcode" />
+		<result property="address" column="address" />
+		<result property="point" column="point" />
+		<result property="love" column="love" />
+		<result property="dislove" column="dislove" />
+		<result property="writeDate" column="writeDate" />
+		<result property="id" column="id" />
+	</resultMap>
+	
+	<!-- 후기 리스트 조회 -->
+	<select id="selectAllReviewList" resultMap="reviewResult">
+	 <![CDATA[select * from T_REVIEW order by reviewNO desc]]>
+	</select>
+	
+	<!-- 후기 추가(단일 이미지) -->
+	<insert id="insertReview" parameterType="java.util.Map">
+		<![CDATA[insert into T_REVIEW(imageFileName, reviewNO, name, zipcode, address,point,
+			love, dislove, id) values (#{imageFileName}, #{reviewNO}, #{name}, 
+			#{zipcode}, #{address}, #{point}, #{love}, #{dislove}, #{id})]]>
+	</insert>
+	<select id="selectNewReviewNO" resultType="int">
+		<![CDATA[select max(reviewNO)+1 from T_REVIEW]]>
+	</select>
+	
+	<!-- 후기 수정 -->
+	<select id="selectReview" parameterType="int" resultType="reviewVO">
+		<![CDATA[select * from T_REVIEW where reviewNO=#{reviewNO}]]>
+	</select>
+	<update id="updateReview" parameterType="java.util.Map">
+		update T_REVIEW set name=#{name}, zipcode=#{zipcode}, address=#{address},
+			point=#{point}, love=#{love}, dislove=#{dislove}, imageFileName=#{imageFileName}
+		 	where reviewNO=#{reviewNO}
+	</update>
+	
+	<!-- 후기 삭제 -->
+	<delete id="deleteReview" parameterType="int">
+		<![CDATA[delete from T_REVIEW where reviewNO = #{reviewNO}]]>
+	</delete>
+</mapper>	

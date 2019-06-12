@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+"-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+"http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+   <definition name="baseLayout"  template="/WEB-INF/views/common/layout.jsp">
+      <put-attribute name="header" value="/WEB-INF/views/common/header.jsp" />
+      <put-attribute name="headerMenu" value="/WEB-INF/views/common/headerMenu.jsp" />
+      <put-attribute name="body" value="" />
+      <put-attribute name="footer" value="/WEB-INF/views/common/footer.jsp" />
+   </definition>
+   
+    <definition name="baseLayout3"  template="/WEB-INF/views/common/layout3.jsp">
+      <put-attribute name="header" value="/WEB-INF/views/common/header.jsp" />
+       <put-attribute name="headerMenu" value="/WEB-INF/views/common/headerMenu.jsp" />
+      <put-attribute name="side" value="/WEB-INF/views/common/side.jsp" />
+      <put-attribute name="body" value="" />
+      <put-attribute name="footer" value="/WEB-INF/views/common/footer.jsp" />
+   </definition>
+   
+
+   <definition name="/Admin/adminList" extends="baseLayout">
+      <put-attribute name="title" value="회원목록창" />
+      <put-attribute name="body" value="/WEB-INF/views/admin_member/adminList.jsp" />
+   </definition>
+   <definition name="/Admin/adminForm" extends="baseLayout">
+      <put-attribute name="title" value="회원가입창" />
+      <put-attribute name="body" value="/WEB-INF/views/admin_member/adminForm.jsp" />
+   </definition>
+   
+   <definition name="/Admin/adminUpdateForm" extends="baseLayout">
+      <put-attribute name="title" value="회원수정창" />
+      <put-attribute name="body" value="/WEB-INF/views/admin_member/adminUpdateForm.jsp" />
+   </definition>
+   
+   <definition name="/Admin/loginForm" extends="baseLayout">
+      <put-attribute name="title" value="회원수정창" />
+      <put-attribute name="body" value="/WEB-INF/views/admin_member/loginForm.jsp" />
+   </definition>
+   
+   <definition name="/Admin/mypage" extends="baseLayout3">
+      <put-attribute name="title" value="회원수정창" />
+      <put-attribute name="body" value="/WEB-INF/views/admin_member/mypage.jsp" />
+   </definition>
+   
+   <definition name="/Admin/adminAuthForm" extends="baseLayout">
+      <put-attribute name="title" value="회원수정창" />
+      <put-attribute name="body" value="/WEB-INF/views/admin_member/adminAuthForm.jsp" />
+   </definition>
+
+  <definition name="/Admin/adminAuthNumForm" extends="baseLayout">
+      <put-attribute name="title" value="회원수정창" />
+      <put-attribute name="body" value="/WEB-INF/views/admin_member/adminAuthNumForm.jsp" />
+   </definition>
+   
+   <definition name="/Admin/adminAuthNum2Form" extends="baseLayout">
+      <put-attribute name="title" value="회원수정창" />
+      <put-attribute name="body" value="/WEB-INF/views/admin_member/adminAuthNum2Form.jsp" />
+   </definition>
+   
+ 
+</tiles-definitions>

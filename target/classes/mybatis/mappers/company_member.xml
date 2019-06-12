@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.com">
+	<resultMap id="comResult" type="comVO">
+		<result property="imageFile" column="imageFile" />
+		<result property="address" column="address" />
+		<result property="name" column="name" />
+		<result property="phone1" column="phone1" />
+        <result property="phone2" column="phone2" />
+        <result property="phone3" column="phone3" />
+        <result property="email" column="email" />
+        <result property="email2" column="email2" />
+        <result property="mainDeal" column="mainDeal" />
+        <result property="authNum" column="authNum" />
+        <result property="joinDate" column="joinDate" />
+	</resultMap> 
+	
+	<select id="comList" resultMap="comResult">
+<![CDATA[
+select *from Company_Member order by joinDate desc
+]]>
+</select>
+
+
+
+<insert id="insertCom" parameterType="comVO">
+<![CDATA[
+insert into Company_Member(imageFile,zipCode,address,name,phone1,phone2,phone3,email,email2,mainDeal,authNum) 
+                values(#{imageFile},#{zipCode},#{address},#{name},#{phone1},#{phone2},#{phone3},#{email},#{email2},#{mainDeal},#{authNum})
+]]>
+</insert>
+
+
+<select id="updateCompanyForm" parameterType="String" resultType="comVO" >
+<![CDATA[
+select *from Company_Member where authNum=#{authNum}
+]]>
+
+</select>
+
+
+<update id="updateCom" parameterType="comVO" >
+  <![CDATA[
+  	update Company_Member set imageFile=#{imageFile}, phone1=#{phone1}, phone2=#{phone2},phone3=#{phone3},zipCode=#{zipCode},address=#{address},name=#{name},email=#{email},email2=#{email2},mainDeal=#{mainDeal} where authNum=#{authNum}
+  ]]>
+</update>
+
+
+
+<delete id="deleteCom" parameterType="String">
+  <![CDATA[
+  	 delete from Company_Member where authNum=#{authNum}
+  ]]>
+</delete>
+
+	<select id="loginById" parameterType="comVO" resultType="comVO">
+  <![CDATA[
+  	select * from Company_Member where authNum=#{authNum}
+    ]]>	
+</select>
+	
+	
+	</mapper>

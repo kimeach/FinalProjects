@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+"-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+"http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+
+<definition name="baseLayout2"  template="/WEB-INF/views/common/layout2.jsp">
+      <put-attribute name="body" value="" />
+   </definition>
+
+   
+   <definition name="/mail/mailAuth" extends="baseLayout">
+      <put-attribute name="title" value="회원수정창" />
+      <put-attribute name="body" value="/WEB-INF/views/mail/mailpopup.jsp" />
+   </definition>
+   
+    <definition name="/mail/mailAuth2" extends="baseLayout">
+      <put-attribute name="title" value="회원수정창" />
+      <put-attribute name="body" value="/WEB-INF/views/general_member/mailpopup.jsp" />
+   </definition>
+   
+   
+     <definition name="/location" extends="baseLayout">
+      <put-attribute name="title" value="회원수정창" />
+      <put-attribute name="body" value="/WEB-INF/views/company_member/location.jsp" />
+   </definition>
+   
+   
+        <definition name="/uploadForm" extends="baseLayout2">
+      <put-attribute name="title" value="회원가입창" />
+      <put-attribute name="body" value="/WEB-INF/views/company_member/uploadForm.jsp" />
+   </definition>
+   
+      <definition name="/upload" extends="baseLayout">
+      <put-attribute name="title" value="회원가입창" />
+      <put-attribute name="body" value="/WEB-INF/views/company_member/comMemberForm.jsp" />
+   </definition>
+   
+   </tiles-definitions>
+    

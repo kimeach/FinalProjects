@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+"-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+"http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+
+	<definition name="baseLayout" template="/WEB-INF/views/common/layout.jsp">
+		<put-attribute name="header" value="/WEB-INF/views/common/header.jsp"/>
+		<put-attribute name="headerMenu" value="/WEB-INF/views/common/headerMenu.jsp" />
+		<put-attribute name="body" value=""/>
+		<put-attribute name="footer" value="/WEB-INF/views/common/footer.jsp"/>	
+	</definition>
+
+	<!-- 중개사무소찾기 메인화면 -->
+		<definition name="/member/CompanyMemberView" extends="baseLayout">
+		<put-attribute name="title" value=" 중개사무소 찾기"/>
+		<put-attribute name="body" value="/WEB-INF/views/member/CompanyMemberView.jsp"/>
+	</definition>
+</tiles-definitions>
+	
+
+
+
+
+
+

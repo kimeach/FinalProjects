@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.Item">
+	<resultMap type="primaryVO" id="relItem">
+		<result property="authNum" column="authNum" /> <!-- authNum -->
+		<result property="itemAddr" column="itemAddr" /> <!-- 소재지 -->
+		<result property="itemBuild" column="itemBuild" /> <!-- 건물명 -->
+		<result property="itemWidth" column="itemWidth" /> <!-- 면적 -->
+		<result property="itemLayer" column="itemLayer" /> <!-- 해당층 -->
+		<result property="total_Layer" column="total_Layer" /> <!-- 총 층수 -->
+		<result property="itemParking" column="itemParking" /> <!-- 주차가능 대수 -->
+		<result property="itemPay" column="itemPay" /> <!-- 관리비 -->
+		<result property="itemYear" column="itemYear" /> <!-- 입주가능일 -->
+		<result property="itemMonth" column="itemMonth" /> <!-- 입주가능일 -->
+		<result property="itemDay" column="itemDay" /> <!-- 입주가능일 -->
+		<!-- 가격 정보 -->
+		<result property="deposit" column="deposit" /> <!-- 보증금 -->
+		<result property="itemSelect" column="itemSelect" /> <!-- 전/월/매 선택 -->
+		<result property="itemPrice" column="itemPrice" /> <!-- 선택 값에 대한 가격 -->
+		<result property="business" column="business" /> <!-- 취급 업소 -->
+		<result property="explain" column="explain" /> <!-- 설명 -->
+		<!-- 사진 정보 -->
+		<!-- <result property="picture" column="picture" /> 사진 -->
+		<result property="loadMap" column="loadMap" /> <!-- 지도 -->
+	</resultMap>
+	<!-- 매물 등록 에대한 추가 작업 -->
+	<insert id="insertItem" parameterType="primaryVO">
+   <![CDATA[
+   insert into item(authNum,autoNum,itemAddr,itemBuild,itemWidth,itemLayer,total_Layer,itemParking,itemPay,deposit,business,explain,loadMap,ItemPrice,ItemSelect,itemYear,itemMonth,itemDay) values
+   (#{authNum},autoNum.nextval,#{itemAddr},#{itemBuild},#{itemWidth},#{itemLayer},#{total_Layer},#{itemParking},#{itemPay},#{deposit},#{business},#{explain},#{loadMap},#{itemPrice},#{itemSelect},#{itemYear},#{itemMonth},#{itemDay})
+   ]]>
+	</insert>
+	<!-- 매물 등록에 대한 삭제 작업 -->
+	<delete id="deleteItem" parameterType="java.util.HashMap">
+   <![CDATA[delete item where authNum = #{authNum} and autoNum = #{autoNum}
+   ]]>
+	</delete>
+	<!-- 매물 등록에 대한 수정 작업 -->
+	<update id="updateItem" parameterType="java.util.HashMap">
+   <![CDATA[
+   update item set 
+   authNum = #{authNum},
+   autoNum = #{autoNum},
+   itemAddr = #{itemAddr},
+   itemBuild = #{itemBuild},
+   itemWidth= #{itemWidth},
+   itemLayer= #{itemLayer},
+   total_Layer = #{total_Layer},
+   itemParking = #{itemParking},
+   itemPay = #{itemPay},
+   itemYear = #{itemYear}
+   itemMonth = #{itemMonth}
+   itemDay = #{itemDay}
+   deposit = #{deposit},
+   itemPrice =#{itemPrice},
+   business = #{business},
+   explain = #{explain},
+   loadMap = #{loadMap}
+   where authNum = #{authNum} and autoNum = #{autoNum}
+   ]]>
+	</update>
+	<!-- 매물 등록에 대한 모든 정보 조회 작업 -->
+	<select id="getViewItem" resultMap="relItem">
+		select * from item
+	</select>
+	<select id="itemSelect" resultMap="relItem">
+	select * from item where authNum = #{authNum}
+	</select>
+	<select id="getItemViewSelect" parameterType="java.util.HashMap" resultMap="relItem">
+	select * from item where authNum =#{authNum} and autoNum = #{autoNum}	
+	</select>
+	<select id ="getSelectSearch" parameterType="java.util.HashMap" resultMap="relItem" >
+	select * from item where itemSelect =#{itemSelect} and loadMap = #{loadMap} and itemPrice between #{minPrice} and #{maxPrice}
+	</select>
+	<!-- 전체 -->
+	<select id="SearchAll"  parameterType="java.util.HashMap" resultMap="relItem">
+	<![CDATA[
+	select * from (select rownum rn,authNum,autoNum,itemAddr,itemBuild,itemWidth,itemLayer,total_Layer,itemParking,itemPay,deposit,business,explain,loadMap,ItemPrice,ItemSelect,itemYear,itemMonth,itemDay
+	 from item where (loadMap like '%'||#{keyword}||'%')) where rn between #{minPage} and #{maxPage}
+	]]>
+	</select>
+	<!-- 매매 -->
+	<select id="Search1"  parameterType="java.util.HashMap" resultMap="relItem">
+	<![CDATA[
+	select * from (select rownum rn,authNum,autoNum,itemAddr,itemBuild,itemWidth,itemLayer,total_Layer,itemParking,itemPay,deposit,business,explain,loadMap,ItemPrice,ItemSelect,itemYear,itemMonth,itemDay
+	 from item where loadMap like '%'||#{keyword}||'%' and itemSelect = '매매' and itemPrice between #{minPrice} and #{maxPrice} ) where rn between #{minPage} and #{maxPage} order by autonum desc
+	]]>
+	</select>
+	<!-- 전세 -->
+	<select id="Search2"  parameterType="java.util.HashMap" resultMap="relItem">
+	<![CDATA[
+	select * from (select rownum rn,authNum,autoNum,itemAddr,itemBuild,itemWidth,itemLayer,total_Layer,itemParking,itemPay,deposit,business,explain,loadMap,ItemPrice,ItemSelect,itemYear,itemMonth,itemDay
+	 from item where loadMap like '%'||#{keyword}||'%' and itemSelect = '전세' and itemPrice between #{minPrice} and #{maxPrice}) where rn between #{minPage} and #{maxPage} order by autonum desc
+	]]>
+	</select>
+	<!-- 월세 -->
+	<select id="Search3"  parameterType="java.util.HashMap" resultMap="relItem">
+	<![CDATA[
+	select * from (select rownum rn,authNum,autoNum,itemAddr,itemBuild,itemWidth,itemLayer,total_Layer,itemParking,itemPay,deposit,business,explain,loadMap,ItemPrice,ItemSelect,itemYear,itemMonth,itemDay
+	 from item where loadMap like '%'||#{keyword}||'%' and itemSelect = '월세' and itemPrice between #{minPrice} and #{maxPrice}) where rn between #{minPage} and #{maxPage} order by autonum desc
+	]]>
+	</select>
+	<!-- 검색 X -->
+	<select id="SearchNone"  parameterType="java.util.HashMap" resultMap="relItem">
+	<![CDATA[
+	select * from (select rownum rn,authNum,autoNum,itemAddr,itemBuild,itemWidth,itemLayer,total_Layer,itemParking,itemPay,deposit,business,explain,loadMap,ItemPrice,ItemSelect,itemYear,itemMonth,itemDay
+	 from item) where rn between #{minPage} and #{maxPage} order by autonum desc
+	]]>
+	</select>
+	
+</mapper>
