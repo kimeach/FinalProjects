@@ -37,7 +37,7 @@ function readURL(input){
 	    form.appendChild(reviewNOInput);
 	    document.body.appendChild(form);
 	    
-	    var isDel = confirm("삭제하시겠습니까?");
+	    var isDel = confirm("삭제하시겠습니까??");
 	    if(isDel) form.submit();
 	    else return;
 	}
