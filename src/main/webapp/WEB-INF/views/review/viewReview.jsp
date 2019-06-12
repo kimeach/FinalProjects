@@ -60,7 +60,7 @@
 	}
 </script>
 <style>
-	.np{font-family: 'Jeju Gothic', sans-serif;}
+	body{font-family: 'Jeju Gothic', sans-serif;}
 </style>
 <body>
 	<form name="modReviewForm" method="post" action="${contextPath}" enctype="multipart/form-data">

@@ -43,7 +43,7 @@ function readURL(input){
 	}
 </script>
 <style>
-	.np{font-family: 'Jeju Gothic', sans-serif;}
+	body{font-family: 'Jeju Gothic', sans-serif;}
 </style>
 <body>
 	<div class="container" align="center" style="margin-left:30%">
