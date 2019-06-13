@@ -11,6 +11,9 @@ joinDate date default sysdate
 drop table General_Member;
 alter table General_member add email2 varchar2(80)
 insert into General_Member values ('hon','홍길동','1234','1234','hong','@naver.com',sysdate);
+insert into General_Member values ('lee','이금강산','1234','1234','lee','@naver.com',sysdate);
+insert into General_Member values ('kang','강약강','1234','1234','kang','@naver.com',sysdate);
+insert into General_Member values ('hong','홍두깨','1234','1234','honghong','@naver.com',sysdate);
 
 smsCheck char(1) constraint booleantest_ck
 check(smsCheck='0' or smsCheck='1'),

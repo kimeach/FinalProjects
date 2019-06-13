@@ -1,3 +1,6 @@
+drop table T_REVIEW;
+drop table T_REVIEW_IMAGE;
+
 CREATE TABLE T_REVIEW(
 	imageFileName VARCHAR2(20),
 	reviewNO NUMBER(5) primary key,

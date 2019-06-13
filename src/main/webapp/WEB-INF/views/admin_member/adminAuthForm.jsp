@@ -15,7 +15,7 @@
 <link rel="stylesheet" href="${contextPath}/resources/css/bootstrap.min.css" />
 <link href="http://fonts.googleapis.com/earlyaccess/jejugothic.css" rel="stylesheet">
 </head>
-<body style="font-family: jejugothic ">
+<body style="font-family: 'Jeju Gothic', sans-serif;">
 
 <div class="jumbotron">
 		<div class="container">

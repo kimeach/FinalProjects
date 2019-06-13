@@ -30,7 +30,7 @@ function deletee(){
 
 
 </head>
-<body style="font-family: jejugothic ">
+<body style="font-family: 'Jeju Gothic', sans-serif;">
 <%-- <table border="1"  align="center"  width="80%">
     <tr align="center"   bgcolor="lightgreen">
       <td ><b>아이디</b></td>

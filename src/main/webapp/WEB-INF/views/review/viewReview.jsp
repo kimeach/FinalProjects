@@ -68,14 +68,17 @@
 				<c:choose>
 					<c:when test="${not empty review.imageFileName && review.imageFileName!='null'}">
 						<div>
-							<input type="hidden" name="originalFileName" value="${review.imageFileName}" />
-							<img src="${contextPath}/download.do?reviewNO=${review.reviewNO}&imageFileName=${review.imageFileName}" 
+							<img src="${contextPath}/download2.do?reviewNO=${review.reviewNO}&imageFileName=${review.imageFileName}" 
 								id="preview" style="width:300px; height:250px" /><br>
 						</div>
+						<div>
+							<input type="hidden" name="originalFileName" value="${review.imageFileName}" />
+						</div>
 						<div class="form-group row">
-							<label class="col-sm-2"><p class="np">IMAGEFILE</p></label>
+							<label class="col-sm-2">IMAGEFILE</label>
 							<div class="col-sm-3">
-								<input type="file" name="imageFileName" id="i_imageFileName" disabled onchange="readURL(this);" />
+								<input type="file" name="imageFileName" id="i_imageFileName"
+									value="${review.imageFileName}" disabled onchange="readURL(this);" />
 							</div>
 						</div>
 					</c:when>
@@ -85,7 +88,7 @@
 						</div>
 						<div><img id="preview" /></div>
 						<div class="form-group row">
-							<label class="col-sm-2"><p class="np">IMAGEFILE</p></label>
+							<label class="col-sm-2">IMAGEFILE</label>
 							<div class="col-sm-3">
 								<input type="file" name="imageFileName" id="i_imageFileName" disabled onchange="readURL(this);" />
 							</div>
@@ -93,36 +96,36 @@
 					</c:otherwise>
 				</c:choose>
 			<div class="form-group row">
-				<label class="col-sm-2"><p class="np">review.NO</p></label>
+				<label class="col-sm-2">review.NO</label>
 				<div class="col-sm-3">
 					<input type="text" value="${review.reviewNO}" disabled />
 					<input type="hidden" name="reviewNO" value="${review.reviewNO}" />
 				</div>
 			</div>
 			<div class="form-group row">
-				<label class="col-sm-2"><p class="np">STORE</p></label>
+				<label class="col-sm-2">STORE</label>
 				<div class="col-sm-3">
 					<input type="text" value="${review.name}" name="name" id="i_name"  disabled />
 				</div>
 			</div>
 			<div class="form-group row">
-				<label class="col-sm-2"><p class="np">ZIPCODE</p></label>
+				<label class="col-sm-2">ZIPCODE</label>
 				<div class="col-sm-3">
 					<input type="text" value="${review.zipcode}" name="zipcode" id="i_zipcode"  disabled />
 				</div>
-				<div>
+				<div class="col-sm-3"> 
 					<input type="button" class="btn btn-primary" onclick="openZipSearch()" 
 						id="i_address_button" value="우편번호 찾기" disabled />
 				</div>
 			</div>
 			<div class="form-group row">
-				<label class="col-sm-2"><p class="np">ADDRESS</p></label>
+				<label class="col-sm-2">ADDRESS</label>
 				<div class="col-sm-3">
 					<input type="text" value="${review.address}" name="address" id="i_address"  disabled />	
 				</div>
 			</div>
 			<div class="form-group row">
-				<label class="col-sm-2"><p class="np">POINT</p></label>
+				<label class="col-sm-2">POINT</label>
 				<div class="col-sm-3">
 					<select name="point" id="i_point" disabled>
 						<option value="1" <c:if test="${review.point==1}">selected='selected'</c:if>>
@@ -149,7 +152,7 @@
 				</div>	
 			</div>
 			<div class="form-group row">
-				<label class="col-sm-2"><p class="np">LOVE</p></label>
+				<label class="col-sm-2">LOVE</label>
 				<div class="col-sm-3">
 					<input type="text" value="${review.love}" name="love" id="i_love" disabled />
 				</div>			
@@ -167,23 +170,21 @@
 				</div>
 			</div>
 			<div class="form-group row">
-				<label class="col-sm-2">NAME</label>
+				<label class="col-sm-2">USER</label>
 				<div class="col-sm-3">
-					<input type="text" value="${review.id}" name="id" disabled />
+					<input name="id" type="text" class="form-control"  value="${review.id}" readonly>
 				</div>	
 			</div>
 		</div>
-		<div id="tr_btn_modify" style="margin-left:40%; margin-bottom:5px;">
-			<input type=button value="수정 완료" onclick="fn_modify_review(this.form)" class="btn btn-secondary">
-			<input type=button value="수정 취소" onclick="backToList(this.form)" class="btn btn-secondary">
-		</div>
-		<div id="tr_btn" style="margin-left:40%;">
-			<%-- <c:if test="${member.id==review.id}">	
-				<input type=button value="후기 변경" onClick="fn_enable(this.form)" class="btn btn-secondary">
-				<input type=button value="후기 목록" onClick="backToList(this.form)" class="btn btn-secondary">
-			</c:if> --%>
-			<input type=button value="후기 변경" onClick="fn_enable(this.form)" class="btn btn-secondary">
-			<input type=button value="후기 목록" onClick="backToList(this.form)" class="btn btn-secondary">
+		<div style="margin-left:40%">
+			<c:if test="${member.id==review.id}">
+				<input id="tr_btn" type=button value="후기 변경" onClick="fn_enable(this.form)" class="btn btn-secondary">
+				<input id="tr_btn" type=button value="수정 취소" onclick="backToList(this.form)" class="btn btn-secondary">
+				<input id="tr_btn" type=button value="수정 완료" onclick="fn_modify_review(this.form)" class="btn btn-secondary">
+			</c:if>
+			<input id="tr_btn_modify" type=button value="후기 목록" onClick="backToList(this.form)" class="btn btn-secondary">
+			<!-- <input type=button value="후기 변경" onClick="fn_enable(this.form)" class="btn btn-secondary">
+			<input type=button value="후기 목록" onClick="backToList(this.form)" class="btn btn-secondary"> -->
 		</div>
 	</form>
 </body>

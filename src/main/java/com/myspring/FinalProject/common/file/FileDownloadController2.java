@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class FileDownloadController2 {
-	private static final String REVIEW_IMAGE_REPO = "C:\\springWorkspace\\project\\src\\main\\webapp\\resources\\image\\review_repo";
+	private static final String REVIEW_IMAGE_REPO = "C:\\Users\\Administrator\\git\\FinalProjects\\src\\main\\webapp\\resources\\reviewImage";
 	@RequestMapping("/download2.do")
 	protected void download(@RequestParam("imageFileName") String imageFileName,
 							@RequestParam("reviewNO") String reviewNO,

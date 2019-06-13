@@ -54,34 +54,34 @@
 				<img  id="preview" src="#" width=100px height=100px />
 			</div>		
 			<div class="form-group row">
-				<label class="col-sm-2"><p class="np">IMAGEFILE</p></label>
+				<label class="col-sm-2">IMAGEFILE</label>
 				<div class="col-sm-3">	
 					<input type="file" name="imageFileName" id="np" onchange="readURL(this);"  class="form-control"/>
 				</div>
 			</div>
 			<div class="form-group row">
-				<label class="col-sm-2"><p class="np">STORE</p></label>
+				<label class="col-sm-2">STORE</label>
 				<div class="col-sm-3">
 					<input type="text"  class="form-control" placeholder="OO부동산" maxlength="30" name="name" />
 				</div>
 			</div>
 			<div class="form-group row">
-				<label class="col-sm-2"><p class="np">ZIPCODE</p></label>
+				<label class="col-sm-2">ZIPCODE</label>
 				<div class="col-sm-3">
 					<input type="text"  class="form-control" placeholder="11111" maxlength="30" name="zipcode" />
 				</div>
-				<p class="np">
+				<p>
 					<input type="button" class="btn btn-primary"  onclick="openZipSearch()" value="우편번호 찾기">
 				</p>
 			</div>
 			<div class="form-group row">
-				<label class="col-sm-2"><p class="np">ADDRESS</p></label>
+				<label class="col-sm-2">ADDRESS</label>
 				<div class="col-sm-3">
 					<input type="text"  class="form-control" placeholder="Address" maxlength="30" name="address" />
 				</div>
 			</div>
 			<div class="form-group row">
-				<label class="col-sm-2"><p class="np">POINT</p></label>
+				<label class="col-sm-2">POINT</label>
 				<div class="col-sm-3">
 					<select name="point">
 						<option value="1">1</option>
@@ -98,17 +98,17 @@
 				</div>
 			</div>
 			<div class="form-group row">
-				<label class="col-sm-2"><p class="np">LOVE</p></label>
+				<label class="col-sm-2">LOVE</label>
 				<div class="col-sm-3">	
 					<textarea name="love" placeholder="장점" rows="10" cols="30" maxlength="30"></textarea>
 				</div>	
-				<label class="col-sm-2"><p class="np">DISLOVE</p></label>
+				<label class="col-sm-2">DISLOVE</label>
 				<div class="col-sm-3">	
 					<textarea name="dislove" placeholder="단점" rows="10" cols="30" maxlength="30"></textarea>
 				</div>
 			</div>
 			<div class="form-group row">
-				<label class="col-sm-2"><p class="np">REGDATE</p></label>
+				<label class="col-sm-2">REGDATE</label>
 				<div class="col-sm-3">
 					<jsp:useBean id="now" class="java.util.Date" />
 					<fmt:formatDate value="${now}" pattern="yyyy-MM-dd" var="today"/>
@@ -116,9 +116,9 @@
 				</div>
 			</div>
 			<div class="form-group row">
-				<label class="col-sm-2"><p class="np">NAME</p></label>
+				<label class="col-sm-2">USER</label>
 				<div class="col-sm-3">
-					<input type="text" placeholder="작성자" name="id" />
+					<input type="text" value="${generMember.id}" name="id" disabled>
 				</div>
 			</div>	 
 		</div>

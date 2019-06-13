@@ -24,7 +24,7 @@ function com(){
 </script>
 
 </head>
-<body style="font-family: jejugothic ">
+<body style="font-family: 'Jeju Gothic', sans-serif;">
 
 
 <div class="jumbotron">

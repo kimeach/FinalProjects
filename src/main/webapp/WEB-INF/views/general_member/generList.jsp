@@ -15,7 +15,7 @@
 <title>회원 정보 출력창</title>
 <link href="http://fonts.googleapis.com/earlyaccess/jejugothic.css" rel="stylesheet">
 </head>
-<body style="font-family:jejugothic ">
+<body style="font-family: 'Jeju Gothic', sans-serif;">
 
 <div class="jumbotron">
 		<div class="container">

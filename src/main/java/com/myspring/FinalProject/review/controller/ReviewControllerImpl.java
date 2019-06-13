@@ -31,7 +31,7 @@ import com.myspring.FinalProject.review.vo.ReviewVO;
 
 @Controller("reviewController")
 public class ReviewControllerImpl implements ReviewController{
-	private static final String REVIEW_IMAGE_REPO="C:\\springWorkspace\\project\\src\\main\\webapp\\resources\\image\\review_repo";
+	private static final String REVIEW_IMAGE_REPO="C:\\Users\\Administrator\\git\\FinalProjects\\src\\main\\webapp\\resources\\reviewImage";
 	
 	@Autowired
 	ReviewService reviewService;
@@ -92,7 +92,7 @@ public class ReviewControllerImpl implements ReviewController{
 			int reviewNO=reviewService.addNewReview(reviewMap);
 			// upload파일에서 파일 추가
 			if(imageFileName!=null&&imageFileName.length()!=0) {
-				File srcFile=new File(REVIEW_IMAGE_REPO+"\\"+"temp"+"\\"+imageFileName);
+				File srcFile=new File(REVIEW_IMAGE_REPO+"\\"+imageFileName);
 				File destFile=new File(REVIEW_IMAGE_REPO+"\\"+reviewNO);
 				FileUtils.moveToDirectory(srcFile, destFile, true);
 			}
@@ -103,7 +103,7 @@ public class ReviewControllerImpl implements ReviewController{
 		    message+="</script>";
 		    resEnt = new ResponseEntity(message,responseHeaders,HttpStatus.CREATED);
 		}catch(Exception e) {
-			File srcFile=new File(REVIEW_IMAGE_REPO+"\\"+"temp"+"\\"+imageFileName);
+			File srcFile=new File(REVIEW_IMAGE_REPO+"\\"+imageFileName);
 			srcFile.delete();
 			
 			message ="<script>";
@@ -134,7 +134,7 @@ public class ReviewControllerImpl implements ReviewController{
 						file.createNewFile(); // 파일 생성해준다!
 					}
 				}
-				mfile.transferTo(new File(REVIEW_IMAGE_REPO+"\\"+"temp"+"\\"+imageFileName));
+				mfile.transferTo(new File(REVIEW_IMAGE_REPO+"\\"+imageFileName));
 			}
 		}
 		return imageFileName;
@@ -182,7 +182,7 @@ public class ReviewControllerImpl implements ReviewController{
 			reviewService.modReview(reviewMap);
 			// upload파일에서 이미지파일 수정..
 			if(imageFileName!=null && imageFileName.length()!=0) {
-				File srcFile=new File(REVIEW_IMAGE_REPO+"\\"+"temp"+"\\"+imageFileName);
+				File srcFile=new File(REVIEW_IMAGE_REPO+"\\"+imageFileName);
 				File desrFile=new File(REVIEW_IMAGE_REPO+"\\"+reviewNO);
 				FileUtils.moveToDirectory(srcFile, desrFile, true);
 			}
@@ -193,7 +193,7 @@ public class ReviewControllerImpl implements ReviewController{
 			 message+="</script>";
 			 resEnt = new ResponseEntity(message,responseHeaders,HttpStatus.CREATED);
 		}catch(Exception e) {
-			File srcFile=new File(REVIEW_IMAGE_REPO+"\\"+"temp"+"\\"+imageFileName);
+			File srcFile=new File(REVIEW_IMAGE_REPO+"\\"+imageFileName);
 			srcFile.delete();
 			
 			message ="<script>";
