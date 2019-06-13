@@ -118,7 +118,7 @@
 			<div class="form-group row">
 				<label class="col-sm-2">USER</label>
 				<div class="col-sm-3">
-					<input type="text" value="${generMember.id}" name="id" disabled>
+					<input type="text" value="${member.id}" readonly/>
 				</div>
 			</div>	 
 		</div>

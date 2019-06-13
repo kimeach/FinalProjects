@@ -27,8 +27,6 @@ CREATE TABLE "T_REVIEW_IMAGE"(
 );
 
 
-
-
 Insert into T_REVIEW values('1001.jpg',1,'도담 부동산', 11111 ,
 	'서울시 어쩌구', 7, '친절하고 설명이 명확해요.', '사무실이 낡았어요.',
 	to_date('16/03/25','RR/MM/DD'),'hong');

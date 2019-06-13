@@ -19,7 +19,7 @@
 		<result property="love" column="love" />
 		<result property="dislove" column="dislove" />
 		<result property="writeDate" column="writeDate" />
-		<!-- <result property="id" column="id" /> -->
+		<result property="id" column="id" />
 	</resultMap>
 	
 	<!-- 후기 리스트 조회 -->

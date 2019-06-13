@@ -10,10 +10,6 @@ import org.springframework.stereotype.Repository;
 
 import com.myspring.FinalProject.review.vo.ReviewVO;
 
-
-
-
-
 @Repository("reviewDAO")
 public class ReviewDAOImpl implements ReviewDAO{
 	@Autowired

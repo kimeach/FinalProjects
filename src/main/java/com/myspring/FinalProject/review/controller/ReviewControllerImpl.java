@@ -24,9 +24,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.myspring.FinalProject.member.General.vo.GenerVO;
 import com.myspring.FinalProject.review.service.ReviewService;
 import com.myspring.FinalProject.review.vo.ReviewVO;
-
 
 
 @Controller("reviewController")
@@ -37,6 +37,7 @@ public class ReviewControllerImpl implements ReviewController{
 	ReviewService reviewService;
 	@Autowired
 	ReviewVO reviewVO;
+	
 	
 	/** 후기 리스트 페이지 **/
 	@Override
@@ -77,11 +78,11 @@ public class ReviewControllerImpl implements ReviewController{
 		
 		String imageFileName=upload(multipartRequest);
 		HttpSession session=multipartRequest.getSession();
-		/*MemberVO memberVO=(MemberVO)session.getAttribute("member");*/
-		/*String id=reviewVO.getId();*/
-		/*reviewMap.put("id", id); // 작성자..*/		
+		GenerVO generVO=(GenerVO)session.getAttribute("member");
+		String id=generVO.getId();
+		reviewMap.put("id", id); // 작성자..		
 		reviewMap.put("imageFileName", imageFileName); // 첨부파일..
-
+		
 		String message;
 		ResponseEntity resEnt=null;
 		HttpHeaders responseHeaders=new HttpHeaders();
@@ -166,8 +167,8 @@ public class ReviewControllerImpl implements ReviewController{
 		
 		String imageFileName=upload(multipartRequest);
 		HttpSession session=multipartRequest.getSession();
-		/*MemberVO memberVO=(MemberVO)session.getAttribute("member");*/
-	 	String id=reviewVO.getId();
+		GenerVO generVO=(GenerVO)session.getAttribute("member");
+	 	String id=generVO.getId();
 		reviewMap.put("id", id);
 		reviewMap.put("imageFileName", imageFileName);
 		
@@ -197,7 +198,7 @@ public class ReviewControllerImpl implements ReviewController{
 			srcFile.delete();
 			
 			message ="<script>";
-		    message+="alert('오류가 발생했습니다. 다시 시도해 주세요');";
+		    message+="alert('오류가 발생했습니다. 다시 시도해 주세요(사진변경은 OK)');";
 		    message+="location.href='"+multipartRequest.getContextPath()+"/review/viewReview.do?reviewNO="+reviewNO+"';";
 		    message+="</script>";
 		    resEnt = new ResponseEntity(message,responseHeaders,HttpStatus.CREATED);

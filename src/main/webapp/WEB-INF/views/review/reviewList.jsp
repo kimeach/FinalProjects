@@ -16,18 +16,18 @@
 <link href="http://fonts.googleapis.com/earlyaccess/jejugothic.css" rel="stylesheet">
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script> 
 <script type="text/javascript">
-function readURL(input){
-	if(input.files && input.files[0]){
-		var reader=new FileReader();
-		reader.onload=function(e){
-			$('#preview').attr('src', e.target.result);
-		}
-		reader.readAsDataURL(input.files[0]);
+	function readURL(input){
+		if(input.files && input.files[0]){
+			var reader=new FileReader();
+			reader.onload=function(e){
+				$('#preview').attr('src', e.target.result);
+			}
+			reader.readAsDataURL(input.files[0]);
+		}	
 	}
-}
-function fn_enable(obj){
-	document.getElementById("tr_btn").style.display="none";
-}
+	function fn_enable(obj){
+		document.getElementById("tr_btn").style.display="none";
+	}
 	function fn_remove_review(url, reviewNO){
 		var form = document.createElement("form");
 		form.setAttribute("method", "post");
