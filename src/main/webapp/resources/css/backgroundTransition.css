@@ -11,6 +11,9 @@ body .backgroundTransition {
   overflow: hidden;
   background-size: cover;
 }
+body .backgroundTranstion:after{
+	style="opacity:0.5;
+}
 
 body .backgroundTransition .image-bottom, body .backgroundTransition .image-top {
   position: absolute;

@@ -15,21 +15,6 @@
 <link href="http://fonts.googleapis.com/earlyaccess/jejugothic.css" rel="stylesheet">
 <meta charset="UTF-8">
 <title>회원 정보 수정창</title>
-<script type="text/javascript">
-
-function readURL(input) {
-    if (input.files && input.files[0]) {
-	      var reader = new FileReader();
-	      reader.onload = function (e) {
-	        $('#preview').attr('src', e.target.result);
-        }
-       reader.readAsDataURL(input.files[0]);
-    }
-   
-}
-</script>
-
-
 <style>
    .text_center{
      text-align:center;
@@ -47,13 +32,7 @@ function readURL(input) {
 		<form name="comVO" class="form-horizontal"
 			action="${contextPath}/Company/comFix.do" method="post"
 			onsubmit="return checkForm()">
-			
-			 <div class="form-group row">
-    	     <div class="col-sm-3">
-    	      <img  id="preview" src="#"   width=100 height=100/>
-			   </div>
-			     <input type="file" name="imageFile"  onchange="readURL(this);" />
-			   </div>
+		
 			
 			<div class="form-group  row">
 				<label class="col-sm-2">등록번호</label>
