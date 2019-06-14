@@ -101,8 +101,12 @@ public class ComControllerImpl implements ComController{
 	    	 session.removeAttribute("action");
 	    	 if(action!=null) {
 	    		 mav.setViewName("redirect:"+action); 
-	    	 }else{
-	    		 mav.setViewName("redirect:/Company/comList.do");
+	    	 }
+	    	 if(comMember.getAuthNum().equals("")){
+		    	 mav.setViewName("redirect:/login.do");
+	       	 }
+	    	 else{
+	    		 mav.setViewName("redirect:/main/main.do");
 	    	 }
 	    }if(comMember==null) {
 	    	rAttr.addAttribute("result", "loginFailed");
@@ -116,7 +120,7 @@ public class ComControllerImpl implements ComController{
 		HttpSession session = request.getSession();
 		 session.removeAttribute("comMember");
     	 session.removeAttribute("isLogOn");
-		return new ModelAndView("redirect:/Company/comList.do");
+		return new ModelAndView("redirect:/main/main.do");
 	}
 	
 

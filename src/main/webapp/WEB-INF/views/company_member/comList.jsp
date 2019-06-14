@@ -15,7 +15,7 @@
 <title>회원 정보 출력창</title>
 <link href="http://fonts.googleapis.com/earlyaccess/jejugothic.css" rel="stylesheet">
 </head>
-<body style="font-family: jejugothic ">
+<body style="font-family: 'Jeju Gothic', sans-serif;">
 
 <div class="jumbotron">
 		<div class="container">
@@ -44,7 +44,7 @@
    
  <c:forEach var="comMember" items="${comList}" >     
    <tr align="center">
-     <td><a href="${contextPath}/Company/comUpdateForm.do?authNum=${comMember.authNum}">${comMember.authNum}</a></td> 
+     <td>${comMember.authNum}</td> 
      <td>${comMember.imageFile}</td>
      <td>${comMember.zipCode}</td>
       <td>${comMember.address}</td>
@@ -56,7 +56,7 @@
       <td>${comMember.email2}</td>
       <td>${comMember.mainDeal}</td>
       <td>${comMember.joinDate}</td>
-      <td><a href="${contextPath}/Company/comRemove.do?authNum=${comMember.authNum }">삭제하기</a></td>
+      <td><a href="${contextPath}/Company/comRemove.do?authNum=${comMember.authNum }">강퇴하기</a></td>
     </tr>
   </c:forEach>   
 </table>

@@ -37,17 +37,16 @@
    
  <c:forEach var="generMember" items="${generList}" >     
    <tr align="center">
-     <td><a href="${contextPath}/General/generUpdateForm.do?id=${generMember.id }">${generMember.id}</a></td>
+      <td>${generMember.id}</td>
       <td>${generMember.pwd}</td>
       <td>${generMember.pwd_confirm}</td>
       <td>${generMember.name}</td>
       <td>${generMember.email}</td>
       <td>${generMember.email2}</td>
       <td>${generMember.joinDate}</td>
-      <td><a href="${contextPath}/General/generRemove.do?id=${generMember.id }">삭제하기</a></td>
+      <td><a href="${contextPath}/General/generRemove.do?id=${generMember.id }">강퇴</a></td>
     </tr>
   </c:forEach>   
 </table>
-<a  href="${contextPath}/General/generForm.do"><h1 style="text-align:center">회원가입</h1></a>
 </body>
 </html>

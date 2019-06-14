@@ -21,7 +21,7 @@
    }
 </style>
 </head>
-<body style="font-family: jejugothic ">
+<body style="font-family: 'Jeju Gothic', sans-serif;">
 
 <div class="jumbotron">
 		<div class="container">

@@ -47,7 +47,7 @@ function check() {
 
 </head>
 
-<body style="font-family: jejugothic ">
+<body style="font-family: 'Jeju Gothic', sans-serif;">
 
 <div class="jumbotron">
 		<div class="container">
@@ -63,7 +63,7 @@ function check() {
 				
 				<div class="col-sm-2">
 					<input name="mem" type="radio" class="form-control" 
-					                     value="사업자" onclick="check()">중계사무소
+					                     value="사업자" onclick="check()">중개사무소
 					</div>	
 		   </div>
 		   

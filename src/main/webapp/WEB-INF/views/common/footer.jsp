@@ -7,12 +7,7 @@
 <head>
   <meta charset="UTF-8">
   <title>하단 부분</title>
-  <style>
-    p {
-     font-size:10px;
-      text-align:center;
-    }
-  </style>
+
 </head>
 <body>
 

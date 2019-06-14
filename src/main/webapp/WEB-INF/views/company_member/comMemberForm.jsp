@@ -86,7 +86,7 @@ var inp2=document.createElement("input");
 </script>
 <title>회원 가입</title>
 </head>
-<body style="font-family: jejugothic ">
+<body style="font-family: 'Jeju Gothic', sans-serif;">
 	
 	<div class="jumbotron">
 		<div class="container">

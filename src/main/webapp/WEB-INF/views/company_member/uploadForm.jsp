@@ -35,7 +35,7 @@
  }      
       </script>
 </head>
-<body style="font-family: jejugothic ">
+<body style="font-family: 'Jeju Gothic', sans-serif;">
 <h1>파일 업로드 하기</h1>
 <form method="post" action="${contextPath}/upload.do" enctype="multipart/form-data"> 
 	 <td align="right">이미지파일 첨부:  </td>

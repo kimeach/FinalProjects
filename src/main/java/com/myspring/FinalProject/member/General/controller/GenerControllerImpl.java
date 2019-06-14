@@ -101,10 +101,10 @@ public class GenerControllerImpl implements GenerController {
 	    	 session.removeAttribute("action");
 	    	 if(action!=null) {
 	    		 mav.setViewName("redirect:"+action); 
-	    	 }if(member.getId().equals("admin")&& member.getPwd().equals("1234")){
-		    	 mav.setViewName("redirect:/General/generList.do");
+	    	 }if(member.getId().equals("")&& member.getPwd().equals("")){
+		    	 mav.setViewName("redirect:/login.do");
 	       	 }else{
-	    		 mav.setViewName("redirect:/General/generList.do");
+	    		 mav.setViewName("redirect:/main/main.do");
 	    	 }
 	    }if(member==null) {
 	    	rAttr.addAttribute("result", "loginFailed");
@@ -118,7 +118,7 @@ public class GenerControllerImpl implements GenerController {
 		HttpSession session = request.getSession();
 		 session.removeAttribute("member");
     	 session.removeAttribute("isLogOn");
-		return new ModelAndView("redirect:/General/generList.do");
+		return new ModelAndView("redirect:/main/main.do");
 	}
 	
 

@@ -19,13 +19,15 @@
         padding: 5px;
        /*  margin-bottom: 5px; */
         border: 0px solid;
-        background-color: #EAEAEA;        
+        background-color: #EAEAEA; 
+        font-size:25px;        
       }
       #headerMenu {
         padding: 5px;
        /*  margin-bottom: 5px; */
         border: 0px solid;    
-        background-color: #EAEAEA;    
+        background-color: #EAEAEA; 
+        font-size:25px;   
       }
       
       #content {
@@ -40,7 +42,8 @@
         clear: both;
         padding: 0px ;
         border: 0px solid #bcbcbc;
-        background-color: #EAEAEA;         
+        background-color: #EAEAEA;
+        font-size:15px;         
       }
       
     </style>

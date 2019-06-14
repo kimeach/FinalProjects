@@ -49,7 +49,7 @@
 <body>
 	<form name="reviewForm" method="POST" action="${contextPath}/review/addNewReview.do" 
 			enctype="multipart/form-data" class="form-horizontal">
-		<div class="container" style="margin-left:35%">		
+		<div class="container" align="center">		
 			<div>
 				<img  id="preview" src="#" width=100px height=100px />
 			</div>		
@@ -122,7 +122,7 @@
 				</div>
 			</div>	 
 		</div>
-		<p class="np" style="margin-left:35%">
+		<p class="np" align="center">
 			<input type="submit" class="btn btn-default" value="후기 등록" />
 			<input type="button" class="btn btn-default" value="후기 목록" onclick="javascript:location.href='${contextPath}/review/reviewList.do';" />		
 		</p>

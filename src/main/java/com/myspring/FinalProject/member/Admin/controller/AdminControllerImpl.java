@@ -102,7 +102,7 @@ public class AdminControllerImpl implements AdminController {
 	    	 if(action!=null) {
 	    		 mav.setViewName("redirect:"+action); 
 	    	 }else{
-	    		 mav.setViewName("redirect:/Admin/adminList.do");
+	    		 mav.setViewName("redirect:/main/main.do");
 	    	 }
 	    }if(admember==null) {
 	    	rAttr.addAttribute("result", "loginFailed");
@@ -117,7 +117,7 @@ public class AdminControllerImpl implements AdminController {
 		HttpSession session = request.getSession();
 		 session.removeAttribute("member");
    	 session.removeAttribute("isLogOn");
-		return new ModelAndView("redirect:/Admin/adminList.do");
+		return new ModelAndView("redirect:/main/main.do");
 	}
 
 	@Override

@@ -55,3 +55,15 @@ constraint emo_authNum_fk foreign key(authNum) references Company_member(authNum
 CREATE SEQUENCE autoNum INCREMENT BY 01 START WITH 1;
 --------------------------------------------------------------------------------
 drop sequence autoNum;
+
+
+--------------------------------------------------------------------------------
+insert into item (authNum,autoNum,itemAddr,itemBuild,itemWidth,itemLayer,total_Layer,itemParking,itemPay,deposit,business,explain,loadMap,ItemPrice,ItemSelect,itemYear,itemMonth,itemDay,picture)
+values ('a123',autoNum.nextval,'서울','사옥','100','3','15','3','1000','1111','중앙정보처리','테스트1','서울 강서구 강서로 375','1001','매매','2019','03','09','venice-3130323_640.jpg');
+
+insert into item (authNum,autoNum,itemAddr,itemBuild,itemWidth,itemLayer,total_Layer,itemParking,itemPay,deposit,business,explain,loadMap,ItemPrice,ItemSelect,itemYear,itemMonth,itemDay,picture)
+values ('235',autoNum.nextval,'부산','사옥','101','4','15','4','1001','1112','중앙정보처리','테스트2','서울 강서구 강서로 375','1002','전세','2019','03','09','venice-3130323_640.jpg');
+
+insert into item (authNum,autoNum,itemAddr,itemBuild,itemWidth,itemLayer,total_Layer,itemParking,itemPay,deposit,business,explain,loadMap,ItemPrice,ItemSelect,itemYear,itemMonth,itemDay,picture)
+values ('236',autoNum.nextval,'전주','사옥','103','5','15','5','1002','1112','중앙정보처리','테스트3','서울 강서구 강서로 375','1003','매매','2019','03','09','venice-3130323_640.jpg');
+

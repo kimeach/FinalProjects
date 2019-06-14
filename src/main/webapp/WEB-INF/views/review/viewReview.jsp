@@ -64,7 +64,7 @@
 </style>
 <body>
 	<form name="modReviewForm" method="post" action="${contextPath}" enctype="multipart/form-data">
-		<div class="container" style="margin-left:45%;">
+		<div class="container" align="center">
 				<c:choose>
 					<c:when test="${not empty review.imageFileName && review.imageFileName!='null'}">
 						<div>
@@ -176,7 +176,7 @@
 				</div>	
 			</div>
 		</div>
-		<div style="margin-left:40%">
+		<div align="center">
 			<c:choose>
 				<c:when test="${member.id==review.id}">
 					<input id="tr_btn" type=button value="후기 변경" onClick="fn_enable(this.form)" class="btn btn-secondary">

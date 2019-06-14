@@ -10,7 +10,7 @@ insert into Company_Member(address,name,phone1,phone2,phone3,email,email2,mainDe
 values ('성동구','강남길','011','456','4567','abcdefg','@daum.net','주택','ba456');
 
 ------------ 의뢰 게시판 
-drop table order_board;
+drop table order_boar;
 select * from order_board;
 
 create table order_board(
