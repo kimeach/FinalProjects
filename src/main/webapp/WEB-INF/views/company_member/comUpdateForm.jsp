@@ -15,9 +15,6 @@
 <link href="http://fonts.googleapis.com/earlyaccess/jejugothic.css" rel="stylesheet">
 <meta charset="UTF-8">
 <title>회원 정보 수정창</title>
-
-
-
 <style>
    .text_center{
      text-align:center;

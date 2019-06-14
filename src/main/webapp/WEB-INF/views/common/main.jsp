@@ -38,20 +38,24 @@
 	body{font-family: 'Jeju Gothic', sans-serif; animation:background-changer 5s infinite;}
   </style>
 </head>  
-<body> 
- 	 <div class="backgroundTransition">
- 	    <div style="background-color:none;">	    	
-	    	<table align="center" width="100%"
-	    		height="100%" style="display:block;"  >
-	    		<tr></tr>
-	    		<tr></tr>
-	    		<tr height="700" align="center"  class="content">
-     				<h1 class="text-black" align="center">집을 찾을 때는, 중개나라</h1></td>  
-  					<input type="text" value="">
-					<input type="submit" value="검색">
+<body> 	    	
+	<table align="bottom" style="display:block; background-color:rgba(255,255,255,0.3)"
+		height="100%" width="100%" class="backgroundTransition">
+	    	<thead></thead>
+	    	<tbody>
+	    		<tr><td></td><td></td><td></td></tr>
+	    		<tr height="1000">
+	    			<td></td>
+	    			<td  height="1000" align="center" style="position:absolute; left:45%; top:46%;">
+     					<h1 class="text-black" align="center">집 찾기는, 중개나라</h1>  
+  						<input type="text" value="">
+						<input type="submit" value="검색">
+					</td>
+					<td></td>	
   				</tr>
-  			</table>	
-	      </div>
- 	 </div>
+  				<tr><td></td><td></td><td></td></tr>
+	    	</tbody>
+	    	<tfoot></tfoot>
+	</table>	
 </body>   
 </html>
