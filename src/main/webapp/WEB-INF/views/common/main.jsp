@@ -29,7 +29,7 @@
 			  { src: '${contextPath}/resources/boardImage/33.jpg' },
 			  { src: '${contextPath}/resources/boardImage/44.jpg' }
 		  ],
-		  transitionDelay: 3,
+		  transitionDelay: 5,
 		  animationSpeed: 800
 	  	});
   	});
@@ -39,8 +39,6 @@
   </style>
 </head>  
 <body> 	    
-
-	
 	<table align="bottom" style="display:block; background-color:rgba(255,255,255,0.3)"
 		height="100%" width="100%" class="backgroundTransition">
 	    	<thead></thead>
