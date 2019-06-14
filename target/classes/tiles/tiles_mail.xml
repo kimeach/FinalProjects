@@ -36,5 +36,12 @@
       <put-attribute name="body" value="/WEB-INF/views/company_member/comMemberForm.jsp" />
    </definition>
    
+   
+    <definition name="/search" extends="baseLayout">
+      <put-attribute name="title" value="회원수정창" />
+      <put-attribute name="body" value="/WEB-INF/views/search.jsp" />
+   </definition>
+   
+   
    </tiles-definitions>
     
