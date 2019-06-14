@@ -10,10 +10,11 @@ import org.springframework.web.servlet.ModelAndView;
 import com.myspring.FinalProject.Item.VO.primaryVO;
 
 public interface ItemController {
-public ModelAndView ItemAdd(@RequestParam("primaryVO") primaryVO vo,HttpServletRequest request,HttpServletResponse response) throws Exception;
-public ModelAndView ItemDelete(@RequestParam("id") String id,HttpServletRequest request,HttpServletResponse response) throws Exception;
+
+public ModelAndView ItemAdd(HttpServletRequest request,HttpServletResponse response) throws Exception;
 public ModelAndView ItemUpdate(HttpServletRequest request,HttpServletResponse response,@RequestParam("authNum") String authNum,@RequestParam("autoNum") String autoNum) throws Exception;
-public ModelAndView SearchAgency() throws Exception;
-public ResponseEntity<String> AddItem(primaryVO vo,HttpServletResponse response,HttpServletRequest request,MultipartHttpServletRequest multipartRequest) throws Exception;
+public ResponseEntity<String> AddItem(primaryVO vo,MultipartHttpServletRequest mr,HttpServletResponse response, @RequestParam("authNum") String authNum) throws Exception;
 public ModelAndView ItemView(@RequestParam("authNum") String authnum,@RequestParam("autoNum") String autoNum,HttpServletRequest request,HttpServletResponse response) throws Exception;
+
 }
+

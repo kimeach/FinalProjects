@@ -3,10 +3,22 @@ package com.myspring.FinalProject;
 import java.util.HashMap;
 import java.util.Map;
 public class Paging {
+	private static Paging pages;
+	private Paging() {}
 	final int page = 10;
-	private int min; private int max;
-	private int minPrice; private int maxPrice;
-
+	public static synchronized Paging getInstance() {
+		if(pages == null) {
+			pages = new Paging();
+		}
+		return pages;
+	}
+	
+	private int min; 
+	private int max;
+	private int minPrice; 
+	private int maxPrice;
+	private String authNum;
+	
 	public int getMin() {return min;}
 	public void setMin(int min) {this.min = min;}
 	public int getMax() {return max;}
@@ -15,6 +27,9 @@ public class Paging {
 	public void setMinPrice(int minPrice) {this.minPrice = minPrice;}
 	public int getMaxPrice() {return maxPrice;}
 	public void setMaxPrice(int maxPrice) {this.maxPrice = maxPrice;}
+	public String getAuthNum() {return authNum;}
+	public void setAuthNum(String authNum) {this.authNum = authNum;}
+	
 	//페이지 갯수 구하기(1~10)
 	public void MapMethod(int pg) {
 	int minPage=0; int maxPage=0;
@@ -34,6 +49,7 @@ public class Paging {
 	KeywordMap.put("keyword", keyword);
 	KeywordMap.put("minPage", this.getMin());
 	KeywordMap.put("maxPage", this.getMax());
+	KeywordMap.put("authNum",this.getAuthNum());
 	return KeywordMap;
 	}
 	
@@ -42,6 +58,7 @@ public class Paging {
 		Map<String, Object> KeywordMap = new HashMap<String, Object>();
 		KeywordMap.put("minPage", this.getMin());
 		KeywordMap.put("maxPage", this.getMax());
+		KeywordMap.put("authNum",this.getAuthNum());
 		return KeywordMap;
 		}
 	
@@ -65,24 +82,25 @@ public class Paging {
 		selectPriceMap.put("maxPage", ps.getMax());
 		selectPriceMap.put("minPrice",ps.getMinPrice());
 		selectPriceMap.put("maxPrice",ps.getMaxPrice());
+		selectPriceMap.put("authNum",ps.getAuthNum());
 		return selectPriceMap;
 	}
 	
 	public Map<String, Object> selectPriceMap(int pg,String keyword,Paging pa){
 		pa.MapMethod(pg);
-		return this.priceMap(pg, keyword,pa);
+		return this.priceMap(pg,keyword,pa);
 	}
 	
 	
 	public static void main(String[] args) {
-	Paging paging = new Paging();
 	int pg= 3;
 	String keyword ="하이";
 	int minPrice=10;
 	int maxPrice=20;
-	paging.setMaxPrice(maxPrice);
-	paging.setMinPrice(minPrice);
-	Map<String, Object> aa = paging.selectPriceMap(pg, keyword, paging);
+	Paging.getInstance().setMaxPrice(maxPrice);
+	Paging.getInstance().setMinPrice(minPrice);
+	String authNum = "1";
+	Map<String, Object> aa = Paging.getInstance().selectPriceMap(pg, keyword, Paging.getInstance());
 	System.out.println(aa.get("keyword"));
 	System.out.println(aa.get("minPage"));
 	System.out.println(aa.get("maxPage"));
@@ -91,6 +109,7 @@ public class Paging {
 
 
 }
+	
 
 
 }

@@ -22,15 +22,17 @@ a {
 </style>
 </head>
 <body>
-	<div class="container" style="padding-left: 10%;">
+	<div class="">
 		<h1>매물 조회</h1>
-		<div style="padding-left:60%;"> <a href="${path}/item/ItemInsert.do?authNum=${authNum}"><b>매물 등록</b></a><span style="padding-left:5%;"></span> 
+		<div style="padding-left:50%;"> <a href="${path}/item/ItemInsert.do?authNum=${authNum}">
+		<b>매물 등록</b></a><span style="padding-left:5%;"></span> 
 		<a href="${path}/member/CompanyMemberView.do?pg=1"> <b>중개사무소 찾기</b> </a> </div>
 		<div class="search">
 			<form action = "${path}/item/ItemSelect.do?authNum=${authNum}&pg=${pg}" method ="post">
-			<table class="table" style="width: 80%">
+			<table class="table" style="width: 60%;text-align:left;margin-left:20%;">
 				<tr>
-					<td><span style="margin-right: 3%">거래종류 :</span> 
+					<td><span style="padding-right:3%">거래종류 : </span>
+					
 					<select class="" name="Itemselect" style="width: 100px">
 							<option value="all">전체</option>
 							<option value="search1">매매</option>
@@ -44,15 +46,16 @@ a {
 						<input type="text" name="minPrice" value="1" style="width: 60px" required="required"> 만원 ~ 
 						<input type="text" name="maxPrice" value="" style="width: 60px" required="required"> 만원
 					<td rowspan="2" colspan="2"><input type="submit" name=""class="btn btn-primary" value="검색"
-						style="width: 100px; height: 50px; margin: 5% 0 0 35%;"></td>
+						style="width: 100px; height: 50px; margin: 5% 0 0 50%;"></td>
 				</tr>
 			</table>
 			</form>
 		</div>
 		<c:forEach items="${list}" var="item">
-		<table class="table table-hover" style="width: 80%">
+		<table class="table table-hover" style="width:40%;margin-left:30%;">
 			<tr>
-				<td rowspan="3" style="width: 30%;"><a href="${path}/item/ItemView.do?authNum=${item.authNum}&autoNum=${item.autoNum}">${item.autoNum}  사진</a></td>
+				<td rowspan="3" style="width: 30%;"><a href="${path}/item/ItemView.do?authNum=${item.authNum}&autoNum=${item.autoNum}">
+				<img src="${path}/resources/itemImage/${item.picture}" width="200px" height="120px"/></a></td>
 			</tr>
 			<tr>
 				<td style="width: 70%;"><a href="${path}/item/ItemView.do?authNum=${item.authNum}&autoNum=${item.autoNum}">[${item.itemSelect}] ${item.loadMap}</a></td>
@@ -66,7 +69,7 @@ a {
 
 	</div>
 	<!-- 페이지네이션 -->
-	<div class="text-center ">
+	<div class="text-center">
 	<!-- 검색전 -->
 	<ul class="pagination">
 	<c:if test="${pg>0}">

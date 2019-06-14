@@ -63,14 +63,12 @@ private String keyword=null;
   }
   List<String> lists = CompanyMemberService.SelectMember(select,keyword); // 총 갯수
    // 총 페이지
-  Paging paging = new Paging();
-  int totalnum = paging.TotalPage(lists.size());
+  int totalnum = Paging.getInstance().TotalPage(lists.size());
   System.out.println("리스트 갯수 : "+lists.size());
   System.out.println("페이지 수 : "+totalnum);
   mav.addObject("pageNum", totalnum);
   mav.addObject("pg",pg);
   mav.addObject("pageCount",lists.size());
-  request.getSession().setAttribute("authNum",1);
   return mav;
   }	  
 }

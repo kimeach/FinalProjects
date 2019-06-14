@@ -1,9 +1,3 @@
-insert into company_member (imageFile,zipCode,address,name,phone1,phone2,phone3,email,email2,mainDeal,authNum)  
-values ('asdaa','aad','대구','김호경','010','7657','5746','kimeach','@naver.com','월세',autoS.nextval);
-
-
-
-
 delete company_member where authNum like '1';
 drop table company_member;
 drop table item;
@@ -36,4 +30,11 @@ CREATE SEQUENCE autoS INCREMENT BY 01 START WITH 1;
 
 CREATE SEQUENCE autoNum INCREMENT BY 01 START WITH 1;
 
-commit
+
+select * from company_member;
+
+select * from(select rownum rn,i.* from item i ) where rn between 1 and 100 order by autonum desc;
+
+
+select rownum rn,i.* from item i;
+

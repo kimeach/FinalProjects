@@ -16,8 +16,8 @@ private SqlSession spring;
 @Override
 public List<String> selectChooseMember(int pg) throws Exception {
 	// 1일때 1~10 2일때 11~20
-	Paging paging = new Paging();
-	Map<String,Object> page = paging.pagingMap(pg);
+
+	Map<String,Object> page = Paging.getInstance().pagingMap(pg);
 	return spring.selectList("mapper.CompanyMember.selectCompanyChooseMember",page);
 }
 // 각각의 선택 갯수 구하는 메소드
@@ -36,9 +36,8 @@ public List<String> selectChooseMember(int pg) throws Exception {
 // 각각의 검색 결과값들을 구하는 메소드
 @Override
 	public List<String> SearchMember(int pg,String searchSelect, String keyword) throws Exception {
-	Paging paging = new Paging();
-	Map<String,Object> page = paging.pagingMap(pg, keyword);
-	Map<String,Object> pages = paging.pagingMap(pg);
+	Map<String,Object> page = Paging.getInstance().pagingMap(pg, keyword);
+	Map<String,Object> pages = Paging.getInstance().pagingMap(pg);
 	if(searchSelect != null) {
 	if(searchSelect.equals("searchAll")) 
 		return spring.selectList("mapper.CompanyMember.SearchAll",page);

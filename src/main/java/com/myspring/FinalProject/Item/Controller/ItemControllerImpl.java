@@ -1,5 +1,7 @@
 package com.myspring.FinalProject.Item.Controller;
+import java.io.File;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.List;
 
@@ -26,6 +28,8 @@ import com.myspring.FinalProject.Item.VO.primaryVO;
 @RestController
 @RequestMapping(value = "item/*")
 public class ItemControllerImpl implements ItemController {
+	
+	
 	@Autowired
 	private ItemService ItemService;
 	@Autowired
@@ -55,11 +59,10 @@ public class ItemControllerImpl implements ItemController {
 	}
 	//페이지네이션 2 이상일때 검색
 	if(select!=null && keyword !=null && minPrice != 0 && maxPrice != 0) {
-    System.out.println("=========검색 후=========");	
-    Paging pa = new Paging();
-    pa.setMinPrice(minPrice);
-	pa.setMaxPrice(maxPrice);
-    Chooselist = ItemService.SearchMember(pg,select,keyword,pa);
+    System.out.println("=========상세 검색 후=========");	
+    Paging.getInstance().setMinPrice(minPrice);
+    Paging.getInstance().setMaxPrice(maxPrice);
+    Chooselist = ItemService.SearchMember(pg,select,keyword,Paging.getInstance());
     System.out.println("pg : "+pg);
     System.out.println("선택 : "+select+", 키워드 : "+keyword);
     request.getSession().setAttribute("list",Chooselist);
@@ -68,53 +71,52 @@ public class ItemControllerImpl implements ItemController {
 	}
 	//검색 아닐때
 	else{
-	System.out.println("=========검색 전=========");
+	System.out.println("=========매물 상세 검색 전=========");
 	if(request.getSession().getAttribute("search") != null) {
-	System.out.println("=========세션 제거=========");
-	request.getSession().invalidate(); 
+	System.out.println("search 제거");	
+	request.getSession().removeAttribute("search");
+	System.out.println("select 제거");	
+	request.getSession().removeAttribute("select");
 	keyword=null;
 	select=null;
-	minPrice = 0;
-	maxPrice = 0;
+	minPrice = 1;
+	maxPrice = 1000;
 	}
 	System.out.println("pg : "+pg);
 	System.out.println("선택 : "+select+", 키워드 : "+keyword);
-	Paging pa = new Paging();
-	pa.setMinPrice(minPrice);
-	pa.setMaxPrice(maxPrice);
-	Chooselist = ItemService.SearchMember(pg,select,keyword,pa);
+	System.out.println("authNum : "+authNum);
+	Paging.getInstance().setMinPrice(minPrice);
+	System.out.println("minPrice 추가"+Paging.getInstance().getMinPrice());
+	Paging.getInstance().setMaxPrice(maxPrice);
+	System.out.println("maxPrice 추가"+Paging.getInstance().getMaxPrice());
+	Paging.getInstance().setAuthNum(authNum);
+	System.out.println("authNum 추가"+Paging.getInstance().getAuthNum());
+	Chooselist = ItemService.SearchMember(pg,select,keyword,Paging.getInstance());
+	System.out.println("list 생성");
 	mav.addObject("list",Chooselist);
+	System.out.println("list를 mav 에 추가");
 	}
-	List<primaryVO> list = ItemService.ItemSelect(authNum);
-	mav.addObject("list", Chooselist);
-	Paging paging = new Paging();
-	int totalnum=paging.TotalPage(list.size());
+	System.out.println("if 문 탈출");
+	int totalnum=Paging.getInstance().TotalPage(Chooselist.size());
+	System.out.println("totalnum 대입");
 	//검색전
 	mav.addObject("pg",pg);
-	mav.addObject("authNum",authNum);
+	System.out.println("pg 생성");
+	request.getSession().setAttribute("authNum",authNum);
+	System.out.println("session 생성");
 	mav.addObject("pageNum", totalnum);
-	System.out.println(viewName);
-	
+	System.out.println("pageNum 생성");
 	return mav;
 	}
 	
 	@Override
 	@RequestMapping(value = "/ItemInsert.do", method = { RequestMethod.GET, RequestMethod.POST })
 	// 물품 등록 창
-	public ModelAndView ItemAdd(primaryVO vo, HttpServletRequest request, HttpServletResponse response) throws Exception {
-	String viewName = (String) request.getAttribute("viewName");
-
-	ModelAndView mav = new ModelAndView(viewName);
-	if (request.getParameter("value") != null)
-	ItemService.ItemAdd(vo);
-	return mav;
-	}
 	
-	@Override
-	public ModelAndView ItemDelete(String id, HttpServletRequest request, HttpServletResponse response)
-	throws Exception {
-	// TODO Auto-generated method stub
-	return null;
+	public ModelAndView ItemAdd(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String viewName = (String) request.getAttribute("viewName");
+	ModelAndView mav = new ModelAndView(viewName);
+	return mav;
 	}
 	@Override
 	@RequestMapping(value="/ItemUpdate.do",method=RequestMethod.GET)
@@ -126,21 +128,25 @@ public class ItemControllerImpl implements ItemController {
 	}
 	//등록 결과	
 	@Override
-	@RequestMapping(value="/ItemInsertResult.do",method=RequestMethod.POST)
-	public ResponseEntity<String> AddItem(primaryVO vo,HttpServletResponse response,
-											 HttpServletRequest request,MultipartHttpServletRequest multipartRequest) throws Exception {
+	@RequestMapping(value="/ItemInsertResult.do")
+	public ResponseEntity<String> AddItem(primaryVO vo,MultipartHttpServletRequest mr,HttpServletResponse response,
+											@RequestParam("authNum") String authNum) throws Exception {
+		final String ImagePath = mr.getRealPath("resources/itemImage/");
+		List<String> fileList = new ArrayList<String>();
 		HttpHeaders http = new HttpHeaders();
 		http.add("Content-type", "text/html; charset=utf-8");
+		  String originalFileName = null;
+		  originalFileName =vo.getPicture2().getOriginalFilename();
+		  fileList.add(originalFileName);
+		
+		  File file = new File(ImagePath +"\\" + originalFileName);
+		  if(vo.getPicture2().getSize() != 0) { if(! file.exists()) {
+		  if(file.getParentFile().mkdirs()) { file.createNewFile(); } }
+		  vo.getPicture2().transferTo(new File(ImagePath + "\\" + originalFileName)); }
+		 
+		  System.out.println(originalFileName); 
+		  vo.setPicture(originalFileName);
 		int result = ItemService.ItemAdd(vo);
-		
-		Iterator<String> fileNames = multipartRequest.getFileNames();
-		while(fileNames.hasNext()) {
-			String fileName = fileNames.next();
-			MultipartFile mFile = multipartRequest.getFile(fileName);
-			String originalFileName =mFile.getOriginalFilename();
-		System.out.println(originalFileName);
-		}
-		
 		
 		
 		String message ="<script>";
@@ -160,6 +166,7 @@ public class ItemControllerImpl implements ItemController {
 	public ResponseEntity<String> ItemDeleteAndUpdate(HttpServletRequest request,HttpServletResponse response,
 													  @RequestParam("status") String status,@RequestParam("authNum") String authNum,@RequestParam("autoNum") String autoNum)
 													  throws Exception{
+		
 		HttpHeaders http = new HttpHeaders();
 		http.add("content-type","text/html; charset=utf-8");
 		String message="<script>";
@@ -196,10 +203,6 @@ public class ItemControllerImpl implements ItemController {
 	mav.addObject("list", ItemService.ItemViewSelect(authNum,autoNum));	
 	return mav;
 	}
-
-	@Override
-	public ModelAndView SearchAgency() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }
+
+

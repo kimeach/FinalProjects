@@ -56,7 +56,7 @@ font-family: 'Jeju Gothic', sans-serif;
 #pagination {margin:10px auto;text-align: center;}
 #pagination a {display:inline-block;margin-right:10px;}
 #pagination .on {font-weight: bold; cursor: default;color:#777;}
-
+#left{ text-align:left;}
 </style>
 
 </head>
@@ -65,7 +65,7 @@ font-family: 'Jeju Gothic', sans-serif;
 </script>
 
 <body>
-		<div class="container" style="padding-left: 10%">
+		<div class="" >
 			<!-- 매물 등록화면 -->
 			<h1>
 				<b>매물 상세보기</b>
@@ -73,87 +73,87 @@ font-family: 'Jeju Gothic', sans-serif;
 			<br>
 			<% DecimalFormat formatter = new DecimalFormat("###,### 만원"); %>
 			<c:forEach items="${list}" var="item">
-			<table class="table table-striped" border="1" style="width: 80%">
+			<table class="table table-striped" border="1" style="width: 60%;margin-left:20%;">
 				<tr>
 					<td style="width: 20%;">소재지</td>
-					<td style="width: 30%;">${item.itemAddr}</td>
+					<td style="width: 30%;" id="left">${item.itemAddr}</td>
 					<td style="width: 20x%;">총 층수</td>
-					<td style="width: 30%;">${item.total_Layer} 층</td>
+					<td style="width: 30%;"id="left">${item.total_Layer} 층</td>
 				</tr>
-				<h4><b>기본정보</b></h4>
+				<h4  style="text-align:left;margin-left:20%;"><b>기본정보</b></h4>
 				<tr>
 					<td style="width: 20%;">건물명</td>
-					<td style="width: 30%;">${item.itemBuild}</td>
+					<td style="width: 30%;" id="left">${item.itemBuild}</td>
 					<td style="width: 20%;">해당 층</td>
-					<td style="width: 30%;">${item.itemLayer} 층</td>
+					<td style="width: 30%;" id="left">${item.itemLayer} 층</td>
 				</tr>
 				<tr>
 					<td style="width: 20%;">면적</td>
-					<td style="width: 30%;">${item.itemWidth} ㎥</td>
+					<td style="width: 30%;" id="left">${item.itemWidth} ㎥</td>
 					<td style="width: 20%;"></td>
 					<td style="width: 30%;"></td>
 				</tr>
 				<tr>
 					<td style="width: 20%;">입주 가능일</td>
-					<td style="width: 30%;">${item.itemYear}년 ${item.itemMonth}월 ${item.itemDay}일</td>
+					<td style="width: 30%;" id="left">${item.itemYear}년 ${item.itemMonth}월 ${item.itemDay}일</td>
 					<td style="width: 20%;"></td>
 					<td style="width: 30%;"></td>
 				</tr>
 				<tr>
 					<td style="width: 20%;">주차 가능 대수</td>
-					<td style="width: 30%;">${item.itemParking} 대</td>
+					<td style="width: 30%;" id="left">${item.itemParking} 대</td>
 					<td style="width: 20%;"></td>
 					<td style="width: 30%;"></td>
 				</tr>
 				<tr>
 
 					<td>관리비</td>
-					<td><fmt:formatNumber value="${item.itemPay}" pattern="#,###" /> 만원</td>
+					<td id="left"><fmt:formatNumber value="${item.itemPay}" pattern="#,###" /> 만원</td>
 					<td></td>
 					<td></td>
 				</tr>
 			</table>
-			<h4>
+			<h4  style="text-align:left;margin-left:20%;">
 				<b>가격 정보</b>
 			</h4>
-			<table class="table table-striped" border="1" style="width: 80%">
+			<table class="table table-striped" border="1" style="width: 60%;margin-left:20%;">
 				<tr>
 					<td style="width: 20%;">보증금</td>
-					<td style="width: 30%;"><fmt:formatNumber value="${item.deposit}" pattern="#,###"/> 만원</td>
+					<td style="width: 30%;" id="left"><fmt:formatNumber value="${item.deposit}" pattern="#,###"/> 만원</td>
 					<td style="width: 20%;"></td>
 					<td style="width: 30%;"></td>
 				</tr>
 
 				<tr>
 					<td style="width: 20%;">${item.itemSelect} &nbsp; 가격</td>
-					<td style="width: 30%;"><fmt:formatNumber value="${item.itemPrice}" pattern="#,###"/> 만원</td>
+					<td style="width: 30%;" id="left"><fmt:formatNumber value="${item.itemPrice}" pattern="#,###"/> 만원</td>
 					<td></td>
 					<td></td>
 				</tr>
 
 				<tr>
 					<td style="width: 20%;">취급업소</td>
-					<td style="width: 30%;">${item.business}</td>
+					<td style="width: 30%;" id="left">${item.business}</td>
 					<td></td>
 					<td></td>
 				</tr>
 				<tr>
 					<td style="width: 20%;">매물 상세 설명</td>
-					<td style="width: 30%;">${item.explain}</td>
+					<td style="width: 30%;" id="left">${item.explain}</td>
 					<td></td>
 					<td></td>
 				</tr>
 			</table>
-			<h4>
+			<h4 style="text-align:left;margin-left:20%;">
 				<b>사진 정보</b>
 			</h4>
-			<table class="table table-striped" border="1" style="width: 80%">
+			<table class="table table-striped" border="1" style="width: 60%;margin-left:20%;">
 				<tr>
 					<td style="width: 20%;" class="text-center">사진</td>
 					<td style="width: 20%;" class="text-center">지도</td>
 				</tr>
 				<tr>
-					<td style="width: 50%; height: 100px;"></td>
+					<td style="width: 50%; height: 100px;"><img src="${path}/resources/itemImage/${item.picture}" width="100%" height="auto"></td>
 					<td style="width: 50%; height: 100px;">
 					<div class="map_wrap">
     <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
@@ -396,9 +396,8 @@ function removeAllChildNods(el) {
 					</td>
 				</tr>
 			</table>
-			<table style="width: 100%">
-				<tr>
-	<td class="text-center">
+	<table style="width: 100%;margin-left:9%">
+	<tr><td class="text-center">
 	<input type="button" value="수정하기"
 	onclick="javascript:location.href='${path}/item/ItemUpdate.do?authNum=${item.authNum}&autoNum=${item.autoNum}';"
 	class="btn btn-primary btn-lg" style="margin: 0 0 0 -22%">

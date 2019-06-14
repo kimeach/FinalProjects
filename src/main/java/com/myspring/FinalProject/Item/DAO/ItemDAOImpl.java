@@ -46,11 +46,11 @@ public List<primaryVO> ItemSelect(String authNum) throws Exception {
 			return spring.selectList("mapper.Item.getSelectSearch");
 		}
 	// 각각의 검색 결과값들을 구하는 메소드
+	
 	@Override
 		public List<String> SearchMember(int pg, String select, String keyword,Paging pa)	throws Exception {
-		Paging paging = new Paging();
-		Map<String,Object> page = paging.selectPriceMap(pg,keyword,pa);
-		Map<String,Object> pages = paging.pagingMap(pg);
+		Map<String,Object> page = Paging.getInstance().selectPriceMap(pg,keyword,pa);
+		Map<String,Object> pages =Paging.getInstance().pagingMap(pg);
 		if(select != null) {
 		if(select.equals("all")) 
 			return spring.selectList("mapper.Item.SearchAll",page);
@@ -61,6 +61,9 @@ public List<primaryVO> ItemSelect(String authNum) throws Exception {
 		else if(select.equals("search3")) 
 			return spring.selectList("mapper.Item.Search3",page);
 		}
+		else
 		return spring.selectList("mapper.Item.SearchNone",pages);
+	return null;
 	}
+	
 }

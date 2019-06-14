@@ -26,18 +26,12 @@ font-family: 'Jeju Gothic', sans-serif;
 </head>
 <script src="${path}/resources/jquery.js"></script>
 <body>
-	<div class="container" style="padding-left: 10%">
-	<div class=""><h5>
-	</h5>
-	</div>
-	<h1>
-	<b>중개사무소 찾기</b>
-	</h1>
-		<b><a href="${path}/item/ItemInsert.do?authNum=${authNum}" style="color: black;
-	  margin: 0 0 0 60%;">매물등록</a></b>
+	<div class="">
+
+	<h1><b>중개사무소 찾기</b></h1>
 	<br>
 <form action="${path}/member/CompanyMemberView.do?pg=1" method="post">
-<table class="table" style="width: 80%;">
+<table class="table" style="width: 60%;margin-left:20%;">
 	<tr>
 	<td><select class="" name="searchSelect" style="width: 20%; height: 40px;">
 	<option value="searchAll">전체</option>
@@ -57,20 +51,18 @@ font-family: 'Jeju Gothic', sans-serif;
 </c:if>
 <!-- 결과 -->
 <c:if test="${empty list}">
-<table class="table table-hover text-center" style="width: 80%;">
+<table class="table table-hover text-center" style="width: 80%;margin-left:10%;">
 <tr><th><div style="text-align: center">검색 결과가 없습니다.</div></th></tr>
 </table>
 </c:if>
-
 <c:if test="${not empty list}">
 <!-- 검색결과 or 중개사무소 리스트 -->
 	<c:forEach var="item" items="${list}">
-	<table class="table table-hover" style="width: 80%">
-	<tr><td rowspan="4" style="width: 30%;">${item.authNum} 사진 </td></tr>
-	<tr><td style="width: 70%;">${item.name}</td></tr>
-	<tr><td style="width: 70%;">${item.address}</td></tr>
-	<tr><td style="width: 70%;"><span>보유 매물 (매: 0 / 전: 0 /월 :0)</span> 
-	<span style="margin: 0 0 0 40%"></span> <input type="button"
+	<table class="table table-hover" style="width: 30%;margin-left:37%;">
+	<tr><td style="width: 100%;text-align: left;">대표자 : ${item.name}</td></tr>
+	<tr><td style="width: 100%;text-align: left;">주소 : ${item.address}</td></tr>
+	<tr><td style="width: 100%;text-align: left;"><span>연락처 :  ${item.phone1} - ${item.phone2} - ${item.phone3}</span> 
+	<span style="margin: 0 0 0 50%"></span> <input type="button"
 	class="btn btn-primary" value="매물 보기"
 	onclick="javascript:location.href='${path}/item/ItemSelect.do?authNum=${item.authNum}&pg=1';"></td>
 	</tr>
@@ -79,7 +71,7 @@ font-family: 'Jeju Gothic', sans-serif;
 	</c:if>
 	</div>
 	<!-- 페이지네이션 -->
-	<div class="text-center ">
+	<div class="text-center">
 	<!-- 검색전 -->
 	<ul class="pagination">
 	<c:if test="${pg>0}">

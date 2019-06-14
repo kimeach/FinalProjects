@@ -1,6 +1,8 @@
 drop table Company_Member;
 drop table General_Member;
-//일반 회원 가입
+drop table item;
+
+----------------------------------일반 테이블----------------------------------
 create table General_Member(
 id varchar2(30) primary key,
 name varchar2(20),
@@ -10,8 +12,7 @@ email varchar2(40),
 email2 varchar2(80),
 joinDate date default sysdate 
 );
-
-//사업자 가입
+----------------------------------사업자 관련 테이블----------------------------------
 create table Company_Member(
 imageFile varchar2(80),
 zipCode varchar2(80),
@@ -27,8 +28,7 @@ authNum varchar2(50) primary key,
 joinDate date default sysdate 
 );
 
-picture varchar2(100),
-
+----------------------------------매물 관련 테이블----------------------------------
 create table item(
 authNum varchar2(60),
 autoNum varchar2(60),
@@ -47,8 +47,11 @@ deposit  varchar2(100),
 itemSelect varchar2(50),
 business varchar2(100),
 explain varchar2(100),
-
+picture varchar2(100),
 loadMap varchar2(100),
 constraint emo_authNum_fk foreign key(authNum) references Company_member(authNum)
 );
-drop table item;
+
+CREATE SEQUENCE autoNum INCREMENT BY 01 START WITH 1;
+--------------------------------------------------------------------------------
+drop sequence autoNum;

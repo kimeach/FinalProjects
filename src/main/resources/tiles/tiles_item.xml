@@ -17,7 +17,28 @@
 		<definition name="/member/CompanyMemberView" extends="baseLayout">
 		<put-attribute name="title" value=" 중개사무소 찾기"/>
 		<put-attribute name="body" value="/WEB-INF/views/member/CompanyMemberView.jsp"/>
-	</definition>
+		</definition>
+	
+		<definition name="/item/ItemInsert" extends="baseLayout">
+		<put-attribute name="title" value=" 매물 등록"/>
+		<put-attribute name="body" value="/WEB-INF/views/item/ItemInsert.jsp"/>
+		</definition>
+	
+		<definition name="/item/ItemSelect" extends="baseLayout">
+		<put-attribute name="title" value="매물 조회"/>
+		<put-attribute name="body" value="/WEB-INF/views/item/ItemSelect.jsp"/>
+		</definition>
+	
+		<definition name="/item/ItemUpdate" extends="baseLayout">
+		<put-attribute name="title" value="매물 수정"/>
+		<put-attribute name="body" value="/WEB-INF/views/item/ItemUpdate.jsp"/>
+		</definition>
+	
+		<definition name="/item/ItemView" extends="baseLayout">
+		<put-attribute name="title" value="매물 보기"/>
+		<put-attribute name="body" value="/WEB-INF/views/item/ItemView.jsp"/>
+		</definition>
+	
 </tiles-definitions>
 	
 

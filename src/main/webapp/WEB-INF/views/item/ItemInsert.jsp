@@ -181,50 +181,47 @@ font-family: 'Jeju Gothic', sans-serif;
 </style>
 </head>
 <script src="${path}/resources/jquery.js"></script>
-<script>
-$(function(){
-$("")	
-})
-
-</script>
-
+<script> 
+function fu(){
+document.getElementById('picture').value;		
+} </script>
 <body>
 	<form action="ItemInsertResult.do?authNum=${authNum}" name="frmItem" method="post"
 		enctype="multipart/form-data">
-		<div class="container" style="padding-left: 10%">
+		<div class="">
 			<!-- 매물 등록화면 -->
 			<h1>
 				<b>매물등록</b>
 			</h1>
 			<br>
-			<table class="table table-striped" border="1" style="width: 80%">
+			<table class="table table-striped" border="1" style="width: 60%;margin-left:20%">
 				<tr>
 					<td style="width: 20%;">소재지</td>
-					<td style="width: 30%;"><input type="text" style="width: 80%"
+					<td style="width: 30%;text-align:left;"><input type="text" style="width: 85%"
 						name="itemAddr"></td>
-					<td style="width: 20x%;">총 층수</td>
-					<td style="width: 30%;"><input type="text" style="width: 80%"
+					<td style="width: 20%;">총 층수</td>
+					<td style="width: 30%;text-align:left;"><input type="text" style="width: 85%;"
 						name="total_Layer"> 층</td>
 				</tr>
-				<h4><b>기본정보</b></h4>
+				<h4 style="text-align:left;margin-left:20%;"><b>기본정보</b></h4>
 				<tr> 
 					<td style="width: 20%;">건물명</td>
-					<td style="width: 30%;"><input type="text" style="width: 80%"
+					<td style="width: 30%;text-align:left;"><input type="text" style="width: 85%;"
 						name="itemBuild"></td>
 					<td style="width: 20%;">해당 층</td>
-					<td style="width: 30%;"><input type="text" style="width: 80%"
+					<td style="width: 30%;text-align:left;"><input type="text" style="width: 85%;"
 						name="itemLayer"> 층</td>
 				</tr>
 				<tr>
 					<td style="width: 20%;">면적</td>
-					<td style="width: 30%;"><input type="text" style="width: 80%"
+					<td style="width: 30%;text-align:left;"><input type="text" style="width: 85%;"
 						name="itemWidth">㎥</td>
 					<td style="width: 20%;"></td>
 					<td style="width: 30%;"></td>
 				</tr>
 				<tr>
 					<td style="width: 20%;">입주 가능일</td>
-					<td style="width: 30%;">
+					<td style="width: 30%;text-align:left;">
 					<select name="itemYear"><script>
 					for(var i=2019;i<=2030;i++){document.write('<option value='+i+'>'+i+'</option>');}
 					</script></select>년 &nbsp;
@@ -240,25 +237,25 @@ $("")
 				</tr>
 				<tr>
 					<td style="width: 20%;">주차 가능 대수</td>
-					<td style="width: 30%;"><input type="text" style="width: 80%"
+					<td style="width: 30%;text-align:left;"><input type="text" style="width: 85%;"
 						name="itemParking"> 대</td>
 					<td style="width: 20%;"></td>
 					<td style="width: 30%;"></td>
 				</tr>
 				<tr>
-					<td>관리비</td>
-					<td><input type="text" style="width: 80%" name="itemPay"> 만원</td>
+					<td style="width: 20%;">관리비</td>
+					<td style="width: 30%;text-align:left;"><input type="text" style="width: 85%;" name="itemPay"> 만원</td>
 					<td></td>
 					<td></td>
 				</tr>
 			</table>
-			<h4>
+			<h4 style="text-align:left;margin-left:20%;">
 				<b>가격 정보</b>
 			</h4>
-			<table class="table table-striped" border="1" style="width: 80%">
+			<table class="table table-striped" border="1" style="width: 60%;margin-left:20%">
 				<tr>
 					<td style="width: 20%;">보증금</td>
-					<td style="width: 30%;"><input type="text" style="width: 80%"
+					<td style="width: 30%;text-align:left;"><input type="text" style="width: 85%;"
 						name="deposit"> 만원</td>
 					<td style="width: 20%;"></td>
 					<td style="width: 30%;"></td>
@@ -272,7 +269,7 @@ $("")
 							<option value="전세">전세</option>
 							<option value="월세">월세</option>
 					</select>&nbsp; 가격</td>
-					<td style="width: 30%;"><input type="text" style="width: 80%"
+					<td style="width: 30%;text-align:left;"><input type="text" style="width: 85%;"
 						name="itemPrice"> 만원</td>
 					<td></td>
 					<td></td>
@@ -280,30 +277,28 @@ $("")
 
 				<tr>
 					<td style="width: 20%;">취급업소</td>
-					<td style="width: 30%;"><input type="text" style="width: 80%"
+					<td style="width: 30%;text-align:left;"><input type="text" style="width: 85%;"
 						name="business"></td>
 					<td></td>
 					<td></td>
 				</tr>
 				<tr>
 					<td style="width: 20%;">매물 상세 설명</td>
-					<td style="width: 30%;"><input type="text" style="width: 80%"
+					<td style="width: 30%;text-align:left;"><input type="text" style="width: 85%;"
 						name="explain"></td>
 					<td></td>
 					<td></td>
 				</tr>
 			</table>
-			<h4>
-				<b>사진 정보</b>
-			</h4>
-			<table class="table table-striped" border="1" style="width: 80%">
+			<h4 style="text-align:left;margin-left:20%;"><b>사진 정보</b></h4>
+			<table class="table table-striped" border="1" style="width: 60%;margin-left:20%">
 				<tr>
 					<td style="width: 20%;" class="text-center">사진</td>
 					<td style="width: 20%;" class="text-center">지도</td>
 				</tr>
 				<tr>
 					<td style="width: 50%; height: 100px;"><input type="file"
-						name="picture" id="picture"></td>
+						name="picture2" multiple="multiple" id="picture"></td>
 					<td style="width: 50%; height: 100px;"><input type="text"
 						id="sample5_address" placeholder="주소" name="loadMap"> <input
 						type="button" onclick="sample5_execDaumPostcode()" value="주소 검색"><br>
@@ -355,7 +350,7 @@ $("")
 </script></td>
 				</tr>
 			</table>
-			<table style="width: 100%">
+			<table style="width: 100%;margin-left:9%">
 				<tr>
 					<td class="text-center"><input type="submit" value="등록하기"
 						class="btn btn-primary btn-lg" style="margin: 0 0 0 -22%">

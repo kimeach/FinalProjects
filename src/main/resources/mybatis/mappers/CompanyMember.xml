@@ -52,17 +52,18 @@
 	</select>
 	<select id="SearchAll" parameterType="java.util.HashMap" resultMap="companyRel">
 	<![CDATA[
-	select * from (select rownum rn,name,address,authNum from Company_member where (address like '%'||#{keyword}||'%' or name like '%'||#{keyword}||'%')) where rn between #{minPage} and #{maxPage}
+	select * from (select rownum rn,cm.* from Company_member cm where (cm.address like '%'||#{keyword}||'%' or cm.name like '%'||#{keyword}||'%')) 
+	where rn between #{minPage} and #{maxPage}
 	]]>
 	</select>
 	<select id="SearchName" parameterType="java.util.HashMap" resultMap="companyRel">
 	<![CDATA[
-	select * from (select rownum rn,name,address,authNum from Company_member where name like '%'||#{keyword}||'%') where rn between #{minPage} and #{maxPage}
+	select * from (select rownum rn,cm.* from Company_member cm where cm.name like '%'||#{keyword}||'%') where rn between #{minPage} and #{maxPage}
 	]]>
 	</select>
 	<select id="SearchAddress" parameterType="java.util.HashMap" resultMap="companyRel">
 	<![CDATA[
-	select * from (select rownum rn,name,address,authNum from Company_member where address like '%'||#{keyword}||'%') where rn between #{minPage} and #{maxPage}
+	select * from (select rownum rn,cm.* from Company_member cm where cm.address like '%'||#{keyword}||'%') where rn between #{minPage} and #{maxPage}
 	]]>
 	
 	</select>
