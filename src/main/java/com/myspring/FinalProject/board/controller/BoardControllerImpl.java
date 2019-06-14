@@ -30,7 +30,6 @@ import com.myspring.FinalProject.board.vo.PageVO;
 import com.myspring.FinalProject.common.paging.Criteria;
 import com.myspring.FinalProject.common.paging.PageMaker;
 
-
 @Controller("boardController")
 public class BoardControllerImpl implements BoardController {
 	private static final String ARTICLE_IMAGE_REPO = "C:\\board\\article_image";
@@ -42,7 +41,7 @@ public class BoardControllerImpl implements BoardController {
 	PageVO pageVO;
 	
 	// 게시판 글 전체 리스트
-	@Override
+/*	@Override
 	@RequestMapping(value = "/board/listArticles.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView listArticles(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
@@ -53,24 +52,14 @@ public class BoardControllerImpl implements BoardController {
 		mav.addObject("articlesList", articlesList);
 	
 		return mav;
-	}
+	}*/
 	
 	// 검색
-	@Override
+/*	@Override
 	@RequestMapping(value="/board/searchList.do", method = { RequestMethod.GET, RequestMethod.POST })	
 	public ModelAndView listArticles(@RequestParam("keyword") String keyword, Criteria criteria,
 			 										HttpServletRequest request, HttpServletResponse response) throws Exception {
-//		String viewName = (String) request.getAttribute("viewName");
-//		System.out.println("searchList.do의 viewName======"+viewName);
-//		System.out.println("searchList.do의 keyword======"+keyword);
-//		List<ArticleVO> articlesList = boardService.listArticles(keyword);
-//		
-//		ModelAndView mav = new ModelAndView(viewName);
-//		System.out.println("건수:"+articlesList.size());
-//
-//		mav.addObject("articlesList",articlesList);
-//		mav.addObject("keyword", keyword);			
-//		return mav;
+
 		String viewName = (String) request.getAttribute("viewName");
 		System.out.println("searchList.do의 viewName======"+viewName);
 		System.out.println("searchList.do의 keyword======"+keyword);
@@ -92,7 +81,7 @@ public class BoardControllerImpl implements BoardController {
 		System.out.println("listPaging.do의 pageMaker =========="+pageMaker);
 
 		return mav;
-	}
+	}*/
 	
 	// 해당 페이지 게시글 불러오기
 	@Override
@@ -106,7 +95,7 @@ public class BoardControllerImpl implements BoardController {
 		return mav;
 	}
 	
-	// 게시판 페이지 처리 결과화면
+	// 게시판 글 전체 리스트(페이징 처리) + 검색처리
 	@Override
 	@RequestMapping(value = "/board/listPaging.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView listPaging(HttpServletRequest request, 
@@ -261,12 +250,10 @@ public class BoardControllerImpl implements BoardController {
 
 		String sido= request.getParameter("sido");
 		String gugun = request.getParameter("gugun");		
-		String groupNO  = request.getParameter("groupNO");		
-		//System.out.println("replyForm.do의 sido: "+sido+", gugun:"+gugun);				
+		String groupNO  = request.getParameter("groupNO");				
 		mav.addObject("sido",sido);
 		mav.addObject("gugun",gugun);	
-		mav.addObject("groupNO",groupNO);
-		//System.out.println("replyForm.do의 viewName"+viewName); //->replyForm.do의 viewName : /board/replyForm
+		mav.addObject("groupNO",groupNO);	
 		return mav;
 	}
 
@@ -287,10 +274,6 @@ public class BoardControllerImpl implements BoardController {
 		String imageFileName = upload(multipartRequest);
 		HttpSession session = multipartRequest.getSession();		
 		articleMap.put("imageFileName", imageFileName);	
-		
-		//MemberVO memberVO = (MemberVO)session.getAttribute("member");
-		//String id = memberVO.getId(); //memberVO만들어야하나??		
-		//articleMap.put("id", id); 
 		
 		int levelNO = articleVO.getLevelNO()+1; //level+1 해서 추가
 		articleMap.put("levelNO", levelNO);		
@@ -326,8 +309,7 @@ public class BoardControllerImpl implements BoardController {
 			e.printStackTrace();
 		}
 		return resEnt;
-	}	
-	
+	}		
 	
 	// 삭제
 		@Override
@@ -378,22 +360,13 @@ public class BoardControllerImpl implements BoardController {
 		}
 		
 		String imageFileName = upload(multipartRequest);
-		//String originalFileName = upload(multipartRequest);
 		HttpSession session = 	multipartRequest.getSession();
-		//MemberVO memberVO = (MemberVO)session.getAttribute("member");
-		//String id = memberVO.getId();
 		String id = articleVO.getId();
-		//String title = articleVO.getTitle();
-		//String content = articleVO.getContent();
 		String articleNO = Integer.toString(articleVO.getArticleNO());
 		articleMap.put("id",id);//작성자 
-		//articleMap.put("title",title);
-		//articleMap.put("content",content);
 		articleMap.put("imageFileName", imageFileName);//첨부파일명
 		articleMap.put("articleNO", articleNO);//글번호		
 		
-		//내용보기 form에서 hidden으로 넘어온 글번호 
-		//String articleNO =(String)articleMap.get("articleNO");		
 		System.out.println("===========modArticle.do의 articleMap:"+articleMap);
 		
 		String message;

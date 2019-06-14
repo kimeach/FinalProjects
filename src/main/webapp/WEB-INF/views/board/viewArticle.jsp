@@ -8,6 +8,17 @@
   request.setCharacterEncoding("UTF-8");
 %> 
 <head>
+	<link href="http://fonts.googleapis.com/earlyaccess/jejugothic.css" rel="stylesheet">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+	<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+	<style>
+	  body{font-family: 'Jeju Gothic', sans-serif;}
+	</style>
+  
 <meta charset="UTF-8">
  <title>상세글</title>
 	<style>
@@ -107,43 +118,44 @@
 <body>
 <h2>　</h2>
  	<form name="frmArticle" method="post"  action="${contextPath}"  enctype="multipart/form-data">
-		<table border="1"  align="center">
+		<table align="center">
 			
 			<tr>
 				<td width="150" align="center">글　번　호</td>
-			  	<td colspan="2" align="left"><input type="text" size="64" name="articleNO" value="${article.articleNO}" disabled />
-			  											<input type="hidden" size="64" name="groupNO" value="${article.groupNO}" disabled />
+			  	<td colspan="2" align="left"><input type="text" size="67" name="articleNO" value="${article.articleNO}" disabled />
+			  											<input type="hidden" size="67" name="groupNO" value="${article.groupNO}" disabled />
 			  	</td>			  						
 			</tr>
 			<tr>
 			   <td width="150" align="center" >작　성　일</td>
-			   <td align="left"><input type="text" size="64" value="<fmt:formatDate value="${article.writeDate}"/>" disabled/></td>
+			   <td align="left"><input type="text" size="67" value="<fmt:formatDate value="${article.writeDate}"/>" disabled/></td>
 			</tr>
 			<tr>
 		    	<td width="150" align="center" >작　성　자</td>
-		  		<td align="left"><input type="text" size="64" name="writer" value="${article.id}"  disabled/></td>
+		    	<td align="left"><input type="text" size="67" name="writer" value="${article.id}"  disabled/>
+										<input type="hidden" size="67" maxlength="100"  value="${article.id}" name="id"/></td>
 		  	</tr>
 		  	<tr>
 		    	<td width="150" align="center" >지　　　역</td>
-		  		<td align="left"><input type="text" size="7" name="writer" value="${article.sido}"  disabled/>
-		  								<input type="text" size="7" name="writer" value="${article.gugun}"  disabled/></td>
+		  		<td align="left"><input type="text" size="10" name="writer" value="${article.sido}"  disabled/>
+		  								<input type="text" size="10" name="writer" value="${article.gugun}"  disabled/></td>
 		  	</tr>		  	
 		  	<tr>
 		    	<td width="150" align="center" >제　　　목</td>
-		    	<td align="left"><input type="text" size="64" name="title" value="${article.title}" /></td>
+		    	<td align="left"><input type="text" size="67" name="title" value="${article.title}" /></td>
 		    </tr>
 		  	<tr>
 		    	<td width="150" align="center" >내　　　용</td>
 		    	<td><textarea rows="20" cols="65" name="content" id="i_content" style="resize:vertical;">${article.content}</textarea></td>
 		    </tr>
 	
-			<c:choose>
+<%-- 			<c:choose>
 				<c:when test="${not empty article.imageFileName && article.imageFileName!='null' }">
 					<tr>
 						<td align="center">
 							<input type="hidden" name="originalFileName" value="${article.imageFileName}"/>
-								<%-- <img src="${contextPath}/download.do?articleNO=${article.articleNO}&imageFileName=${article.imageFileName}"
-										id="preview"/> --%>
+								<img src="${contextPath}/download.do?articleNO=${article.articleNO}&imageFileName=${article.imageFileName}"
+										id="preview"/>
 						</td>			
 					</tr>
 					<tr>
@@ -168,15 +180,8 @@
 						</td>
 					</tr>
 				</c:otherwise>
-			</c:choose>	 
-
-			<!-- 뭐지? 확인요망 첨부파일 있을시에 이미지 옆에 뜨는 수정버튼
-			<tr id="tr_btn_modify" align="center">
-				<td colspan="2">
-					<input type="button" value="수정하기" onClick="fn_modify_article(frmArticle)">
-					<input type="button" value="취소" onClick="backToList(frmArticle)">
-				</td>
-			</tr>  -->
+			</c:choose>	  --%>
+	
 			
 			<!-- id와 authNum 둘다 해당되게 수정해야함 / 로그인시 답글 버튼 뜸 / 글쓴이와 로그인ID 같을경우 수정,삭제버튼 뜸 -->
 			<tr id="tr_btn">
@@ -187,10 +192,8 @@
 						<input type="button" value="삭제" 
 								  onClick="fn_remove_article('${contextPath}/board/removeArticle.do',${article.articleNO})" />
 					 </c:if> 				
-	<%-- 				<input type="button" value="답변하기" 
-							  onClick="fn_reply_form('${isLogOn}','${contextPath}/board/replyForm.do',
-							  									'${contextPath})/member/loginForm.do',${article.articleNO})" /> --%>
-					<c:if test="${not empty member.id && member.id!='null'}">
+
+					<c:if test="${not empty member.id && member.id!='null' || not empty comMember.authNum && comMember.authNum!='null'}">
 						<input type="button" value="답글" 
 						 onclick="fn_reply_form('${contextPath}/board/replyForm.do','${article.articleNO}','${article.sido}','${article.gugun}','${article.groupNO}')" />
 					</c:if> 

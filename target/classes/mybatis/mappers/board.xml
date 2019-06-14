@@ -15,15 +15,15 @@
 		<result property="title" column="title"/>
 		<result property="content" column="content"/>
 		<result property="imageFileName" column="imageFileName"/>		
-		<result property="authNum" column="authNum"/>
+		<result property="name" column="name"/>
 		<result property="writeDate" column="writeDate"/>
 	</resultMap>
 
 	<!-- 게시판 전체리스트  -->
 	<select id="selectAllArticlesList" resultMap="articleResult">
 		<![CDATA[		
-			select levelNO, articleNO, groupNO, parentNO, sido, gugun, title, content, writeDate, imageFileName, id, authNum
-			from order_board2
+			select levelNO, articleNO, groupNO, parentNO, sido, gugun, title, content, writeDate, imageFileName, id, name
+			from order_board
 			start with parentNO=0
 			connect by prior articleNO=parentNO
 			order siblings by groupNO desc
@@ -44,7 +44,7 @@
 		]]>	 -->
 		     select a.*
 			from	 (select rownum rn, order_board2.*
-						from order_board2
+						from order_board
 					  <where>
 					  <choose>
 					  <when test="keyword!=null and keyword !=''">
@@ -87,8 +87,8 @@
 	<select id="selectArticle" parameterType="int" resultType="articleVO">
 		<![CDATA[
 			select *
-			from (select levelNO, articleNO, groupNO, parentNO, sido, gugun, title, content, writeDate, imageFileName, id, authNum 
-					 from order_board2)
+			from (select levelNO, articleNO, groupNO, parentNO, sido, gugun, title, content, writeDate, imageFileName, id, name 
+					 from order_board)
 				where articleNO=#{articleNO}					
 		]]>	
 	</select>
@@ -96,37 +96,37 @@
 	<!-- selectNewArticleNO 번호 추출후 articleNO와 groupNO 넘기기  -->
 	<insert id="insertNewArticle" parameterType="java.util.Map">
 		<![CDATA[
-			insert into order_board2(articleNO, groupNO, parentNO, sido, gugun, title, content, writeDate, imageFileName, id, authNum) 
+			insert into order_board(articleNO, groupNO, parentNO, sido, gugun, title, content, writeDate, imageFileName, id, name) 
 				    values(#{articleNO}, #{articleNO}, #{parentNO, jdbcType=INTEGER},
 							#{sido, jdbcType=VARCHAR},#{gugun, jdbcType=VARCHAR},
 							 #{title, jdbcType=VARCHAR}, #{content, jdbcType=VARCHAR},
 								sysdate, #{imageFileName, jdbcType=VARCHAR},
-								#{id, jdbcType=VARCHAR},#{authNum, jdbcType=VARCHAR})
+								#{id, jdbcType=VARCHAR},#{name, jdbcType=VARCHAR})
 		]]>
 	</insert>
 	
 	<select id="selectNewArticleNO" resultType="int">
 		<![CDATA[
-		 	select max(articleNO)+1 from order_board2
+		 	select max(articleNO)+1 from order_board
 		]]>	
 	</select>	
 	
 	<!-- 답글  -->
 	<insert id="insertReply" parameterType="java.util.Map">
 		<![CDATA[
-			insert into order_board2(levelNO, articleNO, groupNO, parentNO, sido, gugun, title, content, writeDate, imageFileName, id, authNum) 
+			insert into order_board(levelNO, articleNO, groupNO, parentNO, sido, gugun, title, content, writeDate, imageFileName, id) 
 			values(#{levelNO}, seq_no.nextval, #{groupNO}, #{parentNO}, 
 					#{sido, jdbcType=VARCHAR}, #{gugun, jdbcType=VARCHAR}, #{title}, #{content}, 
-					sysdate, #{imageFileName, jdbcType=VARCHAR}, #{id, jdbcType=VARCHAR}, #{authNum, jdbcType=VARCHAR}) 
+					sysdate, #{imageFileName, jdbcType=VARCHAR}, #{id, jdbcType=VARCHAR}) 
 		]]> 
 	</insert>			
 
 	<!-- 삭제  -->
 	<delete id="deleteArticle" parameterType="int">
 		<![CDATA[
-			delete from order_board2
+			delete from order_board
 			where articleNO in (
-				select articleNO from order_board2
+				select articleNO from order_board
 				start with articleNO = #{articleNO}
 				connect by prior articleNO = parentNO)
 		]]>
@@ -134,7 +134,7 @@
 	
 	<!-- 수정 -->
 	<update id="updateArticle" parameterType="java.util.Map">
-		update order_board2
+		update order_board
 			set id=#{id}, title=#{title}, content=#{content}
 			<!-- , imageFileName = #{imageFileName} -->
 		<if test="imageFileName!='' and imageFileName != null">
@@ -147,8 +147,8 @@
 	<select id="listPaging" resultType="ArticleVO">
 		<![CDATA[					
 			select a.*
-			from	 (select rownum rn, order_board2.*
-						from order_board2
+			from	 (select rownum rn, order_board.*
+						from order_board
 						start with parentNO=0
 						connect by prior articleNO=parentNO
 						order siblings by groupNO desc) a
@@ -159,8 +159,8 @@
 	<select id="listCriteria" resultType="ArticleVO">
 		
 			select a.*
-			from	 (select rownum rn, order_board2.*
-						from order_board2
+			from	 (select rownum rn, order_board.*
+						from order_board
 					  <where>
 					  <choose>
 					  <when test="keyword!=null and keyword !=''">
@@ -177,8 +177,8 @@
 	
 	<select id="countArticles" resultType="int">
 			select count(*)
-			from	 (select rownum rn, order_board2.*
-						from order_board2
+			from	 (select rownum rn, order_board.*
+						from order_board
 					  <where>
 					  <choose>
 					  <when test="keyword!=null and keyword !=''">

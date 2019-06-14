@@ -16,7 +16,7 @@
   	</style>
   
   <meta charset="UTF-8">
-  <title>게시글 목록</title>
+  <title>게시글 목록(listArticle.jsp)</title>
     
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script type="text/javascript">
