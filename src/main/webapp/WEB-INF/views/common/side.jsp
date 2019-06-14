@@ -11,6 +11,7 @@
 
 <html>
 <head>
+<%String sessionNum=(String)session.getAttribute("sessionNum");%>
  <style>
    .no-underline{
       text-decoration:none;
@@ -19,19 +20,46 @@
   <meta charset="UTF-8"> 
   <title>사이드 메뉴</title>
     <script type="text/javascript">
-  function delete(){
-	  alert("정말 탈퇴하시겠습니까?");
-	  location.href="${contextPath}/General/generRemove.do?id= ${id}"
+  function deleteF(){
+     alert("정말 탈퇴하시겠습니까?");
+     location.href="${contextPath}/General/generRemove.do?id= ${id}"
+  }
+  
+  function deleteS(){
+     alert("정말 탈퇴하시겠습니까?");
+     location.href="${contextPath}/Company/comRemove.do?authNum=${comMember.authNum }"
+  }
+  
+  function deleteT(){
+     alert("정말 탈퇴하시겠습니까?");
+     location.href="${contextPath}/Admin/adminRemove.do?id=${admember.id}"
   }
   
   </script>
 </head>
 <body>
-	
-	<h3>
-		<a href="${contextPath}/General/generForm.do"  class="no-underline">내정보 수정</a><br>
-		<a href="javascript:void(0);" onclick="delete();" >회원탈퇴</a>
-	</h3>
-	
+<c:choose>
+    <c:when test="${isLogOn == true  && comMember!= null}">
+    <h3>
+      <a href="${contextPath}/Company/comUpdateForm.do?authNum=${comMember.authNum }">내정보 수정</a><br>
+      <a href="javascript:void(0);" onclick="deleteS();" >회원탈퇴</a>
+   </h3>
+   </c:when>
+   
+    <c:when test="${isLogOn == true  && member!= null}">
+   <h3>
+      <a href="${contextPath}/General/generUpdateForm.do?id=${member.id}"  class="no-underline">내정보 수정</a><br>
+      <a href="javascript:void(0);" onclick="deleteF();" >회원탈퇴</a>
+   </h3>
+   </c:when>
+   
+   <c:otherwise>
+   <h3>
+   <a href="${contextPath}/Admin/adminUpdateForm.do?id=${admember.id}"  class="no-underline">내정보 수정</a><br>
+      <a href="javascript:void(0);" onclick="deleteT();" >회원탈퇴</a>
+      </h3>
+   </c:otherwise>
+   
+   </c:choose>
 </body>
 </html>

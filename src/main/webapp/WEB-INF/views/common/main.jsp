@@ -24,9 +24,10 @@
   	$(document).ready(function(){
    		 $('.backgroundTransition').backgroundTransition({
 		  backgrounds:[
-			  { src: '${contextPath}/resources/boardImage/bg4.jpg' },
-			  { src: '${contextPath}/resources/reviewImage/like.png' },
-			  { src: '${contextPath}/resources/reviewImage/dislike.png' }
+			  { src: '${contextPath}/resources/boardImage/11.jpg' },
+			  { src: '${contextPath}/resources/boardImage/22.jpg' },
+			  { src: '${contextPath}/resources/boardImage/33.jpg' },
+			  { src: '${contextPath}/resources/boardImage/44.jpg' }
 		  ],
 		  transitionDelay: 3,
 		  animationSpeed: 800
@@ -38,21 +39,19 @@
   </style>
 </head>  
 <body> 
- 	<div class="backgroundTransition">
-	    <div class="content">	    	
-	    	<table align="center" width="100%" 
+ 	 <div class="backgroundTransition">
+ 	    <div style="background-color:none;">	    	
+	    	<table align="center" width="100%"
 	    		height="100%" style="display:block;"  >
-	    		<tr height="1000" align="center" >
-     				<h1 class="text-black" align="center">메인입니다.</h1></td>  
+	    		<tr></tr>
+	    		<tr></tr>
+	    		<tr height="700" align="center"  class="content">
+     				<h1 class="text-black" align="center">집을 찾을 때는, 중개나라</h1></td>  
   					<input type="text" value="">
-					<input type="submit" value="검색">	
+					<input type="submit" value="검색">
   				</tr>
   			</table>	
-	<!--     	
-	  			<h1 class="text-black" align="center">메인입니다.</h1>
-				<input type="text" value="">
-				<input type="submit" value="검색"> -->
-	     </div>
- 	</div>
+	      </div>
+ 	 </div>
 </body>   
 </html>
