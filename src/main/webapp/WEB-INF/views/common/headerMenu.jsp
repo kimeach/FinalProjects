@@ -19,6 +19,6 @@
 	            <a href="${contextPath}/member/CompanyMemberView.do?pg=1"><small>중개사무소찾기</small></a>
 	            <a href="${contextPath}/review/reviewList.do"><small>후기</small></a>
 	</div>
-
+	<p>　</p>
 </body>
 </html>

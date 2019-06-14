@@ -49,9 +49,9 @@
 	body{font-family: 'Jeju Gothic', sans-serif;}
 </style>
 <body>
-	<div class="container" align="center" style="margin-left:30%">
+	<div class="container" align="center">
 		<form name="frmReview" method="POST" action="${contextPath}" enctype="multipart/form-data">
-				<div id="tr_btn" style="margin-left:90%;">
+				<div id="tr_btn" align="right">
 					<c:if test="${isLogOn == true  && member!= null}">
 						<input type="button" value="후기 작성" onclick="javascript:location.href='${contextPath}/review/reviewForm.do';" class="btn btn-secondary" >
 					</c:if>

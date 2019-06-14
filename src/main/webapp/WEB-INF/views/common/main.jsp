@@ -38,21 +38,14 @@
   </style>
 </head>  
 <body> 
-	<div class="backgroundTransition">
+ 	<div class="backgroundTransition">
 	    <div class="content">	    	
-	    	<table align="center" border="1"  width="100%" 
+	    	<table align="center" width="100%" 
 	    		height="100%" style="display:block;"  >
-	    		<tr height="200" align="center" >
-     				<td ><h1 class="text-black" align="center">메인입니다.</h1></td>  
-  				</tr>
-  				<tr>
-  					<td>
-  						<input type="text" value="">
-						<input type="submit" value="검색">
-					</td>
-  				</tr>
- 	 			<tr height="200" align="center" >
-  					<td>　</td>
+	    		<tr height="1000" align="center" >
+     				<h1 class="text-black" align="center">메인입니다.</h1></td>  
+  					<input type="text" value="">
+					<input type="submit" value="검색">	
   				</tr>
   			</table>	
 	<!--     	
@@ -60,6 +53,6 @@
 				<input type="text" value="">
 				<input type="submit" value="검색"> -->
 	     </div>
-	</div>
+ 	</div>
 </body>   
 </html>

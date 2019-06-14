@@ -13,7 +13,6 @@
 <%String sessionId=(String)session.getAttribute("sessionId");%>
 
 <body>
-
 <div align="right">
    <c:choose>
           <c:when test="${isLogOn == true  && member!= null}">

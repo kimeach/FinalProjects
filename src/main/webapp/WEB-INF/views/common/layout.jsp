@@ -12,23 +12,24 @@
       #container {
         width: 100%;
         margin: 0px auto;
-          text-align:center;
+        text-align:center;
         border: 0px solid #bcbcbc;
       }
       #header {
         padding: 5px;
-        margin-bottom: 5px;
+       /*  margin-bottom: 5px; */
         border: 0px solid;
-        
+        background-color: #EAEAEA;        
       }
       #headerMenu {
         padding: 5px;
-        margin-bottom: 5px;
-        border: 0px solid;        
+       /*  margin-bottom: 5px; */
+        border: 0px solid;    
+        background-color: #EAEAEA;    
       }
       
       #content {
-        width: 75%;
+        width: 100%;         
         padding: 5px;
         margin-right: 5px;
         float: left;
@@ -39,8 +40,7 @@
         clear: both;
         padding: 0px ;
         border: 0px solid #bcbcbc;
-        background-color: #EAEAEA;
-         
+        background-color: #EAEAEA;         
       }
       
     </style>

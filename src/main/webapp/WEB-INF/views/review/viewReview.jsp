@@ -61,30 +61,6 @@
 </script>
 <style>
 	body{font-family: 'Jeju Gothic', sans-serif;}
-	.file_input_textbox
-	{
-	 	float: left
-	}	
-	.file_input_div
-	{
-		 position: relative; 
-		 width: 100px; 
-		 height: 23px; 
-		 overflow: hidden;
-	}
-	.file_input_hidden
-	{
-	 	font-size: 45px; 
-	 	position: absolute; 
-		 right: 0px; 
- 		top: 0px; 
- 		opacity: 0; 
- 
- 		filter: alpha(opacity=0); 
- 		-ms-filter: "alpha(opacity=0)"; 
- 		-khtml-opacity: 0; 
- 		-moz-opacity: 0;
-	}
 </style>
 <body>
 	<form name="modReviewForm" method="post" action="${contextPath}" enctype="multipart/form-data">
@@ -101,11 +77,8 @@
 						<div class="form-group row">
 							<label class="col-sm-2">IMAGEFILE</label>
 							<div class="col-sm-3">
-								<input type="text" id="fileName"  value="${review.imageFileName}" class="file_input_textbox"  disabled="disabled">
-								<input type="button" value="파일선택" class="file_input_button" class="btn btn-primary"  onchange="readURL(this);"/>
-								<input type="file" class="file_input_hidden" onchange="javascript: document.getElementById('fileName').value = this.value" />
-								<!-- <input type="file" name="imageFileName" id="i_imageFileName" 
-									value=${review.imageFileName} onchange="readURL(this);" /> -->
+								<input type="file" name="imageFileName" id="i_imageFileName" 
+									value=${review.imageFileName} onchange="readURL(this);" />
 							</div>
 						</div>
 					</c:when>
@@ -117,10 +90,7 @@
 						<div class="form-group row">
 							<label class="col-sm-2">IMAGEFILE</label>
 							<div class="col-sm-3">
-								<input type="text" id="fileName"  value="${review.imageFileName}" class="file_input_textbox"  disabled="disabled">
-								<input type="button" value="파일선택" class="file_input_button"  onchange="readURL(this);"/>
-								<input type="file" class="file_input_hidden" onchange="javascript: document.getElementById('fileName').value = this.value" />
-								<!-- <input type="file" name="imageFileName" id="i_imageFileName" disabled onchange="readURL(this);" /> -->
+								<input type="file" name="imageFileName" id="i_imageFileName" disabled onchange="readURL(this);" /> 
 							</div>
 						</div>
 					</c:otherwise>
