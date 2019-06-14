@@ -29,7 +29,7 @@ import com.myspring.FinalProject.Item.VO.primaryVO;
 @RequestMapping(value = "item/*")
 public class ItemControllerImpl implements ItemController {
 	
-	
+	int a;
 	@Autowired
 	private ItemService ItemService;
 	@Autowired
