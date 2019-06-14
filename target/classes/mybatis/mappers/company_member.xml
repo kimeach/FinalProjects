@@ -44,7 +44,7 @@ select *from Company_Member where authNum=#{authNum}
 
 <update id="updateCom" parameterType="comVO" >
   <![CDATA[
-  	update Company_Member set imageFile=#{imageFile}, phone1=#{phone1}, phone2=#{phone2},phone3=#{phone3},zipCode=#{zipCode},address=#{address},name=#{name},email=#{email},email2=#{email2},mainDeal=#{mainDeal} where authNum=#{authNum}
+  	update Company_Member set phone1=#{phone1}, phone2=#{phone2},phone3=#{phone3},zipCode=#{zipCode},address=#{address},name=#{name},email=#{email},email2=#{email2},mainDeal=#{mainDeal} where authNum=#{authNum}
   ]]>
 </update>
 
