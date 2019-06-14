@@ -150,5 +150,15 @@ public class MailController {
 		  return mav;
 	  }
 	  
+	  
+	  @RequestMapping(value = "/search.do", method= {RequestMethod.GET,RequestMethod.POST})
+	  public ModelAndView search(@RequestParam("sch")String sch,HttpServletResponse response,HttpServletRequest request) {	  
+		  ModelAndView mav=new ModelAndView();
+		  mav.setViewName("/search");
+		  return mav;
+	  }
+	  
+	  
+	  
 	} 
 

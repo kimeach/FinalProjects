@@ -38,7 +38,9 @@
 	body{font-family: 'Jeju Gothic', sans-serif; animation:background-changer 5s infinite;}
   </style>
 </head>  
-<body> 	    	
+<body> 	    
+
+	
 	<table align="bottom" style="display:block; background-color:rgba(255,255,255,0.3)"
 		height="100%" width="100%" class="backgroundTransition">
 	    	<thead></thead>
@@ -46,10 +48,13 @@
 	    		<tr><td></td><td></td><td></td></tr>
 	    		<tr height="1000">
 	    			<td></td>
+	    			
 	    			<td  height="1000" align="center" style="position:absolute; left:45%; top:46%;">
-     					<h1 class="text-black" align="center">집 찾기는, 중개나라</h1>  
-  						<input type="text" value="">
+	    			<form action="${contextPath}/search.do">
+     					<h1 class="text-black" align="center">내가 찾는, 우리집</h1>  
+  						<input type="text" value="" name="sch">
 						<input type="submit" value="검색">
+						</form>
 					</td>
 					<td></td>	
   				</tr>
