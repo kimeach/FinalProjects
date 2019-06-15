@@ -1,17 +1,16 @@
 ------------------ DB 추가할 것 -----------------------------
 
 -- 게시판 글쓴거 띄우기 위한 회원 DB
-insert into General_Member values ('hon','홍길동','1234','1234','hong','@naver.com',sysdate);
-insert into General_Member values ('hong','홍이동','1234','1234','hong','@naver.com',sysdate);
+insert into General_Member values ('hon','홍이동','1234','1234','hong','@naver.com',sysdate);
+insert into General_Member values ('hong','홍길동','1234','1234','hong','@naver.com',sysdate);
 insert into General_Member values ('lee','이순신','1234','1234','lee','@naver.com',sysdate);
 insert into General_Member values ('kang','강감찬','1234','1234','kang','@naver.com',sysdate);
 
 insert into Company_Member(address,name,phone1,phone2,phone3,email,email2,mainDeal,authNum) 
-values ('성동구','강남길','011','456','4567','abcdefg','@daum.net','주택','ba456');
+values ('성동구','강남길','011','456','4567','abcdefg','@daum.net','주택','a123');
 
 ------------ 의뢰 게시판 
-drop table order_boar;
-select * from order_board;
+drop table order_board;
 
 create table order_board(
 levelNO	number(5) default 0,
@@ -20,16 +19,19 @@ groupNO number(10),
 parentNO number(10) default 0,
 sido varchar2(20),
 gugun varchar2(20),
-id varchar2(10),
-name varchar2(30),
+id varchar2(30),
+name varchar2(30), 
+authNum varchar2(50),
 title varchar2(500) not null,
 content varchar2(4000),
 imageFileName varchar2(30),
-writeDate date default sysdate not null
+writeDate date default sysdate not null,
+constraint boardId_fk foreign key(id) references General_Member(id),
+constraint boardAuthNum_fk foreign key(authNum) references Company_Member(authNum)
 );
 
-select * from order_board;
 
+select * from order_board;
 ------------------------------ order board(초기DB)
 insert into order_board(levelNO, articleNO, groupNO, parentNO, sido, gugun, title, content, imageFileName, writedate, id, name)
 values(0,5,5,0,'강원도','동해시','보증금 1000, 월세 15~40의 10평이상 원룸 찾습니다.','테스트글입니다.',null,'2019-05-20' ,'root',null);
@@ -101,6 +103,18 @@ from order_board2
 start with parentNO=0
 connect by prior articleNO=parentNO
 order siblings by articleNO desc
+
+
+SELECT constraint_name, search_condition
+FROM user_constraints
+WHERE table_name = 'order_board'; --제약조건 확인
+
+
+ALTER TABLE order_board 
+    ADD CONSTRAINT boardId_fk FOREIGN KEY (id) 
+    REFERENCES General_Member (id); 
+    [FOREIGN KEY TABLE NAME] ([PRIMARY KEY COLUMN OF FOREIGN KEY TABLE]); 
+
 								
 ------- searchList SQL 검사(0605)
 				select a.*

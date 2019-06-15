@@ -31,15 +31,6 @@
    </style>
  	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script type="text/javascript">
-	
-/* 	 function fn_enable(obj){ //이건뭐지?
-		 document.getElementById("i_title").disabled=false;
-		 document.getElementById("i_content").disabled=false;
-		 document.getElementById("i_imageFileName").disabled=false;
-		 document.getElementById("tr_btn_modify").style.display="block";
-		 document.getElementById("tr_file_upload").style.display="block";
-		 document.getElementById("tr_btn").style.display="none";
-	 } */
 	 
 	 function fn_modify_article(obj){
 		 obj.action="${contextPath}/board/modArticle.do";
@@ -87,8 +78,6 @@
 	     groupNOInput.setAttribute("name","groupNO");
 	     groupNOInput.setAttribute("value", groupNO);	 
 
-		 alert("viewArticle.jsp의 sido:"+sido+", gugun:"+gugun);		 
-		 alert("viewArticle.jsp의 groupNO:"+groupNO);		 
  		 form.appendChild(parentNOInput);
 	     form.appendChild(sidoInput);
 	     form.appendChild(gugunInput);
@@ -132,8 +121,18 @@
 			</tr>
 			<tr>
 		    	<td width="150" align="center" >작　성　자</td>
-		    	<td align="left"><input type="text" size="67" name="writer" value="${article.id}"  disabled/>
-										<input type="hidden" size="67" maxlength="100"  value="${article.id}" name="id"/></td>
+		    	<td align="left">				
+		    		<c:choose>
+						<c:when test="${not empty article.id && article.id!='null'}">
+							<input type="text" size="67" name="writer" value="${article.id}"  disabled/>
+							<input type="hidden" size="67" maxlength="100"  value="${article.id}" name="id"/>
+						</c:when>
+						<c:otherwise>
+							<input type="text" size="67" name="writer" value="${article.name}"  disabled/>
+							<input type="hidden" size="67" maxlength="100"  value="${article.name}" name="name"/>
+						</c:otherwise>
+					</c:choose>		
+				</td>
 		  	</tr>
 		  	<tr>
 		    	<td width="150" align="center" >지　　　역</td>
@@ -148,41 +147,7 @@
 		    	<td width="150" align="center" >내　　　용</td>
 		    	<td><textarea rows="20" cols="65" name="content" id="i_content" style="resize:vertical;">${article.content}</textarea></td>
 		    </tr>
-	
-<%-- 			<c:choose>
-				<c:when test="${not empty article.imageFileName && article.imageFileName!='null' }">
-					<tr>
-						<td align="center">
-							<input type="hidden" name="originalFileName" value="${article.imageFileName}"/>
-								<img src="${contextPath}/download.do?articleNO=${article.articleNO}&imageFileName=${article.imageFileName}"
-										id="preview"/>
-						</td>			
-					</tr>
-					<tr>
-						<td width="150" align="center" rowspan="2">첨부파일</td>
-						<!-- 		<input type="file" name="imageFileName" id="i_imageFileName" onchanged="readURL(this);" disabled/> -->
-						<td width="150" align="left">
-							<input type="file" name="imageFileName" id="i_imageFileName" onchanged="readURL(this);" />
-						</td>
-					</tr>
-				</c:when>
-				<c:otherwise>
-					<tr id="tr_file_upload">
-						<td align="center">
-							<input type="hidden" name="originalFileName" value="${article.imageFileName}"/>
-						</td>
-					</tr>
-					<tr>						
-						<td width="150" align="center" rowspan="2">첨부파일</td>
-						<td width="150" align="left">
-							<input type="file" name="imageFileName" id="i_imageFileName" onchange="readURL(this);" />
-							<img id="preview" />
-						</td>
-					</tr>
-				</c:otherwise>
-			</c:choose>	  --%>
-	
-			
+				
 			<!-- id와 authNum 둘다 해당되게 수정해야함 / 로그인시 답글 버튼 뜸 / 글쓴이와 로그인ID 같을경우 수정,삭제버튼 뜸 -->
 			<tr id="tr_btn">
 				<td colspan="5" align="right">

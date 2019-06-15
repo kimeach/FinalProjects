@@ -37,7 +37,6 @@
 	     searchInput.setAttribute("name", "keyword");
 	     searchInput.setAttribute("value", document.getElementById('keyword').value);
 		 
-	    // alert("search 검색어는 "+keyword);
 	     form.appendChild(searchInput);
 	     document.body.appendChild(form);
 		 form.submit();
@@ -55,8 +54,7 @@
 </head>  
 
 <body>
-<!-- 	<table align="center" border="1"  width="80%"  >
-	  <tr height="10" align="center"  bgcolor="#BDBDBD"> -->
+
 	<table align="center" width="80%" >
 		<tr height="148">
 	    	<td colspan="5" align="right" /> 

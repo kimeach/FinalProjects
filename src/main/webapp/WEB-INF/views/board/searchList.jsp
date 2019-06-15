@@ -15,6 +15,10 @@
    		.cls2{text-align:center; font-size:30px;}
   	</style>
   
+  
+																<!--			삭제하기 			  -->
+ 
+ 
   <meta charset="UTF-8">
   <title>게시글 목록</title>
     
