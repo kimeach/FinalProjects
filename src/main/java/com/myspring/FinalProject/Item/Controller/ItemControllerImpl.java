@@ -45,7 +45,11 @@ public class ItemControllerImpl implements ItemController {
 	List<String> Chooselist = new ArrayList<String>();
 	//검색 후
 	//초기 검색 		
-	
+	if(request.getSession().getAttribute("mainKeyword") !=null) {
+		  request.getSession().removeAttribute("mainKeyword");
+	  }
+	if(request.getSession().getAttribute("pageCount") != null)
+		request.getSession().removeAttribute("pageCount");
 	if(request.getParameter("Itemselect") != null && request.getParameter("addr")!= null &&
 			request.getParameter("minPrice") != null &&request.getParameter("maxPrice") != null) { 
 		select = request.getParameter("Itemselect");
@@ -108,7 +112,7 @@ public class ItemControllerImpl implements ItemController {
 	mav.addObject("pg",pg);
 	request.getSession().setAttribute("authNum",authNum);
 	mav.addObject("pageNum", totalnum);
-
+	
 	return mav;
 	}
 	
@@ -117,6 +121,9 @@ public class ItemControllerImpl implements ItemController {
 	@RequestMapping(value = "/ItemInsert.do", method = { RequestMethod.GET, RequestMethod.POST })
 	// 물품 등록 창
 	public ModelAndView ItemAdd(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		if(request.getSession().getAttribute("mainKeyword") !=null) {
+			  request.getSession().removeAttribute("mainKeyword");
+		  }
 		String viewName = (String) request.getAttribute("viewName");
 	ModelAndView mav = new ModelAndView(viewName);
 	return mav;
@@ -125,8 +132,14 @@ public class ItemControllerImpl implements ItemController {
 	@RequestMapping(value="/ItemUpdate.do",method=RequestMethod.GET)
 	public ModelAndView ItemUpdate(HttpServletRequest request, HttpServletResponse response,@RequestParam("authNum") String authNum,@RequestParam("autoNum") String autoNum)
 	throws Exception {
+		if(request.getSession().getAttribute("mainKeyword") !=null) {
+			  request.getSession().removeAttribute("mainKeyword");
+		  }
+		
+		request.setAttribute("autoNum", request.getParameter("autoNum"));
 	String viewName= (String)request.getAttribute("viewName");
 	ModelAndView mav = new ModelAndView(viewName);	
+	
 	return mav;
 	}
 	//등록 결과	
@@ -164,27 +177,53 @@ public class ItemControllerImpl implements ItemController {
 		message += "</script>";
 		return new ResponseEntity<String>(message,http,HttpStatus.CREATED);
 	}
+	@Override
+	@RequestMapping(value="/ItemUpdateResult.do",method= RequestMethod.POST)
+	public ResponseEntity<String> ItemUpdate(primaryVO vo,MultipartHttpServletRequest mr,
+			HttpServletResponse response,@RequestParam("authNum") String authNum,@RequestParam("autoNum") String autoNum)
+			throws Exception{
+		System.out.println("====들어온다====");
+		vo.setAuthNum(authNum);
+		vo.setAutoNum(autoNum);
+		final String ImagePath = mr.getRealPath("resources/itemImage/");
+		List<String> fileList = new ArrayList<String>();
+		HttpHeaders http = new HttpHeaders();
+		http.add("Content-type", "text/html; charset=utf-8");
+		String originalFileName = null;
+		originalFileName =vo.getPicture2().getOriginalFilename();
+		fileList.add(originalFileName);
+		
+		  File file = new File(ImagePath +"\\" + originalFileName);
+		  if(vo.getPicture2().getSize() != 0) { if(! file.exists()) {
+		  if(file.getParentFile().mkdirs()) { file.createNewFile(); } }
+		  vo.getPicture2().transferTo(new File(ImagePath + "\\" + originalFileName)); }
+		 
+		  System.out.println("파일 명 : "+originalFileName); 
+		  vo.setPicture(originalFileName);
+		 
+		int result = ItemService.ItemUpdate(vo);
+		System.out.println("결과 값 : "+result);
+		String message ="<script>";
+		if(result == 1) {
+			message +="alert('수정되었습니다.');";
+			message +="location.href='./ItemSelect.do?authNum="+vo.getAuthNum()+"&pg=1';";
+		}
+			else if(result ==0) {
+			message +="alert('수정에 실패 하였습니다.');";
+			message +="location.href='history.go(-1);';";
+		}
+		message += "</script>";
+		return new ResponseEntity<String>(message,http,HttpStatus.OK);
+	}
 	
 	@RequestMapping(value="/ItemResult.do",method=RequestMethod.GET)
-	public ResponseEntity<String> ItemDeleteAndUpdate(HttpServletRequest request,HttpServletResponse response,
-													  @RequestParam("status") String status,@RequestParam("authNum") String authNum,@RequestParam("autoNum") String autoNum)
-													  throws Exception{
-		
-		HttpHeaders http = new HttpHeaders();
-		http.add("content-type","text/html; charset=utf-8");
-		String message="<script>";
-/*		if(status.equals("update")) {
-		int result = ItemService.ItemUpdate(authNum,autoNum);
-		if(result !=0) {
-		message +="alert('수정되었습니다.');";
-		message +="location.href='';";
-		}
-		else if(result ==0) {
-		message +="alert('수정에 실패 하였습니다.');";
-		message +="location.href='';";
-		}
-	}*/
-	if(status.equals("delete")) {
+	public ResponseEntity<String> ItemDelete(HttpServletRequest request,HttpServletResponse response,
+		  @RequestParam("status") String status,@RequestParam("authNum") String authNum,
+		  @RequestParam("autoNum") String autoNum)
+		  throws Exception{
+	HttpHeaders http = new HttpHeaders();
+	http.add("content-type","text/html; charset=utf-8");
+	String message="<script>";
 	int result = ItemService.ItemDelete(authNum,autoNum);
 	if(result != 0) {
 	message +="alert('삭제 되었습니다.');";
@@ -194,13 +233,15 @@ public class ItemControllerImpl implements ItemController {
 	message +="alert('삭제에 실패하였습니다.');";
 	message +="history.go(-1);";
 	}
-	}
 	message +="</script>";
 	return new ResponseEntity<String>(message,http,HttpStatus.OK);
 	}
 	@Override
 	@RequestMapping(value="/ItemView.do",method=RequestMethod.GET)
 	public ModelAndView ItemView(@RequestParam("authNum") String authNum,@RequestParam("autoNum") String autoNum,HttpServletRequest request,HttpServletResponse response) throws Exception {
+		if(request.getSession().getAttribute("mainKeyword") !=null) {
+			  request.getSession().removeAttribute("mainKeyword");
+		  }
 	String viewName = (String)request.getAttribute("viewName");
 	ModelAndView mav = new ModelAndView(viewName);
 	mav.addObject("list", ItemService.ItemViewSelect(authNum,autoNum));	

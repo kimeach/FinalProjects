@@ -67,7 +67,7 @@ a {
 		</c:if>
 		<hr>
 		</div>
-		<c:if test="${not empty keyword && not empty list1 || keyword eq ''}">
+		<c:if test="${not empty count && keyword ne null}">
 		<h4><b>"<span style="color:red"> ${keyword} </span>" 에 대한 "<span style="color:red">
 		${count}</span> "건의 결과가 검색되었습니다.</b></h4>
 		</c:if>

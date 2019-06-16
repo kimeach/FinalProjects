@@ -30,8 +30,8 @@ public int ItemDelete(String authNum,String autoNum) throws Exception {
 	return ItemDAO.ItemDelete(delMap);
 }
 @Override
-public int ItemUpdate(String id) throws Exception {
-	return ItemDAO.ItemUpdate(id);
+public int ItemUpdate(primaryVO vo) throws Exception {
+	return ItemDAO.ItemUpdate(vo);
 }
 @Override
 public List<primaryVO> ItemSelect(String authNum) throws Exception {

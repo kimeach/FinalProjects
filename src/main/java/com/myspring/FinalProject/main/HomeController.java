@@ -27,6 +27,7 @@ public class HomeController {
 	private int maxPrice =0; // 최대 금액
 	@RequestMapping(value= "/main/main.do" ,method={RequestMethod.POST,RequestMethod.GET})
 	public String main(HttpServletRequest request, HttpServletResponse response) throws Exception{
+	request.getSession().invalidate();
 	return "main";
 }
 	
@@ -44,19 +45,21 @@ System.out.println("============= 메인에서 검색 =============");
 		
 		keyword = (String)request.getSession().getAttribute("mainKeyword");
 		
+		System.out.println("keyword :"+keyword);
 		Paging.getInstance().setKeyword(keyword);
-		
-		List<String> countList = ItemService.mainTotalSearch(Paging.getInstance());
-		
+		System.out.println("paging 에 들어간 Keyword : "+Paging.getInstance().getKeyword());
 		List<String> list =ItemService.mainSearch(Paging.getInstance()); 
-		
+		List<String> countList = ItemService.mainTotalSearch(Paging.getInstance());
+
+		System.out.println();
 		if(request.getParameter("mainSearch") != null) {
 			mav.addObject("mainSearch", mainSearch);
 		}
 		int totalNum=Paging.getInstance().TotalPage(countList.size());
 		mav.addObject("pg", pg);
-		mav.addObject("keyword", vo.getKeyword());
-		mav.addObject("count",countList.size());
+		request.getSession().setAttribute("keyword", keyword);
+		request.getSession().setAttribute("count",countList.size());
+		System.out.println("총 갯수 : "+countList.size());
 		mav.addObject("mainSearch", mainSearch);
 		mav.addObject("list1", list);
 		mav.addObject("pageNum", totalNum);

@@ -168,7 +168,6 @@ public primaryVO(String authNum, String autoNum, String itemAddr, String itemBui
 		String total_Layer, String itemParking, String itemPay, String itemYear, String itemMonth, String itemDay,
 		String deposit, String selectBuild, String itemPrice, String itemSelect, String business, String explain,
 		String picture, MultipartFile picture2, String loadMap) {
-	super();
 	this.authNum = authNum;
 	this.autoNum = autoNum;
 	this.itemAddr = itemAddr;

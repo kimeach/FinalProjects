@@ -1,4 +1,5 @@
 package com.myspring.FinalProject.Item.DAO;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -26,8 +27,8 @@ public int ItemDelete(Map<String,Object> delMap) throws Exception {
 	return spring.delete("mapper.Item.deleteItem", delMap);
 }
 @Override
-public int ItemUpdate(String id) throws Exception {
-	return spring.update("mapper.Item.updateItem", id);
+public int ItemUpdate(primaryVO vo) throws Exception {
+	return spring.update("mapper.Item.updateItem", vo);
 }
 @Override
 public List<primaryVO> ItemSelect(String authNum) throws Exception {

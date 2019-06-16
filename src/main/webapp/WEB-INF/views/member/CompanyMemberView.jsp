@@ -38,14 +38,14 @@ font-family: 'Jeju Gothic', sans-serif;
 	<option value="search1">이름</option>
 	<option value="search2">지역</option>
 	</select> <input type="text" name="searchKeyWord" style="width: 67%; height: 40px;" 
-	placeholder="지역명 또는 이름을 입력하세요."> 
+	placeholder="지역명 또는 이름을 입력하세요." required="required"> 
 	<input type="submit" class="btn btn-primary" style="width: 10%; height: 40px;"
 	value="검색"></td>
 	</tr>
 </table>
 <!-- 검색결과 -->
 </form>
-<c:if test="${not empty pageCount}">
+<c:if test="${not empty pageCount && search ne null}">
 <h4> "<span style="color:red;font-weight: bold;">${search}</span>" 에 대한 <span style="color:red;font-weight: bold;"> ${pageCount} </span>건의 중개사무소 검색결과 입니다.</p></h4>
 </c:if>
 <!-- 결과 -->

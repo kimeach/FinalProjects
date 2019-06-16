@@ -39,11 +39,9 @@
    ]]>
 	</delete>
 	<!-- 매물 등록에 대한 수정 작업 -->
-	<update id="updateItem" parameterType="java.util.HashMap">
+	<update id="updateItem" parameterType="primaryVO">
    <![CDATA[
    update item set 
-   authNum = #{authNum},
-   autoNum = #{autoNum},
    itemAddr = #{itemAddr},
    itemBuild = #{itemBuild},
    itemWidth= #{itemWidth},
@@ -51,15 +49,17 @@
    total_Layer = #{total_Layer},
    itemParking = #{itemParking},
    itemPay = #{itemPay},
-   itemYear = #{itemYear}
-   itemMonth = #{itemMonth}
-   itemDay = #{itemDay}
+   itemYear = #{itemYear},
+   itemMonth = #{itemMonth},
+   itemDay = #{itemDay},
    deposit = #{deposit},
    itemPrice =#{itemPrice},
+   itemSelect = #{itemSelect},
    business = #{business},
    explain = #{explain},
    loadMap = #{loadMap},
-   selectBuild =#{selectBuild}
+   picture = #{picture},
+   selectBuild =#{selectBuild}	
    where authNum = #{authNum} and autoNum = #{autoNum}
    ]]>
 	</update>
@@ -170,6 +170,8 @@
 	) where rn between #{minPage} and #{maxPage} order by autonum desc
 	]]>
 	</select>
+	
+	
 	<select id="mainTotalSearch" parameterType="java.util.HashMap" resultMap="relItem">
 	<![CDATA[
 	select * from item where 

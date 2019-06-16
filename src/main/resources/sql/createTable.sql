@@ -89,5 +89,35 @@ select * from item where
 	
 	select * from(select rownum rn,cm.* from Company_member cm) where rn between 1 and 10
 	
+	select count(*) from (select rownum rn,i.* from item i where 
+	(i.loadMap like '%'||'전세'||'%') or 
+	(i.itemSelect like '%'||'전세'||'%') or 
+	(i.itemBuild like '%'||'전세'||'%') or
+	(i.business like '%'||'전세'||'%')
+	) where rn between 1 and 100 order by autonum desc
 	
+   update item set 
+   itemAddr = '',
+   itemBuild = '',
+   itemWidth= '',
+   itemLayer= '',
+   total_Layer = '10',
+   itemParking = '3',
+   itemPay = '888',
+   itemYear = '05',
+   itemMonth = '03',
+   itemDay = '05',
+   deposit = '1111',
+   itemPrice ='2000',
+   itemSelect = '',
+   business = '',
+   explain = '',
+   loadMap = '',
+   picture = '',
+   selectBuild =''
+   where authNum = '234' and autoNum = '99'
 	
+   delete item where authNum = '234' and autoNum = '66';
+	commit
+  select * from item where authNum = '234' and autoNum = '66';
+  

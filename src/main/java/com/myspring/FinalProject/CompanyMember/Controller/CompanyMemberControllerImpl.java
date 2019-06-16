@@ -29,6 +29,10 @@ private String keyword=null;
   @RequestMapping(value="/CompanyMemberView.do",method ={RequestMethod.GET,RequestMethod.POST})
   public ModelAndView getallview(HttpServletResponse response, HttpServletRequest request,@RequestParam("pg") int pg) throws
   Exception {
+	  if(request.getSession().getAttribute("mainKeyword") !=null) {
+		  request.getSession().removeAttribute("mainKeyword");
+	  }
+	  
   request.setCharacterEncoding("euc-kr");
   response.setContentType("text/html;charset=euc-kr");
   String viewName = (String)request.getAttribute("viewName");
@@ -72,7 +76,7 @@ private String keyword=null;
   System.out.println("페이지 수 : "+totalnum);
   mav.addObject("pageNum", totalnum);
   mav.addObject("pg",pg);
-  mav.addObject("pageCount",lists.size());
+  request.getSession().setAttribute("pageCount",lists.size());
 
   return mav;
   }	  

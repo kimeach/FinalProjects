@@ -189,7 +189,7 @@ $("")
 </script>
 
 <body>
-	<form action="ItemInsertResult.do?authNum=${authNum}" name="frmItem" method="post"
+	<form action="ItemUpdateResult.do?authNum=${authNum}&autoNum=${autoNum}" name="frmItem" method="post"
 		enctype="multipart/form-data">
 		<div class="container" style="padding-left: 10%">
 			<!-- 매물 등록화면 -->
@@ -219,13 +219,29 @@ $("")
 					<td style="width: 20%;">면적</td>
 					<td style="width: 30%;"><input type="text" style="width: 100%"
 						name="itemWidth"></td>
-					<td style="width: 20%;"></td>
-					<td style="width: 30%;"></td>
+					<td style="width: 20%;">건물형태</td>
+					<td style="width: 30%;text-align:left;">	
+					<select name="selectBuild" style="width:120px;height:30px;">
+					<option value="아파트">아파트</option>
+					<option value="빌라">빌라</option>
+					<option value="오피스텔">오피스텔</option>
+					<option value="주택">주택</option>
+					<option value="기타">기타</option>
+					</select></td>
 				</tr>
 				<tr>
 					<td style="width: 20%;">입주 가능일</td>
-					<td style="width: 30%;"><input type="text" style="width: 100%"
-						name="itemMoving"></td>
+					<td style="width: 30%;text-align:left;">
+					<select name="itemYear" style="width:100px;"><script>
+					for(var i=2019;i<=2030;i++){document.write('<option value='+i+'>'+i+'</option>');}
+					</script></select>년 &nbsp;
+					<select name="itemMonth"><script>
+					for(var i =1;i<=12;i++){document.write('<option value='+i+'>'+i+'</option>');}
+					</script></select>월 &nbsp;
+					<select name="itemDay"><script>
+					for(var i =1;i<=31;i++){document.write('<option '+i+'>'+i+'</option>');}
+					</script></select>일 &nbsp;
+					</td>
 					<td style="width: 20%;"></td>
 					<td style="width: 30%;"></td>
 				</tr>
@@ -294,7 +310,7 @@ $("")
 				</tr>
 				<tr>
 					<td style="width: 50%; height: 100px;"><input type="file"
-						name="picture"></td>
+						name="picture2"></td>
 					<td style="width: 50%; height: 100px;"><input type="text"
 						id="sample5_address" placeholder="주소" name="loadMap"> <input
 						type="button" onclick="sample5_execDaumPostcode()" value="주소 검색"><br>
