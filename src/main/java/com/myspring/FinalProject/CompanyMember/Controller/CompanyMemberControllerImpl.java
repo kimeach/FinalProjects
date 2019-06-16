@@ -36,31 +36,35 @@ private String keyword=null;
   List<String>	Chooselist = new ArrayList<String>();
  
   if((request.getParameter("searchSelect") != null && request.getParameter("searchKeyWord") != null)) {
+ System.out.println("==========search,keyword 값 존재=========");
  select = request.getParameter("searchSelect");
  keyword = request.getParameter("searchKeyWord"); 
+ request.getSession().setAttribute("search", keyword);
+ request.getSession().setAttribute("select", select);
  }
   if(keyword !=null && select !=null) { //검색
   System.out.println("=========검색 후=========");	
+  keyword = (String)request.getSession().getAttribute("search");
+  select = (String)request.getSession().getAttribute("select");
   Chooselist = CompanyMemberService.SearchMember(pg,select,keyword);
   System.out.println("pg : "+pg);
   System.out.println("선택 : "+select+", 키워드 : "+keyword);
-  request.getSession().setAttribute("list",Chooselist);
-  request.getSession().setAttribute("search", keyword);
-  request.getSession().setAttribute("select", select);
+  request.setAttribute("list",Chooselist);
+
   }
   else {
 	System.out.println("=========검색 전=========");
-	if(request.getSession().getAttribute("search") != null) {
-	System.out.println("=========세션 제거=========");
-	request.getSession().invalidate(); 
-	keyword=null;
-	select=null;
-	}
+	
 	  System.out.println("pg : "+pg);
 	  System.out.println("선택 : "+select+", 키워드 : "+keyword);
 	  Chooselist = CompanyMemberService.SearchMember(pg,select,keyword);
 	  mav.addObject("list",Chooselist);
   }
+  if(request.getSession().getAttribute("search1") != null && request.getSession().getAttribute("select1") !=null) {
+		System.out.println("=========세션 제거=========");
+		request.getSession().removeAttribute("search1");
+		request.getSession().removeAttribute("select1");
+		}
   List<String> lists = CompanyMemberService.SelectMember(select,keyword); // 총 갯수
    // 총 페이지
   int totalnum = Paging.getInstance().TotalPage(lists.size());
@@ -69,6 +73,7 @@ private String keyword=null;
   mav.addObject("pageNum", totalnum);
   mav.addObject("pg",pg);
   mav.addObject("pageCount",lists.size());
+
   return mav;
   }	  
 }

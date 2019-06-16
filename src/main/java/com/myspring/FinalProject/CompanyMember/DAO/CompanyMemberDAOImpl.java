@@ -46,7 +46,11 @@ public List<String> selectChooseMember(int pg) throws Exception {
 	else if(searchSelect.equals("search2")) 
 		return spring.selectList("mapper.CompanyMember.SearchAddress",page);
 	}
+	else
 	return spring.selectList("mapper.CompanyMember.SearchNone",pages);
+	
+	return null;
+
 }
 @Override
 	public List<String> selectCount(int authNum, String itemSelect) throws Exception {

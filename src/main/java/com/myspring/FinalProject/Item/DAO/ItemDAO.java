@@ -17,5 +17,9 @@ public List<primaryVO> ItemAllSelect() throws Exception;
 public List<primaryVO> ItemViewSelect(Map<String,Object> lists) throws Exception;
 public List<String> getSelectSearch() throws Exception;
 public List<String> SearchMember(int pg,String select,String keyword,Paging pa) throws Exception; 
-
+public List<String> mainSearch(Paging paging)throws Exception;
+public List<String> mainTotalSearch(Paging paging)throws Exception;
+public List<String> totalList(String select,Paging paging) throws Exception; 
+public List<String> mainTotalList(String select,Paging paging) throws Exception;
+public List<String> mainSearchMember(int pg, String select, String keyword,Paging pa) throws Exception;
 }

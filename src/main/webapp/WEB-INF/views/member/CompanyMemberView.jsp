@@ -37,7 +37,6 @@ font-family: 'Jeju Gothic', sans-serif;
 	<option value="searchAll">전체</option>
 	<option value="search1">이름</option>
 	<option value="search2">지역</option>
-	
 	</select> <input type="text" name="searchKeyWord" style="width: 67%; height: 40px;" 
 	placeholder="지역명 또는 이름을 입력하세요."> 
 	<input type="submit" class="btn btn-primary" style="width: 10%; height: 40px;"
@@ -46,7 +45,7 @@ font-family: 'Jeju Gothic', sans-serif;
 </table>
 <!-- 검색결과 -->
 </form>
-<c:if test="${not empty search}">
+<c:if test="${not empty pageCount}">
 <h4> "<span style="color:red;font-weight: bold;">${search}</span>" 에 대한 <span style="color:red;font-weight: bold;"> ${pageCount} </span>건의 중개사무소 검색결과 입니다.</p></h4>
 </c:if>
 <!-- 결과 -->
@@ -73,6 +72,7 @@ font-family: 'Jeju Gothic', sans-serif;
 	<!-- 페이지네이션 -->
 	<div class="text-center">
 	<!-- 검색전 -->
+	<c:if test="${not empty pageCount}">
 	<ul class="pagination">
 	<c:if test="${pg>0}">
 	<li><a href="${path}/member/CompanyMemberView.do?pg=${pg-1}">이전</a></li>
@@ -96,6 +96,7 @@ font-family: 'Jeju Gothic', sans-serif;
 	</script>
 	</c:if>
 	</ul>
+	</c:if>
 	</div>
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

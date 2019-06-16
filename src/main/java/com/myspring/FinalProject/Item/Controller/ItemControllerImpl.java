@@ -28,8 +28,6 @@ import com.myspring.FinalProject.Item.VO.primaryVO;
 @RestController
 @RequestMapping(value = "item/*")
 public class ItemControllerImpl implements ItemController {
-	
-	int a;
 	@Autowired
 	private ItemService ItemService;
 	@Autowired
@@ -47,72 +45,77 @@ public class ItemControllerImpl implements ItemController {
 	List<String> Chooselist = new ArrayList<String>();
 	//검색 후
 	//초기 검색 		
+	
 	if(request.getParameter("Itemselect") != null && request.getParameter("addr")!= null &&
 			request.getParameter("minPrice") != null &&request.getParameter("maxPrice") != null) { 
 		select = request.getParameter("Itemselect");
 		keyword = request.getParameter("addr");
 		minPrice = Integer.parseInt(request.getParameter("minPrice"));
 		maxPrice = Integer.parseInt(request.getParameter("maxPrice"));
+	    request.getSession().setAttribute("search1", keyword);
+	    request.getSession().setAttribute("select1", select);
 		System.out.println("min : "+minPrice);
 		System.out.println("max : "+maxPrice);
-	
 	}
 	//페이지네이션 2 이상일때 검색
 	if(select!=null && keyword !=null && minPrice != 0 && maxPrice != 0) {
-    System.out.println("=========상세 검색 후=========");	
+    System.out.println("=========상세 검색 후=========");
     Paging.getInstance().setMinPrice(minPrice);
     Paging.getInstance().setMaxPrice(maxPrice);
+    keyword =(String) request.getSession().getAttribute("search1");
+    select = (String) request.getSession().getAttribute("select1");
     Chooselist = ItemService.SearchMember(pg,select,keyword,Paging.getInstance());
     System.out.println("pg : "+pg);
     System.out.println("선택 : "+select+", 키워드 : "+keyword);
-    request.getSession().setAttribute("list",Chooselist);
-    request.getSession().setAttribute("search", keyword);
-    request.getSession().setAttribute("select", select);
+    System.out.println("min : "+minPrice);
+	System.out.println("max : "+maxPrice);
+    request.setAttribute("list1",Chooselist);
+	
 	}
 	//검색 아닐때
 	else{
 	System.out.println("=========매물 상세 검색 전=========");
-	if(request.getSession().getAttribute("search") != null) {
-	System.out.println("search 제거");	
+
+	System.out.println("pg : "+pg);
+	System.out.println("선택 : "+select+", 키워드 : "+keyword);
+	System.out.println("authNum : "+authNum);
+	Paging.getInstance().setMinPrice(minPrice);
+	Paging.getInstance().setMaxPrice(maxPrice);
+	Paging.getInstance().setAuthNum(authNum);
+	Chooselist = ItemService.SearchMember(pg,select,keyword,Paging.getInstance());
+	mav.addObject("list1",Chooselist);
+	System.out.println("Chooselist 갯수 : "+Chooselist.size());
+	}
+	if(request.getSession().getAttribute("search") != null && request.getSession().getAttribute("select")!= null) {
 	request.getSession().removeAttribute("search");
-	System.out.println("select 제거");	
 	request.getSession().removeAttribute("select");
 	keyword=null;
 	select=null;
 	minPrice = 1;
 	maxPrice = 1000;
 	}
-	System.out.println("pg : "+pg);
-	System.out.println("선택 : "+select+", 키워드 : "+keyword);
-	System.out.println("authNum : "+authNum);
+	Paging.getInstance().setKeyword(keyword);
 	Paging.getInstance().setMinPrice(minPrice);
-	System.out.println("minPrice 추가"+Paging.getInstance().getMinPrice());
 	Paging.getInstance().setMaxPrice(maxPrice);
-	System.out.println("maxPrice 추가"+Paging.getInstance().getMaxPrice());
 	Paging.getInstance().setAuthNum(authNum);
-	System.out.println("authNum 추가"+Paging.getInstance().getAuthNum());
-	Chooselist = ItemService.SearchMember(pg,select,keyword,Paging.getInstance());
-	System.out.println("list 생성");
-	mav.addObject("list",Chooselist);
-	System.out.println("list를 mav 에 추가");
-	}
-	System.out.println("if 문 탈출");
-	int totalnum=Paging.getInstance().TotalPage(Chooselist.size());
-	System.out.println("totalnum 대입");
-	//검색전
+	List<String> totalList = ItemService.totalList(select,Paging.getInstance());
+	System.out.println("총 갯수 : "+totalList.size());
+	mav.addObject("count",totalList.size());
+	int totalnum=Paging.getInstance().TotalPage(totalList.size());
+	System.out.println("총 페이지네이션 갯수 : "+totalnum);
+
+	mav.addObject("keyword",keyword);
 	mav.addObject("pg",pg);
-	System.out.println("pg 생성");
 	request.getSession().setAttribute("authNum",authNum);
-	System.out.println("session 생성");
 	mav.addObject("pageNum", totalnum);
-	System.out.println("pageNum 생성");
+
 	return mav;
 	}
+	
 	
 	@Override
 	@RequestMapping(value = "/ItemInsert.do", method = { RequestMethod.GET, RequestMethod.POST })
 	// 물품 등록 창
-	
 	public ModelAndView ItemAdd(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName = (String) request.getAttribute("viewName");
 	ModelAndView mav = new ModelAndView(viewName);
@@ -203,6 +206,9 @@ public class ItemControllerImpl implements ItemController {
 	mav.addObject("list", ItemService.ItemViewSelect(authNum,autoNum));	
 	return mav;
 	}
+	
+	
+	
 }
 
 

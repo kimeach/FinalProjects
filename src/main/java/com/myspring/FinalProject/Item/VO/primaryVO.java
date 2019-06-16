@@ -21,6 +21,8 @@ private String itemMonth; //입주 월
 private String itemDay; //입주 일
 //가격 정보
 private String deposit; //보증금
+private String selectBuild; //보증금
+
 private String itemPrice; //itemSelect에 대한 가격
 private String itemSelect; //매매,전세,월세
 private String business; //취급 업소 (중개사무소 명)
@@ -149,10 +151,24 @@ public String getPicture() {
 public void setPicture(String picture) {
 	this.picture = picture;
 }
-public primaryVO(String authNum,String autoNum, String itemAddr, String itemBuild, String itemWidth, String itemLayer,
+
+public MultipartFile getPicture2() {
+	return picture2;
+}
+public void setPicture2(MultipartFile picture2) {
+	this.picture2 = picture2;
+}
+public String getSelectBuild() {
+	return selectBuild;
+}
+public void setSelectBuild(String selectBuild) {
+	this.selectBuild = selectBuild;
+}
+public primaryVO(String authNum, String autoNum, String itemAddr, String itemBuild, String itemWidth, String itemLayer,
 		String total_Layer, String itemParking, String itemPay, String itemYear, String itemMonth, String itemDay,
-		String deposit, String itemPrice, String itemSelect, String business, String explain,
-		String loadMap,String picture,MultipartFile picture2) {
+		String deposit, String selectBuild, String itemPrice, String itemSelect, String business, String explain,
+		String picture, MultipartFile picture2, String loadMap) {
+	super();
 	this.authNum = authNum;
 	this.autoNum = autoNum;
 	this.itemAddr = itemAddr;
@@ -166,19 +182,14 @@ public primaryVO(String authNum,String autoNum, String itemAddr, String itemBuil
 	this.itemMonth = itemMonth;
 	this.itemDay = itemDay;
 	this.deposit = deposit;
+	this.selectBuild = selectBuild;
 	this.itemPrice = itemPrice;
 	this.itemSelect = itemSelect;
 	this.business = business;
 	this.explain = explain;
+	this.picture = picture;
 	this.picture2 = picture2;
 	this.loadMap = loadMap;
 }
-public MultipartFile getPicture2() {
-	return picture2;
-}
-public void setPicture2(MultipartFile picture2) {
-	this.picture2 = picture2;
-}
-
 
 }

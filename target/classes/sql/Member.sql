@@ -43,7 +43,7 @@ insert into Company_Member(address,name,phone1,phone2,phone3,email,email2,mainDe
 values ('서초구','홍길동','010','1234','1234','root','@naver.com','주택');
 
 insert into Company_Member(address,name,phone1,phone2,phone3,email,email2,mainDeal,authNum) 
-values ('서초구','홍길동','010','1234','1234','root','@naver.com','주택','a123');
+values ('서초구','홍길동','010','1234','1234','root','@naver.com','주택','2600');
 
 
 select *from Company_Member

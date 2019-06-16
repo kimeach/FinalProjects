@@ -15,6 +15,7 @@
 		<result property="itemYear" column="itemYear" /> <!-- 입주가능일 -->
 		<result property="itemMonth" column="itemMonth" /> <!-- 입주가능일 -->
 		<result property="itemDay" column="itemDay" /> <!-- 입주가능일 -->
+		<result property="selectBuild" column="selectBuild" /> <!-- 주거형태 -->
 		<!-- 가격 정보 -->
 		<result property="deposit" column="deposit" /> <!-- 보증금 -->
 		<result property="itemSelect" column="itemSelect" /> <!-- 전/월/매 선택 -->
@@ -28,8 +29,8 @@
 	<!-- 매물 등록 에대한 추가 작업 -->
 	<insert id="insertItem" parameterType="primaryVO">
    <![CDATA[
-   insert into item(authNum,autoNum,itemAddr,itemBuild,itemWidth,itemLayer,total_Layer,itemParking,itemPay,deposit,business,explain,loadMap,ItemPrice,ItemSelect,itemYear,itemMonth,itemDay,picture) values
-   (#{authNum},autoNum.nextval,#{itemAddr},#{itemBuild},#{itemWidth},#{itemLayer},#{total_Layer},#{itemParking},#{itemPay},#{deposit},#{business},#{explain},#{loadMap},#{itemPrice},#{itemSelect},#{itemYear},#{itemMonth},#{itemDay},#{picture})
+   insert into item(authNum,autoNum,itemAddr,itemBuild,itemWidth,itemLayer,total_Layer,itemParking,itemPay,deposit,business,explain,loadMap,ItemPrice,ItemSelect,itemYear,itemMonth,itemDay,picture,selectBuild) values
+   (#{authNum},autoNum.nextval,#{itemAddr},#{itemBuild},#{itemWidth},#{itemLayer},#{total_Layer},#{itemParking},#{itemPay},#{deposit},#{business},#{explain},#{loadMap},#{itemPrice},#{itemSelect},#{itemYear},#{itemMonth},#{itemDay},#{picture},#{selectBuild})
    ]]>
 	</insert>
 	<!-- 매물 등록에 대한 삭제 작업 -->
@@ -57,7 +58,8 @@
    itemPrice =#{itemPrice},
    business = #{business},
    explain = #{explain},
-   loadMap = #{loadMap}
+   loadMap = #{loadMap},
+   selectBuild =#{selectBuild}
    where authNum = #{authNum} and autoNum = #{autoNum}
    ]]>
 	</update>
@@ -74,6 +76,8 @@
 	<select id ="getSelectSearch" parameterType="java.util.HashMap" resultMap="relItem" >
 	select * from item where itemSelect =#{itemSelect} and loadMap = #{loadMap} and itemPrice between #{minPrice} and #{maxPrice}
 	</select>
+	
+	<!-- 일반 검색  -->
 	<!-- 전체 -->
 	<select id="SearchAll"  parameterType="java.util.HashMap" resultMap="relItem">
 	<![CDATA[
@@ -111,6 +115,112 @@
 	select * from (select rownum rn,i.*
 	 from item i where i.authNum = #{authNum}) where rn between #{minPage} and #{maxPage} order by autonum desc
 	]]>
+	</select>
+	
+	
+	<!-- 메인에서 검색할 때  -->
+	<!-- 전체 -->
+	<select id="SearchMainAll"  parameterType="java.util.HashMap" resultMap="relItem">
+	<![CDATA[
+	select * from (select rownum rn,i.*
+	 from item i where (i.loadMap like '%'||#{keyword}||'%')) where rn between #{minPage} and #{maxPage}
+	]]>
+	</select>
+	<!-- 매매 -->
+	<select id="SearchMain1"  parameterType="java.util.HashMap" resultMap="relItem">
+	<![CDATA[
+	select * from (select rownum rn,i.*
+	 from item i where i.loadMap like '%'||#{keyword}||'%' and i.itemSelect = '매매' and i.itemPrice between #{minPrice} and #{maxPrice})
+	 where rn between #{minPage} and #{maxPage} order by autonum desc
+	]]>
+	</select>
+	<!-- 전세 -->
+	<select id="SearchMain2"  parameterType="java.util.HashMap" resultMap="relItem">
+	<![CDATA[
+	select * from (select rownum rn,i.*
+	 from item i where i.loadMap like '%'||#{keyword}||'%' and i.itemSelect = '전세' and i.itemPrice between #{minPrice} and #{maxPrice})
+	  where rn between #{minPage} and #{maxPage} order by autonum desc
+	]]>
+	</select>
+	<!-- 월세 -->
+	<select id="SearchMain3"  parameterType="java.util.HashMap" resultMap="relItem">
+	<![CDATA[
+	select * from (select rownum rn,i.*
+	 from item i where i.loadMap like '%'||#{keyword}||'%' and i.itemSelect = '월세' and i.itemPrice between #{minPrice} and #{maxPrice} )
+	  where rn between #{minPage} and #{maxPage} order by autonum desc
+	]]>
+	</select>
+	<!-- 검색 X -->
+	<select id="SearchMainNone"  parameterType="java.util.HashMap" resultMap="relItem">
+	<![CDATA[
+	select * from (select rownum rn,i.*
+	 from item i where) where rn between #{minPage} and #{maxPage} order by autonum desc
+	]]>
+	</select>
+	
+	
+	
+	<select id="mainSearch" parameterType="java.util.HashMap" resultMap="relItem">
+	<![CDATA[
+	select * from (select rownum rn,i.* from item i where 
+	(i.loadMap like '%'||#{keyword}||'%') or 
+	(i.itemSelect like '%'||#{keyword}||'%') or 
+	(i.itemBuild like '%'||#{keyword}||'%') or
+	(i.business like '%'||#{keyword}||'%')
+	) where rn between #{minPage} and #{maxPage} order by autonum desc
+	]]>
+	</select>
+	<select id="mainTotalSearch" parameterType="java.util.HashMap" resultMap="relItem">
+	<![CDATA[
+	select * from item where 
+	(loadMap like '%'||#{keyword}||'%') or (itemSelect like '%'||#{keyword}||'%') or 
+	(itemBuild like '%'||#{keyword}||'%') or (business like '%'||#{keyword}||'%')
+	]]>
+	</select>
+	
+	
+	<!-- 일반 검색  -->
+	<!-- 모든 검색 -->
+	<select id="searchCountAll" parameterType="java.util.HashMap" resultMap="relItem">
+	select * from item where loadMap like '%'||#{keyword}||'%' and authNum =#{authNum} and itemPrice between #{minPrice} and #{maxPrice}
+	</select>
+	<!-- 매매 -->
+	<select id="searchCount1" parameterType="java.util.HashMap" resultMap="relItem">
+	select * from item where loadMap like '%'||#{keyword}||'%' and authNum =#{authNum} and itemSelect = '매매' and itemPrice between #{minPrice} and #{maxPrice} 
+	</select>
+	<!-- 전세 -->
+	<select id="searchCount2" parameterType="java.util.HashMap" resultMap="relItem">
+	select * from item where loadMap like '%'||#{keyword}||'%' and authNum =#{authNum} and itemSelect = '전세' and itemPrice between #{minPrice} and #{maxPrice} 
+	</select>
+	<!-- 월세 -->
+	<select id="searchCount3" parameterType="java.util.HashMap" resultMap="relItem">
+	select * from item where loadMap like '%'||#{keyword}||'%' and authNum =#{authNum} and itemSelect = '월세' and itemPrice between #{minPrice} and #{maxPrice} 
+	</select>
+		<!-- 검색 전 -->
+	<select id="searchCountNone" parameterType="java.util.HashMap" resultMap="relItem">
+	select * from item where authNum =#{authNum} 
+	</select>
+	
+	<!-- 메인문에서 검색 할 때 -->
+		<!-- 검색전 -->
+	<select id="searchMainCountAll" parameterType="java.util.HashMap" resultMap="relItem">
+	select * from item where loadMap like '%'||#{keyword}||'%' and itemPrice between #{minPrice} and #{maxPrice}
+	</select>
+	<!-- 매매 -->
+	<select id="searchMainCount1" parameterType="java.util.HashMap" resultMap="relItem">
+	select * from item where loadMap like '%'||#{keyword}||'%' and itemSelect = '매매' and itemPrice between #{minPrice} and #{maxPrice} 
+	</select>
+	<!-- 전세 -->
+	<select id="searchMainCount2" parameterType="java.util.HashMap" resultMap="relItem">
+	select * from item where loadMap like '%'||#{keyword}||'%'  and itemSelect = '전세' and itemPrice between #{minPrice} and #{maxPrice} 
+	</select>
+	<!-- 월세 -->
+	<select id="searchMainCount3" parameterType="java.util.HashMap" resultMap="relItem">
+	select * from item where loadMap like '%'||#{keyword}||'%' and itemSelect = '월세' and itemPrice between #{minPrice} and #{maxPrice} 
+	</select>
+		<!-- 월세 -->
+	<select id="searchMainCountNone" parameterType="java.util.HashMap" resultMap="relItem">
+	select * from item
 	</select>
 	
 </mapper>

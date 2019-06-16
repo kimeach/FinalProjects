@@ -14,6 +14,7 @@
 <head>
   <meta charset="UTF-8">
   <title>메인 페이지</title>	
+  <link href="https://fonts.googleapis.com/css?family=Nanum+Pen+Script&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="${contextPath}/resources/css/bootstrap.min.css">
   <link href="http://fonts.googleapis.com/earlyaccess/jejugothic.css" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="${contextPath}/resources/css/demo.css" />
@@ -39,6 +40,7 @@
   </style>
 </head>  
 <body> 	    
+	<form action="${contextPath}/main/mainSearch.do?pg=1&mainSearch=mainSearch" method="post">
 	<table align="bottom" style="display:block; background-color:rgba(255,255,255,0.3)"
 		height="100%" width="100%" class="backgroundTransition">
 	    	<thead></thead>
@@ -46,13 +48,11 @@
 	    		<tr><td></td><td></td><td></td></tr>
 	    		<tr height="1000">
 	    			<td></td>
-	    			
-	    			<td  height="1000" align="center" style="position:absolute; left:45%; top:46%;">
-	    			<form action="${contextPath}/search.do">
-     					<h1 class="text-black" align="center">내가 찾는, 우리집</h1>  
-  						<input type="text" value="" name="sch">
-						<input type="submit" value="검색">
-						</form>
+	    			<td  height="1000" align="center" style="position:absolute; left:30%; top:40%;">
+     					<h1 class="text-black" align="center" 
+     					style="font-family: 'Nanum Pen Script', cursive;font-size: 3em;" >내가 찾는, 우리집</h1>  
+  						<input type="text" value="" name="keyword" style="width:600px;height:30px;">
+						<input type="submit" value="검색" class="btn btn-danger btn-large">
 					</td>
 					<td></td>	
   				</tr>
@@ -60,5 +60,6 @@
 	    	</tbody>
 	    	<tfoot></tfoot>
 	</table>	
+	</form>
 </body>   
 </html>

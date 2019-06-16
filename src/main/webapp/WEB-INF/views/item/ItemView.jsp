@@ -72,6 +72,7 @@ font-family: 'Jeju Gothic', sans-serif;
 			</h1>
 			<br>
 			<% DecimalFormat formatter = new DecimalFormat("###,### 만원"); %>
+			<h4  style="text-align:left;margin-left:20%;"><b>기본정보</b></h4>
 			<c:forEach items="${list}" var="item">
 			<table class="table table-striped" border="1" style="width: 60%;margin-left:20%;">
 				<tr>
@@ -80,7 +81,6 @@ font-family: 'Jeju Gothic', sans-serif;
 					<td style="width: 20x%;">총 층수</td>
 					<td style="width: 30%;"id="left">${item.total_Layer} 층</td>
 				</tr>
-				<h4  style="text-align:left;margin-left:20%;"><b>기본정보</b></h4>
 				<tr>
 					<td style="width: 20%;">건물명</td>
 					<td style="width: 30%;" id="left">${item.itemBuild}</td>
@@ -90,8 +90,8 @@ font-family: 'Jeju Gothic', sans-serif;
 				<tr>
 					<td style="width: 20%;">면적</td>
 					<td style="width: 30%;" id="left">${item.itemWidth} ㎥</td>
-					<td style="width: 20%;"></td>
-					<td style="width: 30%;"></td>
+					<td style="width: 20%;">주거형태</td>
+					<td style="width: 30%;" id="left">${item.selectBuild}</td>
 				</tr>
 				<tr>
 					<td style="width: 20%;">입주 가능일</td>

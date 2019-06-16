@@ -68,7 +68,7 @@
 	
 	</select>
 	<select id="SearchNone" resultMap="companyRel" parameterType="java.util.HashMap">
-	select * from Company_Member where authNum between #{minPage} and #{maxPage}
+	select * from(select rownum rn,cm.* from Company_member cm) where rn between #{minPage} and #{maxPage}
 	</select>
 	
 	<select id="countselect" parameterType="java.util.HashMap" resultMap="companyRel">
