@@ -23,9 +23,6 @@ public class BoardDAOImpl implements BoardDAO {
 
 	@Override
 	public List<ArticleVO> selectAllArticlesList(Criteria criteria) {
-		//Map<String, String> map = new HashMap<String, String>();
-		//map.put("searchOption", searchOption);
-		//map.put("keyword", keyword);
 		return sqlSession.selectList("mapper.board.searchList", criteria);
 	}
 

@@ -40,10 +40,14 @@ joinDate date default sysdate
 drop table Company_Member
 
 insert into Company_Member(address,name,phone1,phone2,phone3,email,email2,mainDeal) 
-values ('서초구','홍길동','010','1234','1234','root','@naver.com','주택');
+values ('서초구','강남길','010','1234','1234','root','@naver.com','주택');
 
 insert into Company_Member(address,name,phone1,phone2,phone3,email,email2,mainDeal,authNum) 
+<<<<<<< HEAD
 values ('서초구','홍길동','010','1234','1234','root','@naver.com','주택','2600');
+=======
+values ('서초구','임꺽정','010','1234','1234','root','@naver.com','주택','ba456');
+>>>>>>> branch 'master' of https://github.com/kimeach/FinalProjects.git
 
 
 select *from Company_Member

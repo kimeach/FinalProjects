@@ -39,7 +39,7 @@
 	      }
 	  }  
 	</script> 
-<title>답글쓰기</title>
+<title>답글</title>
 </head>
 
 <body>
@@ -66,8 +66,8 @@
 						<input type="hidden" size="67" maxlength="100"  value="${member.id}" name="id"/>
 				    </c:when>
 				    <c:otherwise>
-				       <input type="text" size="67" maxlength="100"  value="${comMember.name}" name="id" disabled/>
-						<input type="hidden" size="67" maxlength="100"  value="${comMember.name}" name="id"/>
+				       <input type="text" size="67" maxlength="100"  value="${comMember.name}" name="name" disabled/>
+						<input type="hidden" size="67" maxlength="100"  value="${comMember.name}" name="name"/>
 				    </c:otherwise>
 				</c:choose>			
 			</td> <!-- readonly는 값 넘어감, disabled는 X -->			

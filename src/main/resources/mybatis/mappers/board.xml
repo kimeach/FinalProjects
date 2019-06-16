@@ -10,19 +10,20 @@
 		<result property="groupNO" column="groupNO"/>
 		<result property="parentNO" column="parentNO"/>
 		<result property="id" column="id"/>
+		<result property="name" column="name"/>
+		<result property="authNum" column="authNum"/>
 		<result property="sido" column="sido"/>
 		<result property="gugun" column="gugun"/>
 		<result property="title" column="title"/>
 		<result property="content" column="content"/>
-		<result property="imageFileName" column="imageFileName"/>		
-		<result property="name" column="name"/>
+		<result property="imageFileName" column="imageFileName"/>			
 		<result property="writeDate" column="writeDate"/>
 	</resultMap>
 
 	<!-- 게시판 전체리스트  -->
 	<select id="selectAllArticlesList" resultMap="articleResult">
 		<![CDATA[		
-			select levelNO, articleNO, groupNO, parentNO, sido, gugun, title, content, writeDate, imageFileName, id, name
+			select levelNO, articleNO, groupNO, parentNO, sido, gugun, title, content, writeDate, imageFileName, id, name, authNum
 			from order_board
 			start with parentNO=0
 			connect by prior articleNO=parentNO
@@ -32,16 +33,6 @@
 	
 	<!-- 검색  -->
 	<select id="searchList" parameterType="criteriaVO" resultMap="articleResult">
-		<!-- <![CDATA[			
-				select a.*
-				from	 (select rownum rn, order_board2.*
-								from order_board2
-								start with parentNO=0
-								connect by prior articleNO=parentNO
-								order siblings by groupNO desc) a 
-				where id like '%'||#{keyword}||'%' or title like '%'||#{keyword}||'%' or content like '%'||#{keyword}||'%'
-						 or sido like '%'||#{keyword}||'%' or gugun like '%'||#{keyword}||'%' 
-		]]>	 -->
 		     select a.*
 			from	 (select rownum rn, order_board2.*
 						from order_board
@@ -57,37 +48,13 @@
 						connect by prior articleNO=parentNO
 						order siblings by groupNO desc) a
 			where rn between #{pageStart} and #{pageStart}+#{perPageNum}-1	
-	
-		<!-- 	<![CDATA[	
-			select level, articleNO, parentNO, sido, gugun, title, content, writeDate, imageFileName, id, authNum
-			from order_board2
-			]]>
-			<include refid="search"></include>
-			<![CDATA[	
-			start with parentNO=0 
-			connect by prior articleNO=parentNO
-			order siblings by articleNO desc
-			]]> -->
 	</select>
-
-<!-- 	<sql id="search">
-		<choose>
-			<when test="searchOption == 'all' ">
-				where id like '%'||#{keyword}||'%'
-					or title like '%'||#{keyword}||'%'
-					or content like '%'||#{keyword}||'%'
-			</when>
-			<otherwise>
-				where ${searchOption} like '%'||#{keyword}||'%'
-			</otherwise>
-		</choose>
-	</sql> -->
 	
 	<!-- 게시글 읽기 -->
 	<select id="selectArticle" parameterType="int" resultType="articleVO">
 		<![CDATA[
 			select *
-			from (select levelNO, articleNO, groupNO, parentNO, sido, gugun, title, content, writeDate, imageFileName, id, name 
+			from (select levelNO, articleNO, groupNO, parentNO, sido, gugun, title, content, writeDate, imageFileName, id, name, authNum
 					 from order_board)
 				where articleNO=#{articleNO}					
 		]]>	
@@ -96,12 +63,12 @@
 	<!-- selectNewArticleNO 번호 추출후 articleNO와 groupNO 넘기기  -->
 	<insert id="insertNewArticle" parameterType="java.util.Map">
 		<![CDATA[
-			insert into order_board(articleNO, groupNO, parentNO, sido, gugun, title, content, writeDate, imageFileName, id, name) 
+			insert into order_board(articleNO, groupNO, parentNO, sido, gugun, title, content, writeDate, imageFileName, id, name, authNum) 
 				    values(#{articleNO}, #{articleNO}, #{parentNO, jdbcType=INTEGER},
 							#{sido, jdbcType=VARCHAR},#{gugun, jdbcType=VARCHAR},
 							 #{title, jdbcType=VARCHAR}, #{content, jdbcType=VARCHAR},
 								sysdate, #{imageFileName, jdbcType=VARCHAR},
-								#{id, jdbcType=VARCHAR},#{name, jdbcType=VARCHAR})
+								#{id, jdbcType=VARCHAR},#{name, jdbcType=VARCHAR}, #{authNum, jdbcType=VARCHAR})
 		]]>
 	</insert>
 	
@@ -114,10 +81,11 @@
 	<!-- 답글  -->
 	<insert id="insertReply" parameterType="java.util.Map">
 		<![CDATA[
-			insert into order_board(levelNO, articleNO, groupNO, parentNO, sido, gugun, title, content, writeDate, imageFileName, id) 
-			values(#{levelNO}, seq_no.nextval, #{groupNO}, #{parentNO}, 
+			insert into order_board(levelNO, articleNO, groupNO, parentNO, sido, gugun, title, content, writeDate, imageFileName, id, name, authNum) 
+			values(#{levelNO}, #{articleNO}, #{groupNO}, #{parentNO}, 
 					#{sido, jdbcType=VARCHAR}, #{gugun, jdbcType=VARCHAR}, #{title}, #{content}, 
-					sysdate, #{imageFileName, jdbcType=VARCHAR}, #{id, jdbcType=VARCHAR}) 
+					sysdate, #{imageFileName, jdbcType=VARCHAR},
+					#{id, jdbcType=VARCHAR},#{name, jdbcType=VARCHAR}, #{authNum, jdbcType=VARCHAR}) 
 		]]> 
 	</insert>			
 

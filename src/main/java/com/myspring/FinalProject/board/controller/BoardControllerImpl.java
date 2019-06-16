@@ -40,48 +40,6 @@ public class BoardControllerImpl implements BoardController {
 	@Autowired
 	PageVO pageVO;
 	
-	// 게시판 글 전체 리스트
-/*	@Override
-	@RequestMapping(value = "/board/listArticles.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public ModelAndView listArticles(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		
-		String viewName = (String) request.getAttribute("viewName");
-		List articlesList = boardService.listArticles();
-		
-		ModelAndView mav = new ModelAndView(viewName);
-		mav.addObject("articlesList", articlesList);
-	
-		return mav;
-	}*/
-	
-	// 검색
-/*	@Override
-	@RequestMapping(value="/board/searchList.do", method = { RequestMethod.GET, RequestMethod.POST })	
-	public ModelAndView listArticles(@RequestParam("keyword") String keyword, Criteria criteria,
-			 										HttpServletRequest request, HttpServletResponse response) throws Exception {
-
-		String viewName = (String) request.getAttribute("viewName");
-		System.out.println("searchList.do의 viewName======"+viewName);
-		System.out.println("searchList.do의 keyword======"+keyword);
-						
-		criteria.setKeyword(keyword);
-		PageMaker pageMaker = new PageMaker();
-		pageMaker.setCriteria(criteria);	
-		
-		List<ArticleVO> articlesList = boardService.listArticles(criteria);		
-		System.out.println("건수:"+articlesList.size());
-		int total = articlesList.size();
-		pageMaker.setTotalCount(total);		
-		
-		ModelAndView mav = new ModelAndView(viewName);
-
-		mav.addObject("articlesList", articlesList);
-		mav.addObject("keyword", keyword);		
-		mav.addObject("pageMaker",pageMaker);		
-		System.out.println("listPaging.do의 pageMaker =========="+pageMaker);
-
-		return mav;
-	}*/
 	
 	// 해당 페이지 게시글 불러오기
 	@Override

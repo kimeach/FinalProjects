@@ -129,11 +129,6 @@
 				<textarea name="content" rows="20" cols="65" maxlength="4000" style="resize:vertical;"></textarea>
 			</td>
 	     </tr>
-<!-- 	     <tr>
-			 <td width="150" align="center">첨부파일</td>
-			 <td align="left"><input type="file" name="imageFileName"  onchange="readURL(this);" /></td>
-			  <td><img  id="preview" src="#"   width=200 height=200/></td>
-		  </tr> -->
 		  <tr>
 			<td align="right">　</td>
 		  </tr>
