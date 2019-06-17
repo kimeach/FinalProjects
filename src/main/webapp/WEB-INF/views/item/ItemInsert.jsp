@@ -194,16 +194,18 @@ document.getElementById('picture').value;
 				<b>매물등록</b>
 			</h1>
 			<br>
+				<h4 style="text-align:left;margin-left:20%;"><b>기본정보</b></h4>
 			<table class="table table-striped" border="1" style="width: 60%;margin-left:20%">
 				<tr>
 					<td style="width: 20%;">소재지</td>
-					<td style="width: 30%;text-align:left;"><input type="text" style="width: 85%"
+					<td style="width: 30%;text-align:left;">
+					<input type="text" style="width: 85%"
 						name="itemAddr"></td>
 					<td style="width: 20%;">총 층수</td>
-					<td style="width: 30%;text-align:left;"><input type="text" style="width: 85%;"
+					<td style="width: 30%;text-align:left;">
+					<input type="text" style="width: 85%;"
 						name="total_Layer"> 층</td>
 				</tr>
-				<h4 style="text-align:left;margin-left:20%;"><b>기본정보</b></h4>
 				<tr> 
 					<td style="width: 20%;">건물명</td>
 					<td style="width: 30%;text-align:left;"><input type="text" style="width: 85%;"

@@ -147,7 +147,7 @@ public class ItemControllerImpl implements ItemController {
 	@RequestMapping(value="/ItemInsertResult.do")
 	public ResponseEntity<String> AddItem(primaryVO vo,MultipartHttpServletRequest mr,HttpServletResponse response,
 											@RequestParam("authNum") String authNum) throws Exception {
-		final String ImagePath = mr.getRealPath("resources/itemImage/");
+		final String ImagePath = mr.getRealPath("/resources/itemImage/");
 		List<String> fileList = new ArrayList<String>();
 		HttpHeaders http = new HttpHeaders();
 		http.add("Content-type", "text/html; charset=utf-8");
@@ -185,7 +185,7 @@ public class ItemControllerImpl implements ItemController {
 		System.out.println("====들어온다====");
 		vo.setAuthNum(authNum);
 		vo.setAutoNum(autoNum);
-		final String ImagePath = mr.getRealPath("resources/itemImage/");
+		final String ImagePath = mr.getRealPath("/resources/itemImage/");
 		List<String> fileList = new ArrayList<String>();
 		HttpHeaders http = new HttpHeaders();
 		http.add("Content-type", "text/html; charset=utf-8");
