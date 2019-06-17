@@ -46,7 +46,7 @@ insert into Company_Member(address,name,phone1,phone2,phone3,email,email2,mainDe
 <<<<<<< HEAD
 values ('서초구','홍길동','010','1234','1234','root','@naver.com','주택','2600');
 =======
-values ('서초구','임꺽정','010','1234','1234','root','@naver.com','주택','ba456');
+values ('서초구','임꺽정','010','1234','1234','root','@naver.com','주택','123456');
 >>>>>>> branch 'master' of https://github.com/kimeach/FinalProjects.git
 
 
