@@ -14,7 +14,9 @@
 
 <body>
 <div align="right">
-   <a href="${contextPath}/main/main.do" style="float:left;"><img src="${contextPath}/resources/boardImage/zip.png" style="width:60px;height:60px;"></a>
+   <a href="${contextPath}/main/main.do" style="float:left;">　
+   		<img src="${contextPath}/resources/boardImage/zip.png" style="width:60px;height:60px;">
+   </a>
    <c:choose>
           <c:when test="${isLogOn == true  && member!= null}">
             <small>환영합니다. ${member.name}님!</small>

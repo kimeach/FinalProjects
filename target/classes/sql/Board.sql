@@ -7,7 +7,13 @@ insert into General_Member values ('lee','이순신','1234','1234','lee','@naver
 insert into General_Member values ('kang','강감찬','1234','1234','kang','@naver.com',sysdate);
 
 insert into Company_Member(address,name,phone1,phone2,phone3,email,email2,mainDeal,authNum) 
-values ('성동구','강남길','011','456','4567','abcdefg','@daum.net','주택','a123');
+values ('서초구','홍길동','010','1234','1234','root','@naver.com','주택','2600');
+
+insert into Company_Member(address,name,phone1,phone2,phone3,email,email2,mainDeal,authNum) 
+values ('서초구','임꺽정','010','1234','1234','root','@naver.com','주택','123456');
+
+insert into Company_Member(address,name,phone1,phone2,phone3,email,email2,mainDeal,authNum) 
+values ('성동구','강남길','011','456','4567','abcdefg','@daum.net','주택','050505');
 
 ------------ 의뢰 게시판 
 drop table order_board;
@@ -30,44 +36,40 @@ constraint boardId_fk foreign key(id) references General_Member(id),
 constraint boardAuthNum_fk foreign key(authNum) references Company_Member(authNum)
 );
 
-
+drop table order_board;
 select * from order_board;
 ------------------------------ order board(초기DB)
-insert into order_board(levelNO, articleNO, groupNO, parentNO, sido, gugun, title, content, imageFileName, writedate, id, name)
-values(0,5,5,0,'강원도','동해시','보증금 1000, 월세 15~40의 10평이상 원룸 찾습니다.','테스트글입니다.',null,'2019-05-20' ,'root',null);
+insert into order_board(levelNO, articleNO, groupNO, parentNO, sido, gugun, title, content, imageFileName, writedate, id, name, authNum)
+values(0,5,5,0,'강원도','동해시','보증금 1000, 월세 15~40의 10평이상 원룸 찾습니다.','테스트글입니다.',null,'2019-05-20' ,'root',null, null);
 
-insert into order_board(levelNO, articleNO, groupNO, parentNO, sido, gugun, title, content, imageFileName, writedate, id, name)
-values(0,4,4,0,'경기도','수원시','안녕하세요. 전세 찾습니다.','안녕하세요. 전세 찾습니다..',null,'2019-05-15','hong',null);
-insert into order_board(levelNO, articleNO, groupNO, parentNO, sido, gugun, title, content, imageFileName, writedate, id, name)
-values(1,7,4,4,'경기도','수원시','답변입니다..','<안녕하세요. 전세 찾습니다.>에 대한 답변입니다.',null,sysdate,null,'강남길');
+insert into order_board(levelNO, articleNO, groupNO, parentNO, sido, gugun, title, content, imageFileName, writedate, id, name, authNum)
+values(0,4,4,0,'경기도','수원시','안녕하세요. 전세 찾습니다.','안녕하세요. 전세 찾습니다..',null,'2019-05-15','hong',null, null);
+insert into order_board(levelNO, articleNO, groupNO, parentNO, sido, gugun, title, content, imageFileName, writedate, id, name, authNum)
+values(1,7,4,4,'경기도','수원시','답변입니다..','<안녕하세요. 전세 찾습니다.>에 대한 답변입니다.',null,sysdate,null,'임꺽정', '123456');
 
-insert into order_board(levelNO, articleNO, groupNO, parentNO, sido, gugun, title, content, imageFileName, writedate, id, name)
-values(0,3,3,0,'인천광역시','강화군','강남까지 30분 이내 원룸 찾습니다.','강남까지 30분 이내 원룸 찾습니다.',null,'2019-04-01','lee',null);
-insert into order_board(levelNO, articleNO, groupNO, parentNO, sido, gugun, title, content, imageFileName, writedate, id, name)
-values(1,8,3,3,'인천광역시','강화군','월세25~100까지 있습니다.','상품좋습니다.',null,sysdate,null,'강남길');
+insert into order_board(levelNO, articleNO, groupNO, parentNO, sido, gugun, title, content, imageFileName, writedate, id, name, authNum)
+values(0,3,3,0,'인천광역시','강화군','강남까지 30분 이내 원룸 찾습니다.','강남까지 30분 이내 원룸 찾습니다.',null,'2019-04-01','lee',null, null);
+insert into order_board(levelNO, articleNO, groupNO, parentNO, sido, gugun, title, content, imageFileName, writedate, id, name, authNum)
+values(1,8,3,3,'인천광역시','강화군','월세25~100까지 있습니다.','상품좋습니다.',null,sysdate,null,'강남길', '050505');
 
-insert into order_board(levelNO, articleNO, groupNO, parentNO, sido, gugun, title, content, imageFileName, writedate, id, name)
-values(0,6,6,0,'서울특별시','관악구','반전세 보증금 2000 / 월세15 찾습니다.','반전세 보증금 2000 / 월세15 찾습니다.',null,'2019-05-24','kang',null);
-insert into order_board(levelNO, articleNO, groupNO, parentNO, sido, gugun, title, content, imageFileName, writedate, id, name)
-values(0,2,2,0,'서울특별시','강남구','한강뷰 주변 원룸이나 오피스텔 시세 얼마할까요?','한강뷰 주변 원룸이나 오피스텔 시세 얼마할까요?.',null,'2019-01-30','lee',null);
-insert into order_board(levelNO, articleNO, groupNO, parentNO, sido, gugun, title, content, imageFileName, writedate, id, name)
-values(0,1,1,0,'서울특별시','중구','시청역 근처 오피스텔, 월세 50이하','시청역 근처 오피스텔, 월세 50이하.',null,'2018-12-24','root',null);
+insert into order_board(levelNO, articleNO, groupNO, parentNO, sido, gugun, title, content, imageFileName, writedate, id, name, authNum)
+values(0,6,6,0,'서울특별시','관악구','반전세 보증금 2000 / 월세15 찾습니다.','반전세 보증금 2000 / 월세15 찾습니다.',null,'2019-05-24','kang',null, null);
+insert into order_board(levelNO, articleNO, groupNO, parentNO, sido, gugun, title, content, imageFileName, writedate, id, name, authNum)
+values(0,2,2,0,'서울특별시','강남구','한강뷰 주변 원룸이나 오피스텔 시세 얼마할까요?','한강뷰 주변 원룸이나 오피스텔 시세 얼마할까요?.',null,'2019-01-30','lee',null, null);
+insert into order_board(levelNO, articleNO, groupNO, parentNO, sido, gugun, title, content, imageFileName, writedate, id, name, authNum)
+values(0,1,1,0,'서울특별시','중구','시청역 근처 오피스텔, 월세 50이하','시청역 근처 오피스텔, 월세 50이하.',null,'2018-12-24','root',null, null);
 
-insert into order_board(levelNO, articleNO, groupNO, parentNO, sido, gugun, title, content, imageFileName, writedate, id, name)
-values(0,9,9,0,'경기도','구리시','구리쪽 원룸 보통 얼마하나요?','테스트글입니다.',null,sysdate,'hong',null);
-insert into order_board(levelNO, articleNO, groupNO, parentNO, sido, gugun, title, content, imageFileName, writedate, id, name)
-values(1,10,9,9,'경기도','구리시','구리쪽 원룸 보통 얼마하나요?','테스트답글입니다.',null,sysdate,'kang',null);
+insert into order_board(levelNO, articleNO, groupNO, parentNO, sido, gugun, title, content, imageFileName, writedate, id, name, authNum)
+values(0,9,9,0,'경기도','구리시','구리쪽 원룸 보통 얼마하나요?','테스트글입니다.',null,sysdate,'hong',null, null);
+insert into order_board(levelNO, articleNO, groupNO, parentNO, sido, gugun, title, content, imageFileName, writedate, id, name, authNum)
+values(1,10,9,9,'경기도','구리시','구리쪽 원룸 보통 얼마하나요?','테스트답글입니다.',null,sysdate,'kang',null, null);
 
-insert into order_board(levelNO, articleNO, groupNO, parentNO, sido, gugun, title, content, imageFileName, writedate, id, name)
-values(0,11,11,0,'제주도','서귀포시','연세 1000~1500 투룸 찾습니다.','연세 1000~1500 투룸 찾습니다.',sysdate,'2018-12-24','hon',null);
+insert into order_board(levelNO, articleNO, groupNO, parentNO, sido, gugun, title, content, imageFileName, writedate, id, name, authNum)
+values(0,11,11,0,'제주도','서귀포시','연세 1000~1500 투룸 찾습니다.','연세 1000~1500 투룸 찾습니다.',sysdate,'2018-12-24','hon',null, null);
 
 
 
 ----------------------------------------------------------------------------------------   여기까지 DB입력
-
-
-
-
 
 
 
