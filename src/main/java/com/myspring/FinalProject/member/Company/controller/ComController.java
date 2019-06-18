@@ -25,7 +25,7 @@ public ModelAndView InsertCom(ComVO comVO,HttpServletRequest request, HttpServle
 	public ModelAndView UpdateCompanyForm(@RequestParam("authNum") String authNum, HttpServletRequest request, HttpServletResponse response) throws Exception ;
 	public ModelAndView UpdateCom(@ModelAttribute("comVO") ComVO comVO,HttpServletRequest request, HttpServletResponse response) throws Exception ;
 	public ModelAndView DeleteCom(String id,HttpServletRequest request, HttpServletResponse response)throws Exception;
-	public ModelAndView login(ComVO comMember, RedirectAttributes rAttr, HttpServletRequest request,
+	public ModelAndView login(@ModelAttribute("comVO") ComVO comMember, RedirectAttributes rAttr, HttpServletRequest request,
 			HttpServletResponse response) throws Exception ;
 	public ModelAndView logout(HttpServletRequest request, HttpServletResponse response) throws Exception;
 	

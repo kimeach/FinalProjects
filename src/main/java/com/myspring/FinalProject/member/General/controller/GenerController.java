@@ -25,7 +25,7 @@ public interface GenerController {
 	public ModelAndView UpdateGener(@ModelAttribute("generVO") GenerVO generVO,HttpServletRequest request, HttpServletResponse response) throws Exception ;
 	public ModelAndView DeleteGener(String id,HttpServletRequest request, HttpServletResponse response)throws Exception;
 	
-	public ModelAndView login(GenerVO member, RedirectAttributes rAttr, HttpServletRequest request,
+	public ModelAndView login(@ModelAttribute("generVO") GenerVO member, RedirectAttributes rAttr, HttpServletRequest request,
 			HttpServletResponse response) throws Exception;
 	public ModelAndView logout(HttpServletRequest request, HttpServletResponse response) throws Exception ;
 	

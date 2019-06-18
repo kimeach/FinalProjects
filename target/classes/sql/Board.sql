@@ -1,19 +1,10 @@
 ------------------ DB 추가할 것 -----------------------------
 
 -- 게시판 글쓴거 띄우기 위한 회원 DB
-insert into General_Member values ('hon','홍이동','1234','1234','hong','@naver.com',sysdate);
-insert into General_Member values ('hong','홍길동','1234','1234','hong','@naver.com',sysdate);
-insert into General_Member values ('lee','이순신','1234','1234','lee','@naver.com',sysdate);
-insert into General_Member values ('kang','강감찬','1234','1234','kang','@naver.com',sysdate);
-
-insert into Company_Member(address,name,phone1,phone2,phone3,email,email2,mainDeal,authNum) 
-values ('서초구','홍길동','010','1234','1234','root','@naver.com','주택','2600');
-
-insert into Company_Member(address,name,phone1,phone2,phone3,email,email2,mainDeal,authNum) 
-values ('서초구','임꺽정','010','1234','1234','root','@naver.com','주택','123456');
-
-insert into Company_Member(address,name,phone1,phone2,phone3,email,email2,mainDeal,authNum) 
-values ('성동구','강남길','011','456','4567','abcdefg','@daum.net','주택','050505');
+insert into General_Member values ('ho','홍이동','1234','1234','hong','@naver.com',sysdate);
+insert into General_Member values ('honggildong','홍길동','1234','1234','hong','@naver.com',sysdate);
+insert into General_Member values ('leesoon','이순신','1234','1234','lee','@naver.com',sysdate);
+insert into General_Member values ('kam','강감찬','1234','1234','kang','@naver.com',sysdate);
 
 ------------ 의뢰 게시판 
 drop table order_board;
@@ -36,14 +27,13 @@ constraint boardId_fk foreign key(id) references General_Member(id),
 constraint boardAuthNum_fk foreign key(authNum) references Company_Member(authNum)
 );
 
-drop table order_board;
 select * from order_board;
 ------------------------------ order board(초기DB)
 insert into order_board(levelNO, articleNO, groupNO, parentNO, sido, gugun, title, content, imageFileName, writedate, id, name, authNum)
 values(0,5,5,0,'강원도','동해시','보증금 1000, 월세 15~40의 10평이상 원룸 찾습니다.','테스트글입니다.',null,'2019-05-20' ,'root',null, null);
 
 insert into order_board(levelNO, articleNO, groupNO, parentNO, sido, gugun, title, content, imageFileName, writedate, id, name, authNum)
-values(0,4,4,0,'경기도','수원시','안녕하세요. 전세 찾습니다.','안녕하세요. 전세 찾습니다..',null,'2019-05-15','hong',null, null);
+values(0,4,4,0,'경기도','수원시','안녕하세요. 전세 찾습니다.','안녕하세요. 전세 찾습니다..',null,'2019-05-15','honggildong',null, null);
 insert into order_board(levelNO, articleNO, groupNO, parentNO, sido, gugun, title, content, imageFileName, writedate, id, name, authNum)
 values(1,7,4,4,'경기도','수원시','답변입니다..','<안녕하세요. 전세 찾습니다.>에 대한 답변입니다.',null,sysdate,null,'임꺽정', '123456');
 
@@ -57,17 +47,21 @@ values(0,6,6,0,'서울특별시','관악구','반전세 보증금 2000 / 월세1
 insert into order_board(levelNO, articleNO, groupNO, parentNO, sido, gugun, title, content, imageFileName, writedate, id, name, authNum)
 values(0,2,2,0,'서울특별시','강남구','한강뷰 주변 원룸이나 오피스텔 시세 얼마할까요?','한강뷰 주변 원룸이나 오피스텔 시세 얼마할까요?.',null,'2019-01-30','lee',null, null);
 insert into order_board(levelNO, articleNO, groupNO, parentNO, sido, gugun, title, content, imageFileName, writedate, id, name, authNum)
-values(0,1,1,0,'서울특별시','중구','시청역 근처 오피스텔, 월세 50이하','시청역 근처 오피스텔, 월세 50이하.',null,'2018-12-24','root',null, null);
+values(0,1,1,0,'서울특별시','중구','시청역 근처 오피스텔, 월세 50이하','시청역 근처 오피스텔, 월세 50이하.',null,'2018-12-24','kam',null, null);
 
 insert into order_board(levelNO, articleNO, groupNO, parentNO, sido, gugun, title, content, imageFileName, writedate, id, name, authNum)
 values(0,9,9,0,'경기도','구리시','구리쪽 원룸 보통 얼마하나요?','테스트글입니다.',null,sysdate,'hong',null, null);
 insert into order_board(levelNO, articleNO, groupNO, parentNO, sido, gugun, title, content, imageFileName, writedate, id, name, authNum)
-values(1,10,9,9,'경기도','구리시','구리쪽 원룸 보통 얼마하나요?','테스트답글입니다.',null,sysdate,'kang',null, null);
+values(1,10,9,9,'경기도','구리시','구리쪽 원룸 보통 얼마하나요?','테스트답글입니다.',null,sysdate,null,'홍길동', '2600');
 
 insert into order_board(levelNO, articleNO, groupNO, parentNO, sido, gugun, title, content, imageFileName, writedate, id, name, authNum)
-values(0,11,11,0,'제주도','서귀포시','연세 1000~1500 투룸 찾습니다.','연세 1000~1500 투룸 찾습니다.',sysdate,'2018-12-24','hon',null, null);
+values(0,11,11,0,'제주도','서귀포시','연세 1000~1500 투룸 찾습니다.','연세 1000~1500 투룸 찾습니다.',null,sysdate,'hon',null, null);
 
+insert into order_board(levelNO, articleNO, groupNO, parentNO, sido, gugun, title, content, imageFileName, writeDate, id, name, authNum) 
+values(0,12,12,0,'부산광역시','사하구','전세 5000~7000 1.5룸이상 찾습니다.','전세 5000~7000 1.5룸이상 찾습니다.',null,sysdate,'leesoon','이순신',null);
 
+insert into order_board(levelNO, articleNO, groupNO, parentNO, sido, gugun, title, content, imageFileName, writeDate, id, name, authNum) 
+values(0,13,13,0,'강원도','동해시','바닷가 근처 투룸 추천받아요','바닷가 근처 투룸 추천받아요',null,sysdate,'ho','홍이동',null);
 
 ----------------------------------------------------------------------------------------   여기까지 DB입력
 
@@ -144,3 +138,12 @@ values('0', seq_no.nextval, seq_no.nextval, '0','경기도','구리시',seq_no.n
 insert into order_board2(levelNO, articleNO, groupNO, parentNO, sido, gugun, title, content, imageFileName, writeDate, id, authNum) 
 values('0', seq_no.nextval, seq_no.nextval, '0','제주도','남제주군',seq_no.nextval, seq_no.nextval, null, sysdate,'Oracle',null);
  
+
+insert into Company_Member(address,name,phone1,phone2,phone3,email,email2,mainDeal,authNum) 
+values ('서초구','홍길동','010','1234','1234','root','@naver.com','주택','2600');
+
+insert into Company_Member(address,name,phone1,phone2,phone3,email,email2,mainDeal,authNum) 
+values ('서초구','임꺽정','010','1234','1234','root','@naver.com','주택','123456');
+
+insert into Company_Member(address,name,phone1,phone2,phone3,email,email2,mainDeal,authNum) 
+values ('성동구','강남길','011','456','4567','abcdefg','@daum.net','주택','050505');

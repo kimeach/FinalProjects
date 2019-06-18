@@ -27,14 +27,24 @@ public class HomeController {
 	private int maxPrice =0; // 최대 금액
 	@RequestMapping(value= "/main/main.do" ,method={RequestMethod.POST,RequestMethod.GET})
 	public String main(HttpServletRequest request, HttpServletResponse response) throws Exception{
-	request.getSession().invalidate();
+	//request.getSession().invalidate();
+		if(request.getSession().getAttribute("search1") !=null)
+			request.getSession().removeAttribute("search1");
+		if(request.getSession().getAttribute("select1") !=null)
+			request.getSession().removeAttribute("select1");
+		if(request.getSession().getAttribute("mainKeyword") !=null)
+			request.getSession().removeAttribute("mainKeyword");
+		if(request.getSession().getAttribute("search") !=null)
+			request.getSession().removeAttribute("search");
+		if(request.getSession().getAttribute("select") !=null)
+			request.getSession().removeAttribute("select");
 	return "main";
 }
 	
 	@RequestMapping(value="mainSearch.do")
 	public ModelAndView MainSearch (mainSearchVO vo,HttpServletRequest request,@RequestParam("pg") int pg,
 			@RequestParam("mainSearch") String mainSearch) throws Exception{
-System.out.println("============= 메인에서 검색 =============");
+		System.out.println("============= 메인에서 검색 =============");
 		
 		ModelAndView mav = new ModelAndView("/item/ItemSelect");
 		

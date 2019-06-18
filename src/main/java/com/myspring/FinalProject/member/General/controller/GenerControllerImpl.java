@@ -50,7 +50,7 @@ public class GenerControllerImpl implements GenerController {
 	public ModelAndView InsertGener(GenerVO generVO,HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		int result=generService.insertGener(generVO);
-		return new ModelAndView("redirect:/General/generList.do");
+		return new ModelAndView("redirect:/main/main.do");
 	}
 	
 	@Override
@@ -89,14 +89,30 @@ public class GenerControllerImpl implements GenerController {
 	
 	@Override
 	@RequestMapping(value="/login.do", method=RequestMethod.POST)
-	public ModelAndView login(GenerVO member, RedirectAttributes rAttr, HttpServletRequest request,
+	public ModelAndView login( GenerVO member, RedirectAttributes rAttr, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
+		HttpSession session =null;
 		ModelAndView mav = new ModelAndView();
+		
+		System.out.println("yyyy"+member.getName());
+		System.out.println("id:"+request.getParameter("id"));
+		System.out.println("pwd:"+request.getParameter("pwd"));
+		member.setId(request.getParameter("id"));
+		member.setPwd(request.getParameter("pwd"));
+		System.out.println("id:"+member.getId());
+		System.out.println("pwd:"+member.getPwd());
+
+		
 	    GenerVO generVO = generService.login(member);
+	    System.out.println("id:"+generVO.getId());
+		System.out.println("pwd:"+generVO.getPwd());
+		
 	    if(member!=null) {
-	    	 HttpSession session = request.getSession();
+	    	 session = request.getSession();
 	    	 session.setAttribute("member", generVO);
+	    	 
 	    	 session.setAttribute("isLogOn", true);
+
 	    	 String action=(String)session.getAttribute("action");
 	    	 session.removeAttribute("action");
 	    	 if(action!=null) {
@@ -112,6 +128,7 @@ public class GenerControllerImpl implements GenerController {
 	    }
 		return mav;
 	}
+	
 	@Override
 	@RequestMapping(value="/logout.do", method=RequestMethod.GET)
 	public ModelAndView logout(HttpServletRequest request, HttpServletResponse response) throws Exception {

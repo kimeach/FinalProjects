@@ -62,6 +62,9 @@
 		
 		/* location.href="${contextPath}/mail/mailSending.do"; */
 	}
+	function successIn(){
+		alter("가입을 축하드립니다.");
+	}
 </script>
 <style>
 	body{}
@@ -123,7 +126,7 @@
 			
 			<div class="form-group  row">
 				<div class="col-sm-offset-2 col-sm-3">
-					<input type="submit" class="btn btn-primary " value="등록 " > 
+					<input type="submit" class="btn btn-primary " value="등록 " onclick="successIn()"> 
 					<input type="reset" class="btn btn-primary " value="취소 " onclick="reset()" >
 				</div>
 			</div>

@@ -46,7 +46,7 @@ public class AdminControllerImpl implements AdminController {
 			throws Exception {
 		request.setCharacterEncoding("utf-8");
 		int result=adminService.insertAdmin(adminVO);
-		return new ModelAndView("redirect:/Admin/adminList.do");
+		return new ModelAndView("redirect:/main/main.do");
 	}
 
 	@Override

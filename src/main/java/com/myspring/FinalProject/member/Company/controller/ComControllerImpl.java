@@ -8,7 +8,6 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -18,7 +17,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.myspring.FinalProject.member.Company.service.ComService;
 import com.myspring.FinalProject.member.Company.vo.ComVO;
-import com.myspring.FinalProject.member.General.vo.GenerVO;
 
 
 @Controller("comController")
@@ -50,7 +48,7 @@ public class ComControllerImpl implements ComController{
 
 		request.setCharacterEncoding("utf-8");
 		int result=comService.insertCom(comVO);
-		return new ModelAndView("redirect:/Company/comList.do");
+		return new ModelAndView("redirect:/main/main.do");
 	}
 	
 	@Override
@@ -89,9 +87,11 @@ public class ComControllerImpl implements ComController{
 	
 	@Override
 	@RequestMapping(value="/login.do", method=RequestMethod.POST)
-	public ModelAndView login(ComVO comMember, RedirectAttributes rAttr, HttpServletRequest request,
+	public ModelAndView login( ComVO comMember, RedirectAttributes rAttr, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		ModelAndView mav = new ModelAndView();
+		
+		System.out.println("xxx"+comMember.getAuthNum());
 	   ComVO comVO = comService.login(comMember);
 	    if(comMember!=null) {
 	    	 HttpSession session = request.getSession();
