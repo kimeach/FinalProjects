@@ -15,9 +15,9 @@
 
 <body>
 <div align="right">
-   <a href="${contextPath}/main/main.do" style="float:left;">　
+<%--    <a href="${contextPath}/main/main.do" style="float:left;">　
    		<img src="${contextPath}/resources/boardImage/zip.png" style="width:60px;height:60px;">
-   </a>
+   </a> --%>
 
    <c:choose>
           <c:when test="${isLogOn == true  && member!= null}">

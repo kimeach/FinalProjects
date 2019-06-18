@@ -66,12 +66,14 @@ insert into Admin_Member(id,name,pwd,pwd_confirm) values ('root2','root','1234',
 select *from ADMIN_MEMBER
 
 
--------------------------------------------------------- DB입력 끝
+-------------------------------------------------------- DB입력 끝 --------------------------------------
 
 
 
 
 
+
+admin고유번호 : adminNum165898
 
 
 alter table General_member add email2 varchar2(80)
