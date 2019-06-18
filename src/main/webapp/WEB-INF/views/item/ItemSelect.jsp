@@ -16,9 +16,7 @@
 body{
 font-family: 'Jeju Gothic', sans-serif;
 }
-a {
-	color: black;
-}
+.search {	color: black;	}
 </style>
 </head>
 <body>

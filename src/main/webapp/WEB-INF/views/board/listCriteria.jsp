@@ -65,7 +65,7 @@
 		    	<tr align="center">
 					<td width="5%">${article.articleNO}</td>
 					<td width="7%">${article.id }</td>
-					<td width="12%">[${article.sido}][${article.gugun}]</td>
+					<td width="12%">[${article.address}]</td>
 					<td align='left'  width="30%">
 					  <span style="padding-right:30px"></span>
 					   <c:choose>

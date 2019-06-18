@@ -108,7 +108,9 @@
 <h2>　</h2>
  	<form name="frmArticle" method="post"  action="${contextPath}"  enctype="multipart/form-data">
 		<table align="center">
-			
+			<tr height="40">
+	    		<td colspan="5" align="right" /> 
+	 	   </tr>
 			<tr>
 				<td width="150" align="center">글　번　호</td>
 			  	<td colspan="2" align="left"><input type="text" size="67" name="articleNO" value="${article.articleNO}" disabled />
@@ -165,7 +167,9 @@
 					<input type="button" value="목록" onclick="backToList(this.form)" />					
 				</td>
 			</tr>
-			
+		<tr height="100">
+	    	<td colspan="5" align="right" /> 
+	    </tr>
 		</table>
 	</form>
 </body>

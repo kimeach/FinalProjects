@@ -74,7 +74,7 @@
 		</tr>
 		<tr>
 			<td width="150" align="center">지　　　역　</td>
-			<td colspan="2"  align="left"><input type="text" size="64"  value="${address}"  disabled/></td> 
+			<td colspan="2"  align="left"><input type="text" size="67"  value="${address}"  disabled/></td> 
 		</tr>
 		<tr>
 			<td width="150" align="center">제　　　목　</td>
