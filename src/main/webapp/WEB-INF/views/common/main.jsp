@@ -46,11 +46,13 @@
 	    	<thead></thead>
 	    	<tbody>
 	    		<tr><td></td><td></td><td></td></tr>
-	    		<tr height="1000">
+	    		<tr height="700">
 	    			<td></td>
 	    			<td  height="1000" align="center" style="position:absolute; left:30%; top:40%;">
+     		<!-- 			<h1 class="text-black" align="center" 
+     					style="font-family: 'Nanum Pen Script', cursive;font-size: 3em;" >내가 찾는, 우리집</h1>   -->
      					<h1 class="text-black" align="center" 
-     					style="font-family: 'Nanum Pen Script', cursive;font-size: 3em;" >내가 찾는, 우리집</h1>  
+     					style="font-size: 2em;" >내가 찾는, 우리집</h1> 
   						<input type="text" value="" name="keyword" style="width:600px;height:30px;">
 						<input type="submit" value="검색" class="btn btn-danger btn-large">
 					</td>

@@ -28,18 +28,20 @@ function com(){
 
 
 <div class="jumbotron">
-		<div class="container">
+		<div class="container" >
 			<h1>회원가입</h1>
 		</div>
 	</div>
+				<p size="20px">　</p>
                 <div class="col-sm-3">
 					<input name="Gener" type="button" 
 					              class="form-control btn btn-success" value="일반회원가입" onclick="gen()">
 				</div>
-				
+				<p size="20px">　</p>
 				<div class="col-sm-3">
 					<input name="Com" type="button" 
 					              class="form-control btn btn-success" value="중개소등록" onclick="com()">
 				</div>
+				<p size="20px">　</p>
 </body>
 </html>

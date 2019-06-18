@@ -20,7 +20,7 @@
        /*  margin-bottom: 5px; */
         border: 0px solid;
         background-color: #EAEAEA; 
-        font-size:25px;        
+        font-size:25px;    
       }
       #headerMenu {
         padding: 5px;
@@ -43,7 +43,7 @@
         padding: 0px ;
         border: 0px solid #bcbcbc;
         background-color: #EAEAEA;
-        font-size:15px;         
+        font-size:10px;         
       }
       
     </style>
