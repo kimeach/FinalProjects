@@ -38,13 +38,13 @@ joinDate date default sysdate
 );
 
 insert into Company_Member(address,name,phone1,phone2,phone3,email,email2,mainDeal,authNum) 
-values ('성동구','강남길','011','456','4567','abcdefg','@daum.net','주택','050505');
+values ('서울특별시 성동구 행당로 76','강남길','011','456','4567','abcdefg','@daum.net','주택','050505');
 
 insert into Company_Member(address,name,phone1,phone2,phone3,email,email2,mainDeal,authNum) 
-values ('서초구','홍길동','010','1234','1234','root','@naver.com','주택','2600');
+values ('서울특별시 서초구 잠원로 204','홍길동','010','1234','1234','root','@naver.com','주택','2600');
 
 insert into Company_Member(address,name,phone1,phone2,phone3,email,email2,mainDeal,authNum) 
-values ('서초구','임꺽정','010','1234','1234','root','@naver.com','주택','123456');
+values ('서울특별시 강남구 봉은사로 327 궁도빌딩','임꺽정','010','1234','1234','root','@naver.com','주택','123456');
 
 select * from Company_Member
 -------------------
@@ -74,6 +74,10 @@ select *from ADMIN_MEMBER
 
 
 admin고유번호 : adminNum165898
+
+update Company_Member set address='서울특별시 성동구 행당로 76' where name='강남길';
+update Company_Member set address='서울특별시 서초구 잠원로 204' where name='홍길동';
+update Company_Member set address='서울특별시 강남구 봉은사로 327 궁도빌딩' where name='임꺽정';
 
 
 alter table General_member add email2 varchar2(80)

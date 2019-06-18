@@ -50,7 +50,7 @@
         border: 0px solid ;
          
       }
-      
+
     </style>
     <title><tiles:insertAttribute name="title" /></title>
   </head>

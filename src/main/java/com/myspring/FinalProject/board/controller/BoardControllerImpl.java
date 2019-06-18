@@ -91,8 +91,8 @@ public class BoardControllerImpl implements BoardController {
 		while (enu.hasMoreElements()) {
 			String name = (String) enu.nextElement();
 			String value = multipartRequest.getParameter(name);
-			System.out.println("addNewArticle_name:"+name);
-			System.out.println("addNewArticle_value:"+value);
+		//	System.out.println("addNewArticle_name:"+name);
+		//	System.out.println("addNewArticle_value:"+value);
 			articleMap.put(name, value);
 		}
 
@@ -112,7 +112,7 @@ public class BoardControllerImpl implements BoardController {
 		HttpHeaders responseHeaders = new HttpHeaders();
 		responseHeaders.add("Content-type", "text/html; charset=utf-8");
 		System.out.println("board Impl의 addNewArticle======:"+articleMap);
-		
+		//articleMap.put("address","서울 강남구 압구정로 112");
 		try {
 			int articleNO = boardService.addNewArticle(articleMap); //여기서나오는지 위에서 나오는지 확인
 			
@@ -206,11 +206,11 @@ public class BoardControllerImpl implements BoardController {
 		if(parentNO!=null & !"".equals(parentNO))
 			mav.addObject("parentNO",parentNO);
 
-		String sido= request.getParameter("sido");
-		String gugun = request.getParameter("gugun");		
+		String address= request.getParameter("address");
+		//String gugun = request.getParameter("gugun");		
 		String groupNO  = request.getParameter("groupNO");				
-		mav.addObject("sido",sido);
-		mav.addObject("gugun",gugun);	
+		mav.addObject("address",address);
+		//mav.addObject("gugun",gugun);	
 		mav.addObject("groupNO",groupNO);	
 		return mav;
 	}

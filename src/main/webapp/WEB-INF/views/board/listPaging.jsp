@@ -86,7 +86,7 @@
 						    <c:otherwise>${article.name}</c:otherwise>
 						</c:choose>				
 					</td>
-					<td width="12%">[${article.sido}][${article.gugun}]</td>
+					<td width="12%">[${article.address}]</td>
 					<td align='left'  width="30%">
 					  <span style="padding-right:30px"></span>
 					   <c:choose>

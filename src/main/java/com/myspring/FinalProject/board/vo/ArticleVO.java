@@ -10,8 +10,7 @@ public class ArticleVO {
 	private int articleNO;
 	private int groupNO;
 	private int parentNO;
-	private String sido;
-	private String gugun;
+	private String address;
 	private String title;
 	private String content;
 	private String imageFileName;
@@ -58,21 +57,6 @@ public class ArticleVO {
 		this.parentNO = parentNO;
 	}	
 
-	public String getSido() {
-		return sido;
-	}
-
-	public void setSido(String sido) {
-		this.sido = sido;
-	}
-
-	public String getGugun() {
-		return gugun;
-	}
-
-	public void setGugun(String gugun) {
-		this.gugun = gugun;
-	}
 
 	public String getTitle() {
 		return title;
@@ -129,15 +113,22 @@ public class ArticleVO {
 	public void setWriteDate(Date writeDate) {
 		this.writeDate = writeDate;
 	}
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
 
 	@Override
 	public String toString() {
 		return "ArticleVO [levelNO=" + levelNO + ", articleNO=" + articleNO + ", groupNO=" + groupNO + ", parentNO="
-				+ parentNO + ", sido=" + sido + ", gugun=" + gugun + ", title=" + title + ", content=" + content
-				+ ", imageFileName=" + imageFileName + ", id=" + id + ", name=" + name + ", authNum=" + authNum
-				+ ", writeDate=" + writeDate + "]";
+				+ parentNO + ", address=" + address + ", title=" + title + ", content=" + content + ", imageFileName="
+				+ imageFileName + ", id=" + id + ", name=" + name + ", authNum=" + authNum + ", writeDate=" + writeDate
+				+ "]";
 	}
 	
-	
+
 
 }

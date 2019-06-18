@@ -21,7 +21,8 @@
 
    <c:choose>
           <c:when test="${isLogOn == true  && member!= null}">
-            <small>환영합니다. ${member.name}님!</small>
+            <small> 
+               	환영합니다. ${member.name}님!</small>
             <a href="${contextPath}/General/logout.do"><small>로그아웃</small></a>
             <a href="${contextPath}/General/mypage.do"><small>마이페이지</small></a>
           </c:when>

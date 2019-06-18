@@ -53,9 +53,9 @@
 		</tr>	
     <%-- <input type="hidden" name="articleNO"  value="${articleNO}"/> --%>
     <input type="hidden" name="parentNO"  value="${parentNO}" />
-    <input type="hidden" name="sido" value="${sido}" />
-	<input type="hidden" name="gugun" value="${gugun}" />
-	<input type="hidden" name="groupNO" value="${groupNO}" />
+    <input type="hidden" name="groupNO" value="${groupNO}" />
+    <input type="hidden" name="address" value="${address}" />
+
     	
 		<tr>
 			<td width="150" align="center">작　성　자　</td>
@@ -74,8 +74,7 @@
 		</tr>
 		<tr>
 			<td width="150" align="center">지　　　역　</td>
-			<td colspan="2"  align="left"><input type="text" size="10"  value="${sido}"  disabled/>
-													<input type="text" size="10"  value="${gugun}"  disabled/> </td> 
+			<td colspan="2"  align="left"><input type="text" size="64"  value="${address}"  disabled/></td> 
 		</tr>
 		<tr>
 			<td width="150" align="center">제　　　목　</td>

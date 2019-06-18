@@ -37,7 +37,7 @@
 		 obj.submit();
 	 }
 	 
-	 function fn_remove_article(url,articleNO,sido,gugun){
+	 function fn_remove_article(url,articleNO,address){
 		 var form = document.createElement("form");
 		 form.setAttribute("method", "post");
 		 form.setAttribute("action", url);
@@ -55,7 +55,7 @@
 	    	 return;
 	 }
  
-	 function fn_reply_form(url, articleNO, sido, gugun, groupNO){	 
+	 function fn_reply_form(url, articleNO, address, groupNO){	 
 		 
 		 var form = document.createElement("form");
 		 form.setAttribute("method","post");
@@ -65,22 +65,22 @@
 		 parentNOInput.setAttribute("type","hidden");
 		 parentNOInput.setAttribute("name","parentNO");
 		 parentNOInput.setAttribute("value", articleNO);/* 여기서는 articleNO가 답글에서는 parentNo가 됨 */
-	     var sidoInput = document.createElement("input");
-	     sidoInput.setAttribute("type","text");
-	     sidoInput.setAttribute("name","sido");
-	     sidoInput.setAttribute("value", sido);
-	     var gugunInput = document.createElement("input");
+	     var addInput = document.createElement("input");
+	     addInput.setAttribute("type","text");
+	     addInput.setAttribute("name","address");
+	     addInput.setAttribute("value", address);
+/* 	     var gugunInput = document.createElement("input");
 	     gugunInput.setAttribute("type","text");
 	     gugunInput.setAttribute("name","gugun");
-	     gugunInput.setAttribute("value", gugun);	 
+	     gugunInput.setAttribute("value", gugun);	  */
 	     var groupNOInput = document.createElement("input");
 	     groupNOInput.setAttribute("type","hidden");
 	     groupNOInput.setAttribute("name","groupNO");
 	     groupNOInput.setAttribute("value", groupNO);	 
 
  		 form.appendChild(parentNOInput);
-	     form.appendChild(sidoInput);
-	     form.appendChild(gugunInput);
+	     form.appendChild(addInput);
+	     //form.appendChild(gugunInput);
 	     form.appendChild(groupNOInput);
 	     
 		 document.body.appendChild(form);
@@ -136,8 +136,7 @@
 		  	</tr>
 		  	<tr>
 		    	<td width="150" align="center" >지　　　역</td>
-		  		<td align="left"><input type="text" size="10" name="writer" value="${article.sido}"  disabled/>
-		  								<input type="text" size="10" name="writer" value="${article.gugun}"  disabled/></td>
+		  		<td align="left"><input type="text" size="67" name="writer" value="${article.address}"  disabled/></td>
 		  	</tr>		  	
 		  	<tr>
 		    	<td width="150" align="center" >제　　　목</td>
@@ -160,7 +159,7 @@
 
 					<c:if test="${not empty member.id && member.id!='null' || not empty comMember.authNum && comMember.authNum!='null'}">
 						<input type="button" value="답글" 
-						 onclick="fn_reply_form('${contextPath}/board/replyForm.do','${article.articleNO}','${article.sido}','${article.gugun}','${article.groupNO}')" />
+						 onclick="fn_reply_form('${contextPath}/board/replyForm.do','${article.articleNO}','${article.address}','${article.groupNO}')" />
 					</c:if> 
 					
 					<input type="button" value="목록" onclick="backToList(this.form)" />					

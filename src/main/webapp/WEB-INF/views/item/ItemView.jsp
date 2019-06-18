@@ -173,7 +173,10 @@ font-family: 'Jeju Gothic', sans-serif;
     </div>
 </div>
 
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=9cc1522c95aa35553841718cfe7fb8d2&libraries=services"></script>
+   <!-- 다음지도 api - javascript값 입력  -->
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d877afacdc5a3567f9b4b10035596e0c&libraries=services">
+</script>
+   
 <script>
 // 마커를 담을 배열입니다
 var markers = [];

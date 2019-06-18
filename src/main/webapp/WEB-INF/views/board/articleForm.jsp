@@ -22,6 +22,7 @@
 <meta charset="UTF-8">
 <title>글쓰기</title>
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script src="https://ssl.daumcdn.net/dmaps/map_js_init/postcode.v2.js"></script>
 	<script type="text/javascript">
 	function readURL(input) {
       if (input.files && input.files[0]) {
@@ -43,7 +44,16 @@
 	  $("#d_file").append("<br>"+"<input type='file' name='file"+cnt+"' />");
 	  cnt++;
   }    	
-
+ 	
+	function openZipSearch() {
+		new daum.Postcode({
+			oncomplete: function(data) {
+				//$('[name=zipcode]').val(data.zonecode); // 우편번호 (5자리)
+				$('[name=address]').val(data.address);
+			}
+		}).open();
+	}
+/* 
  	$('document').ready(function() {
  	 var area0 = ["시/도 선택","서울특별시","인천광역시","대전광역시","광주광역시","대구광역시","울산광역시","부산광역시","경기도","강원도","충청북도","충청남도","전라북도","전라남도","경상북도","경상남도","제주도"];
  	  var area1 = ["강남구","강동구","강북구","강서구","관악구","광진구","구로구","금천구","노원구","도봉구","동대문구","동작구","마포구","서대문구","서초구","성동구","성북구","송파구","양천구","영등포구","용산구","은평구","종로구","중구","중랑구"];
@@ -87,6 +97,7 @@
  	  }
  	 }); 	 
 	}); 	
+  */	
  	</script>
 </head>
 
@@ -115,8 +126,10 @@
 		<tr>
 			<td width="150" align="center">지　　　역</td>
 			<td colspan="2" align="left">
-				<select name="sido" id="sido"></select>
-				<select name="gugun" id="gugun"></select>
+<!-- 				<select name="sido" id="sido"></select>
+				<select name="gugun" id="gugun"></select> -->
+						<input type="text"  size="55" maxlength="100" name="address"/>
+						<input type="button" class="btn btn-primary"  onclick="openZipSearch()" value="지역 찾기"/>
 			</td>
 		</tr>
 		<tr>

@@ -12,8 +12,7 @@
 		<result property="id" column="id"/>
 		<result property="name" column="name"/>
 		<result property="authNum" column="authNum"/>
-		<result property="sido" column="sido"/>
-		<result property="gugun" column="gugun"/>
+		<result property="address" column="address"/>
 		<result property="title" column="title"/>
 		<result property="content" column="content"/>
 		<result property="imageFileName" column="imageFileName"/>			
@@ -23,7 +22,7 @@
 	<!-- 게시판 전체리스트  -->
 	<select id="selectAllArticlesList" resultMap="articleResult">
 		<![CDATA[		
-			select levelNO, articleNO, groupNO, parentNO, sido, gugun, title, content, writeDate, imageFileName, id, name, authNum
+			select levelNO, articleNO, groupNO, parentNO, address, title, content, writeDate, imageFileName, id, name, authNum
 			from order_board
 			start with parentNO=0
 			connect by prior articleNO=parentNO
@@ -40,7 +39,7 @@
 					  <choose>
 					  <when test="keyword!=null and keyword !=''">
 					  id like '%'||#{keyword}||'%' or title like '%'||#{keyword}||'%' or content like '%'||#{keyword}||'%'
-						         or sido like '%'||#{keyword}||'%' or gugun like '%'||#{keyword}||'%' 
+						         or address like '%'||#{keyword}||'%'
 					  </when>
 					  </choose>
 					  </where> 
@@ -54,7 +53,7 @@
 	<select id="selectArticle" parameterType="int" resultType="articleVO">
 		<![CDATA[
 			select *
-			from (select levelNO, articleNO, groupNO, parentNO, sido, gugun, title, content, writeDate, imageFileName, id, name, authNum
+			from (select levelNO, articleNO, groupNO, parentNO, address, title, content, writeDate, imageFileName, id, name, authNum
 					 from order_board)
 				where articleNO=#{articleNO}					
 		]]>	
@@ -63,10 +62,9 @@
 	<!-- selectNewArticleNO 번호 추출후 articleNO와 groupNO 넘기기  -->
 	<insert id="insertNewArticle" parameterType="java.util.Map">
 		<![CDATA[
-			insert into order_board(articleNO, groupNO, parentNO, sido, gugun, title, content, writeDate, imageFileName, id, name, authNum) 
+			insert into order_board(articleNO, groupNO, parentNO, address, title, content, writeDate, imageFileName, id, name, authNum) 
 				    values(#{articleNO}, #{articleNO}, #{parentNO, jdbcType=INTEGER},
-							#{sido, jdbcType=VARCHAR},#{gugun, jdbcType=VARCHAR},
-							 #{title, jdbcType=VARCHAR}, #{content, jdbcType=VARCHAR},
+							#{address, jdbcType=VARCHAR}, #{title, jdbcType=VARCHAR}, #{content, jdbcType=VARCHAR},
 								sysdate, #{imageFileName, jdbcType=VARCHAR},
 								#{id, jdbcType=VARCHAR},#{name, jdbcType=VARCHAR}, #{authNum, jdbcType=VARCHAR})
 		]]>
@@ -81,9 +79,9 @@
 	<!-- 답글  -->
 	<insert id="insertReply" parameterType="java.util.Map">
 		<![CDATA[
-			insert into order_board(levelNO, articleNO, groupNO, parentNO, sido, gugun, title, content, writeDate, imageFileName, id, name, authNum) 
+			insert into order_board(levelNO, articleNO, groupNO, parentNO, address, title, content, writeDate, imageFileName, id, name, authNum) 
 			values(#{levelNO}, #{articleNO}, #{groupNO}, #{parentNO}, 
-					#{sido, jdbcType=VARCHAR}, #{gugun, jdbcType=VARCHAR}, #{title}, #{content}, 
+					#{address, jdbcType=VARCHAR}, #{title}, #{content}, 
 					sysdate, #{imageFileName, jdbcType=VARCHAR},
 					#{id, jdbcType=VARCHAR},#{name, jdbcType=VARCHAR}, #{authNum, jdbcType=VARCHAR}) 
 		]]> 
@@ -133,7 +131,7 @@
 					  <choose>
 					  <when test="keyword!=null and keyword !=''">
 					  id like '%'||#{keyword}||'%' or title like '%'||#{keyword}||'%' or content like '%'||#{keyword}||'%'
-						         or sido like '%'||#{keyword}||'%' or gugun like '%'||#{keyword}||'%' 
+						         or address like '%'||#{keyword}||'%' 
 					  </when>
 					  </choose>
 					  </where> 
@@ -151,7 +149,7 @@
 					  <choose>
 					  <when test="keyword!=null and keyword !=''">
 					  id like '%'||#{keyword}||'%' or title like '%'||#{keyword}||'%' or content like '%'||#{keyword}||'%'
-						         or sido like '%'||#{keyword}||'%' or gugun like '%'||#{keyword}||'%' 
+						         or address like '%'||#{keyword}||'%'
 					  </when>
 					  </choose>
 					  </where> 
