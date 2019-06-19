@@ -62,5 +62,9 @@ select *from Company_Member where authNum=#{authNum}
     ]]>	
 </select>
 	
+	<select id="checkId" parameterType="String">
+	select * from Company_Member where authNum=#{id}
+	</select>
+	
 	
 	</mapper>

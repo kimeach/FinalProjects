@@ -2,6 +2,7 @@ package com.myspring.FinalProject.member.Company.controller;
 
 import java.util.List;
 
+import javax.mail.Session;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -98,14 +99,19 @@ public class ComControllerImpl implements ComController{
 	    	 session.setAttribute("comMember", comVO);
 	    	 session.setAttribute("isLogOn", true);
 	    	 String action=(String)session.getAttribute("action");
+	    	 System.out.println("action : "+action);
 	    	 session.removeAttribute("action");
 	    	 if(action!=null) {
+	    		 System.out.println("action 창");
 	    		 mav.setViewName("redirect:"+action); 
 	    	 }
 	    	 if(comMember.getAuthNum().equals("")){
 		    	 mav.setViewName("redirect:/login.do");
 	       	 }
 	    	 else{
+	    		 System.out.println("로그인 성공");
+	    		session.setAttribute("authNumId", comMember.getAuthNum());
+	    		 
 	    		 mav.setViewName("redirect:/main/main.do");
 	    	 }
 	    }if(comMember==null) {
@@ -122,8 +128,6 @@ public class ComControllerImpl implements ComController{
     	 session.removeAttribute("isLogOn");
 		return new ModelAndView("redirect:/main/main.do");
 	}
-	
-
 	
 	@Override
 	@RequestMapping(value="/mypage.do" ,method = RequestMethod.GET)

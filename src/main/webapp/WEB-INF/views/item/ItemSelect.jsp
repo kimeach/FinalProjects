@@ -24,7 +24,9 @@ font-family: 'Jeju Gothic', sans-serif;
 		
 		<c:if test="${empty mainSearch}">
 		<div style="padding-left:50%;">
-		<a href="${path}/item/ItemInsert.do?authNum=${authNum}"><b>매물 등록</b></a>
+		<c:if test="${authNumId eq authNum}">
+		<a href="${path}/item/ItemInsert.do?authNum=${authNumId}"><b>매물 등록</b></a>
+		</c:if>
 		<span style="padding-left:5%;"></span> 
 		<a href="${path}/member/CompanyMemberView.do?pg=1"> <b>중개사무소 찾기</b> </a> 
 		</div>

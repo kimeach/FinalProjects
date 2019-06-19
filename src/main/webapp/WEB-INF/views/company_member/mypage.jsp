@@ -68,26 +68,22 @@ function delete2(){
 </figure></a>
 </label>
 
-<label></label><label></label><label></label><label></label><label></label><label></label><label></label>
-<label></label><label></label><label></label><label></label><label></label><label></label><label></label>
-<label></label><label></label><label></label><label></label><label></label><label></label><label></label>
-<label></label><label></label><label></label><label></label><label></label><label></label><label></label>
-<label></label><label></label><label></label><label></label><label></label><label></label><label></label>
-<label></label><label></label><label></label><label></label><label></label><label></label><label></label>
-<label></label><label></label><label></label><label></label><label></label><label></label><label></label>
-<label></label><label></label><label></label><label></label><label></label><label></label><label></label>
-<label></label><label></label><label></label><label></label><label></label><label></label><label></label>
-<label></label><label></label><label></label><label></label><label></label><label></label><label></label>
-<label></label><label></label><label></label><label></label><label></label><label></label><label></label>
-<label></label><label></label><label></label><label></label><label></label><label></label><label></label>
-
+<span style="padding:0 0 0 5%;"></span>
 <label>
 <figure><a href="javascript:void(0);" onclick="delete2();">
  <img alt="회원탈퇴" src="${contextPath }/resources/img/delete3.png" width="100" height="100" >
 <figcaption>회원탈퇴</figcaption>
   </figure></a>
   </label>
+  
+<span style="padding:0 0 0 5%;"></span>
 
+<label>
+<figure><a href="${contextPath}/item/ItemInsert.do?authNum=${authNumId}">
+ <img alt="매물등록" src="${contextPath }/resources/img/delete3.png" width="100" height="100" >
+<figcaption>매물등록</figcaption>
+  </figure></a>
+  </label>
 </div>
 </div>
 

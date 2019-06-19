@@ -57,6 +57,10 @@ public class ComDAOImpl implements ComDAO{
 		return sqlSession.selectOne("mapper.com.loginById", comVO);
 	}
 
-
+@Override
+public List<String> checkId(String id) {
+	// TODO Auto-generated method stub
+	return sqlSession.selectOne("mapper.com.loginById", id);
+}
 
 }

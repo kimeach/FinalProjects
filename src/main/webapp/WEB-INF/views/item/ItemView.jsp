@@ -398,6 +398,7 @@ function removeAllChildNods(el) {
 			</table>
 	<table style="width: 100%;margin-left:9%">
 	<tr><td class="text-center">
+	<c:if test="${authNumId eq item.authNum}">
 	<input type="button" value="수정하기"
 	onclick="javascript:location.href='${path}/item/ItemUpdate.do?authNum=${item.authNum}&autoNum=${item.autoNum}';"
 	class="btn btn-primary btn-lg" style="margin: 0 0 0 -22%">
@@ -405,8 +406,15 @@ function removeAllChildNods(el) {
 	onclick="javascript:location.href='${path}/item/ItemResult.do?status=delete&authNum=${item.authNum}&autoNum=${item.autoNum}';" style="margin: 0 0 0 3%">
 	<span style="margin: 0 0 0 3%;">
 	 </span> 
-	<input type="button" value="취소" onclick="javascript:location.href='${path}/item/ItemSelect.do?authNum=${item.authNum}&pg=1';"
-	class="btn btn-primary btn-lg"></td>
+	<input type="button" value="뒤로가기" onclick="javascript:location.href='${path}/item/ItemSelect.do?authNum=${item.authNum}&pg=1';"
+	class="btn btn-primary btn-lg">
+	</c:if>
+	</td>
+	<c:if test="${authNumId ne item.authNum}">
+	<input type="button" value="뒤로가기" onclick="javascript:location.href='${path}/item/ItemSelect.do?authNum=${item.authNum}&pg=1';"
+	class="btn btn-primary btn-lg">
+	</c:if>
+	
 				</tr>
 			</table>
 			</c:forEach>

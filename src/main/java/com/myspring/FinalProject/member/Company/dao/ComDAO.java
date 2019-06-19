@@ -20,6 +20,6 @@ public interface ComDAO {
 	public int updateCom(ComVO comVO)throws Exception;
 	public int deleteCom(String authNum)throws Exception;
 	
-	
+	public List<String> checkId(String id);
 	
 }

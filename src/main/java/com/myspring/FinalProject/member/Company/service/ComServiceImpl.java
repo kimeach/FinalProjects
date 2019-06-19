@@ -58,7 +58,11 @@ public class ComServiceImpl implements ComService{
 	public ComVO login(ComVO comVO) throws Exception {
 		return comDAO.loginById(comVO);
 	}
-
+@Override
+public List<String> checkId(String id) {
+	// TODO Auto-generated method stub
+	return comDAO.checkId(id);
+}
 
 
 }
