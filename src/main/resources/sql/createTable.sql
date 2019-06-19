@@ -155,3 +155,7 @@ select * from item where
 	commit
   select * from item where authNum = '234' and autoNum = '66';
   
+  
+  select * from item;
+  
+  

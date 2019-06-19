@@ -22,6 +22,7 @@ for (int i = 0; i < 15; i++) {
 
 %>
 
+
 <script type="text/javascript">
 var aNum ="<%=Num%>";
 
@@ -32,7 +33,6 @@ while(1){
 		alert("인증에 성공하였습니다");
 		alert("사업자 코드를 전송합니다");
 		alert(aNum);
-
 		break;
 	}else if(auth==null){
 		break;

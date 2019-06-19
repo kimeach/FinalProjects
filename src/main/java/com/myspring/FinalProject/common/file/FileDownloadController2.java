@@ -6,23 +6,28 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import jdk.nashorn.internal.ir.RuntimeNode.Request;
+
 
 
 @Controller
 public class FileDownloadController2 {
-	private static final String REVIEW_IMAGE_REPO = "C:\\Users\\Administrator\\git\\FinalProjects\\src\\main\\webapp\\resources\\reviewImage";
 	@RequestMapping("/download2.do")
 	protected void download(@RequestParam("imageFileName") String imageFileName,
 							@RequestParam("reviewNO") String reviewNO,
-			                 HttpServletResponse response)throws Exception {
+			                 HttpServletResponse response,
+			                 HttpServletRequest request)throws Exception {
+		final String ImagePath = request.getRealPath("/resources/reviewImage/");
 		OutputStream out = response.getOutputStream();
-		String downFile = REVIEW_IMAGE_REPO + "\\" +reviewNO+"\\"+ imageFileName;
+		String downFile = ImagePath + "\\" +reviewNO+"\\"+ imageFileName;
 		File file = new File(downFile);
 
 		response.setHeader("Cache-Control", "no-cache");
