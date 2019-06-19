@@ -14,6 +14,7 @@
 <title>회원가입</title>
 <link href="http://fonts.googleapis.com/earlyaccess/jejugothic.css" rel="stylesheet">
 <script type="text/javascript">
+
 function gen(){
 	location.href="${contextPath}/General/generForm.do";
 }

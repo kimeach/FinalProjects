@@ -16,7 +16,9 @@
 <link rel="stylesheet" href="${contextPath}/resources/css/bootstrap.min.css" />
 <link href="http://fonts.googleapis.com/earlyaccess/jejugothic.css" rel="stylesheet">
 <script type="text/javascript">
+
 	window.name = "parent";
+	
 	function checkForm() {
 		if (!document.newMember.id.value) {
 			alert("아이디를 입력하세요.");
@@ -67,28 +69,7 @@
 	function successIn(){
 		alter("가입을 축하드립니다.");
 	}
-	
-/* 	function checkCode(){
-		var v1=form2.code_check.value;
-		var v2=form2.code.value;
-		if(v1!=2){
-			document.getElementById('checkCode').style.color="red";
-			document.getElementById('checkCode').innerHTML = "잘못된 인증번호";
-			makeNull();
-		}else{
-			document.getElementById('checkCode').style.color="blue";
-			document.getElementById('checkCode').innerHTML="인증되었습니다.";
-			makeReal();
-		}
-	}
-	function makeReal(){
-		var check = document.getElementById("check");
-		check.type="submit";
-	}
-	function makeNull(){
-		var check = document.getElementById("check");
-		check.type="hidden";
-	} */
+
 </script>
 <style>
 	body{}
@@ -97,9 +78,6 @@
 <title>회원 가입</title>
 </head>
 
-<script>
-			alert('${buffer}');
-			</script>
 <body style="font-family: 'Jeju Gothic', sans-serif;">
 	
 	<div class="jumbotron">
