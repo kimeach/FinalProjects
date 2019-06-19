@@ -24,7 +24,7 @@
 		</div>
 	</div>
 
-	<div class="container" >
+	<div class="container"  >
 		<form name="newMember" class="form-horizontal"  action="${contextPath}/Admin/adminForm.do" method="post" onsubmit="return checkForm()">
 			<div class="form-group  row">
 				<label class="col-sm-2 ">인증번호</label>

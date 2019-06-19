@@ -59,7 +59,8 @@ function deletee(){
 
 
 
-
+<div style="height:700px;">
+<div style="padding-top:350px;">
 
 
 <label>
@@ -88,7 +89,8 @@ function deletee(){
 <figcaption>회원탈퇴</figcaption>
   </figure></a>
   </label>
-
+</div>
+</div>
 
 
 </body>

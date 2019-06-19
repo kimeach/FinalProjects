@@ -33,6 +33,10 @@
 		}
 	}
 	
+	function successIn(){
+		alert("가입을 축하드립니다.");
+		document.location="${contextPath}/main/main.do"
+	}
 	
 	function mail(){
 	

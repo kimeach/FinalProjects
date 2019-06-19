@@ -57,7 +57,8 @@ function delete2(){
 
 
 
-
+<div style="height:700px;">
+<div style="padding-top:350px;">
 
 
 <label>
@@ -87,7 +88,8 @@ function delete2(){
   </figure></a>
   </label>
 
-
+</div>
+</div>
 
 </body>
 </html>

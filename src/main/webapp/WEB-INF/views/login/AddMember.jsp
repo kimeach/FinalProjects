@@ -21,6 +21,7 @@ function com(){
 	location.href="${contextPath}/Company/comMemberForm.do";
 }
 
+
 </script>
 
 </head>
@@ -32,6 +33,7 @@ function com(){
 			<h1>회원가입</h1>
 		</div>
 	</div>
+	<div style="padding-left:40%;">
 				<p size="20px">　</p>
                 <div class="col-sm-3">
 					<input name="Gener" type="button" 
@@ -43,5 +45,6 @@ function com(){
 					              class="form-control btn btn-success" value="중개소등록" onclick="com()">
 				</div>
 				<p size="20px">　</p>
+	</div>			
 </body>
 </html>

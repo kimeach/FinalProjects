@@ -9,6 +9,9 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="${contextPath}/resources/css/bootstrap.min.css" />
+	<style>
+		a, u {     text-decoration: none;!important			}
+	</style>
 </head>
 <%String sessionId=(String)session.getAttribute("sessionId");%>
 <body>

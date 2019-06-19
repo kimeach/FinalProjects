@@ -14,40 +14,48 @@
 <meta charset=UTF-8">
 <title>회원 정보 출력창</title>
 <link href="http://fonts.googleapis.com/earlyaccess/jejugothic.css" rel="stylesheet">
+<%String sessionNum=(String)session.getAttribute("sessionNum");%>
+ <style>
+   .no-underline{
+      text-decoration:none;
+   }
+ </style>
+ <script type="text/javascript">
+  function deleteF(){
+     var re1=confirm("정말 탈퇴하시겠어요?");
+      if(re1==true){
+          location.href="${contextPath}/General/generRemove.do?id= ${id}"
+      }else{
+         history.back();
+      }
 
-
+  }
+  
+  function deleteS(){
+     
+     var re2=confirm("정말 탈퇴하시겠어요?");
+      if(re2==true){
+           location.href="${contextPath}/Company/comRemove.do?authNum=${comMember.authNum }"
+      }else{
+         history.back();
+      }
+      }
+  
+  function deleteT(){
+     var re3=confirm("정말 탈퇴하시겠어요?");
+      if(re3==true){
+          location.href="${contextPath}/Admin/adminRemove.do?id=${admember.id}"
+      }else{
+          history.back();
+   }
+  }
+  
+  </script>
 </head>
 <body style="font-family: 'Jeju Gothic', sans-serif;">
-<%-- <table border="1"  align="center"  width="80%">
-    <tr align="center"   bgcolor="lightgreen">
-      <td ><b>아이디</b></td>
-      <td><b>비밀번호</b></td>
-      <td><b>이름</b></td>
-      <td><b>이메일</b></td>
-      <td><b>가입일</b></td>
-      <td><b>탈퇴</b></td>
-   </tr>
-   
- 
-   <tr align="center">
-      <td><a href="${contextPath}/member/modMemberForm.do?id=${member.id }">${member.id}</td>
-      <td>${member.pwd}</td>
-      <td>${member.name}</td>
-      <td>${member.email}</td>
-      <td>${member.joinDate}</td>
-      <td><a href="${contextPath}/member/removeMember.do?id=${member.id }">탈퇴하기</td>
-    </tr>
-     <img alt="회원정보수정" src="${contextPath }/resources/img/mod.png" width="120" height="120">
-  <img alt="마이페이지" src="${contextPath }/resources/img/mypage.png" width="100" height="100">
- 
-  <img alt="회원탈퇴" src="${contextPath }/resources/img/delete3.png" width="100" height="100">
-</table> --%>
 
-
-
-
-
-
+<div style="height:700px;">
+<div style="padding-top:350px;">
 
 <label>
 <figure><a href="${contextPath}/Company/comList.do">
@@ -76,7 +84,109 @@
   </figure></a>
   </label>
 
+<label></label><label></label><label></label><label></label><label></label><label></label><label></label>
+<label></label><label></label><label></label><label></label><label></label><label></label><label></label>
+<label></label><label></label><label></label><label></label><label></label><label></label><label></label>
+<label></label><label></label><label></label><label></label><label></label><label></label><label></label>
+<label></label><label></label><label></label><label></label><label></label><label></label><label></label>
+<label></label><label></label><label></label><label></label><label></label><label></label><label></label>
+<label></label><label></label><label></label><label></label><label></label><label></label><label></label>
+<label></label><label></label><label></label><label></label><label></label><label></label><label></label>
+<label></label><label></label><label></label><label></label><label></label><label></label><label></label>
+<label></label><label></label><label></label><label></label><label></label><label></label><label></label>
+<label></label><label></label><label></label><label></label><label></label><label></label><label></label>
+<label></label><label></label><label></label><label></label><label></label><label></label><label></label>
 
+
+<c:choose>
+    <c:when test="${isLogOn == true  && comMember!= null}">
+       <label>
+         <figure><a href="${contextPath}/Company/comUpdateForm.do?authNum=${comMember.authNum }" class="no-underline">
+            <img alt="회원정보수정" src="${contextPath }/resources/img/mod.png" width="120" height="120">
+            <figcaption>내 정보수정</figcaption>
+         </figure></a>
+         </label>
+<label></label><label></label><label></label><label></label><label></label><label></label><label></label>
+<label></label><label></label><label></label><label></label><label></label><label></label><label></label>
+<label></label><label></label><label></label><label></label><label></label><label></label><label></label>
+<label></label><label></label><label></label><label></label><label></label><label></label><label></label>
+<label></label><label></label><label></label><label></label><label></label><label></label><label></label>
+<label></label><label></label><label></label><label></label><label></label><label></label><label></label>
+<label></label><label></label><label></label><label></label><label></label><label></label><label></label>
+<label></label><label></label><label></label><label></label><label></label><label></label><label></label>
+<label></label><label></label><label></label><label></label><label></label><label></label><label></label>
+<label></label><label></label><label></label><label></label><label></label><label></label><label></label>
+<label></label><label></label><label></label><label></label><label></label><label></label><label></label>
+<label></label><label></label><label></label><label></label><label></label><label></label><label></label>
+         
+         <label>
+         <figure><a href="javascript:void(0);" onclick="deleteS();">
+             <img alt="회원탈퇴" src="${contextPath }/resources/img/delete3.png" width="100" height="100" >
+            <figcaption>회원탈퇴</figcaption>
+           </figure></a>
+           </label>
+   </c:when>
+   
+    <c:when test="${isLogOn == true  && member!= null}">
+       <label>
+         <figure><a href="${contextPath}/Company/comUpdateForm.do?authNum=${comMember.authNum }" class="no-underline">
+            <img alt="회원정보수정" src="${contextPath }/resources/img/mod.png" width="120" height="120">
+            <figcaption>내 정보수정</figcaption>
+         </figure></a>
+         </label>
+<label></label><label></label><label></label><label></label><label></label><label></label><label></label>
+<label></label><label></label><label></label><label></label><label></label><label></label><label></label>
+<label></label><label></label><label></label><label></label><label></label><label></label><label></label>
+<label></label><label></label><label></label><label></label><label></label><label></label><label></label>
+<label></label><label></label><label></label><label></label><label></label><label></label><label></label>
+<label></label><label></label><label></label><label></label><label></label><label></label><label></label>
+<label></label><label></label><label></label><label></label><label></label><label></label><label></label>
+<label></label><label></label><label></label><label></label><label></label><label></label><label></label>
+<label></label><label></label><label></label><label></label><label></label><label></label><label></label>
+<label></label><label></label><label></label><label></label><label></label><label></label><label></label>
+<label></label><label></label><label></label><label></label><label></label><label></label><label></label>
+<label></label><label></label><label></label><label></label><label></label><label></label><label></label>
+         
+         <label>
+         <figure><a href="javascript:void(0);" onclick="deleteF();">
+             <img alt="회원탈퇴" src="${contextPath }/resources/img/delete3.png" width="100" height="100" >
+            <figcaption>회원탈퇴</figcaption>
+           </figure></a>
+        </label>
+   </c:when>
+   
+   <c:otherwise>
+      <label>
+         <figure><a href="${contextPath}/Company/comUpdateForm.do?authNum=${comMember.authNum }" class="no-underline">
+            <img alt="회원정보수정" src="${contextPath }/resources/img/mod.png" width="110" height="110">
+            <figcaption>내 정보수정</figcaption>
+         </figure></a>
+         </label>
+<label></label><label></label><label></label><label></label><label></label><label></label><label></label>
+<label></label><label></label><label></label><label></label><label></label><label></label><label></label>
+<label></label><label></label><label></label><label></label><label></label><label></label><label></label>
+<label></label><label></label><label></label><label></label><label></label><label></label><label></label>
+<label></label><label></label><label></label><label></label><label></label><label></label><label></label>
+<label></label><label></label><label></label><label></label><label></label><label></label><label></label>
+<label></label><label></label><label></label><label></label><label></label><label></label><label></label>
+<label></label><label></label><label></label><label></label><label></label><label></label><label></label>
+<label></label><label></label><label></label><label></label><label></label><label></label><label></label>
+<label></label><label></label><label></label><label></label><label></label><label></label><label></label>
+<label></label><label></label><label></label><label></label><label></label><label></label><label></label>
+<label></label><label></label><label></label><label></label><label></label><label></label><label></label>
+         
+         <label>
+         <figure><a href="javascript:void(0);" onclick="deleteT();">
+             <img alt="회원탈퇴" src="${contextPath }/resources/img/delete3.png" width="100" height="100" >
+            <figcaption>회원탈퇴</figcaption>
+           </figure></a>
+        </label>
+   </c:otherwise>
+   
+   </c:choose>
+   
+</div>
+</div>   
 
 </body>
 </html>

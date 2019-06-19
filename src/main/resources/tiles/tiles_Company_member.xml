@@ -26,7 +26,7 @@
       <put-attribute name="body" value="/WEB-INF/views/company_member/comUpdateForm.jsp" />
    </definition>
 
-   <definition name="/Company/mypage" extends="baseLayout3">
+   <definition name="/Company/mypage" extends="baseLayout">
       <put-attribute name="title" value="회원수정창" />
       <put-attribute name="body" value="/WEB-INF/views/company_member/mypage.jsp" />
    </definition>

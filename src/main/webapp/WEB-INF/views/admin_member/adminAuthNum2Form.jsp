@@ -24,15 +24,16 @@ function com(){
 </script>
 
 </head>
-<body style="font-family: 'Jeju Gothic', sans-serif;">
+<body style="font-family: 'Jeju Gothic', sans-serif;" >
 
 
 <div class="jumbotron">
 		<div class="container">
+
 			<h1>관리자 모드</h1>
 		</div>
 	</div>
-                <div class="col-sm-3">
+                <div class="col-sm-3" >
 					<input name="Gener" type="button" 
 					              class="form-control btn btn-success" value="관리자등록" onclick="gen()">
 				</div>

@@ -10,13 +10,13 @@
       <put-attribute name="footer" value="/WEB-INF/views/common/footer.jsp" />
    </definition>
    
-    <definition name="baseLayout3"  template="/WEB-INF/views/common/layout3.jsp">
+<!--     <definition name="baseLayout3"  template="/WEB-INF/views/common/layout3.jsp">
       <put-attribute name="header" value="/WEB-INF/views/common/header.jsp" />
        <put-attribute name="headerMenu" value="/WEB-INF/views/common/headerMenu.jsp" />
       <put-attribute name="side" value="/WEB-INF/views/common/side.jsp" />
       <put-attribute name="body" value="" />
       <put-attribute name="footer" value="/WEB-INF/views/common/footer.jsp" />
-   </definition>
+   </definition> -->
    
 
    <definition name="/Admin/adminList" extends="baseLayout">
@@ -38,7 +38,7 @@
       <put-attribute name="body" value="/WEB-INF/views/admin_member/loginForm.jsp" />
    </definition>
    
-   <definition name="/Admin/mypage" extends="baseLayout3">
+   <definition name="/Admin/mypage" extends="baseLayout">
       <put-attribute name="title" value="회원수정창" />
       <put-attribute name="body" value="/WEB-INF/views/admin_member/mypage.jsp" />
    </definition>
