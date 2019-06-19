@@ -234,11 +234,14 @@ public class ItemControllerImpl implements ItemController {
 	message +="history.go(-1);";
 	}
 	message +="</script>";
-	return new ResponseEntity<String>(message,http,HttpStatus.OK);
+	return new ResponseEntity<String>(message,http,HttpStatus.OK);	
 	}
 	@Override
-	@RequestMapping(value="/ItemView.do",method=RequestMethod.GET)
-	public ModelAndView ItemView(@RequestParam("authNum") String authNum,@RequestParam("autoNum") String autoNum,HttpServletRequest request,HttpServletResponse response) throws Exception {
+	@RequestMapping(value="/ItemView.do",method= {RequestMethod.GET,RequestMethod.POST})
+	public ModelAndView ItemView(HttpServletRequest request,HttpServletResponse response) throws Exception {
+		String authNum = request.getParameter("authNum");	
+		String autoNum = request.getParameter("autoNum");
+		
 		if(request.getSession().getAttribute("mainKeyword") !=null) {
 			  request.getSession().removeAttribute("mainKeyword");
 		  }

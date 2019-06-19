@@ -14,7 +14,7 @@ public interface ItemController {
 public ModelAndView ItemAdd(HttpServletRequest request,HttpServletResponse response) throws Exception;
 public ModelAndView ItemUpdate(HttpServletRequest request,HttpServletResponse response,@RequestParam("authNum") String authNum,@RequestParam("autoNum") String autoNum) throws Exception;
 public ResponseEntity<String> AddItem(primaryVO vo,MultipartHttpServletRequest mr,HttpServletResponse response, @RequestParam("authNum") String authNum) throws Exception;
-public ModelAndView ItemView(@RequestParam("authNum") String authnum,@RequestParam("autoNum") String autoNum,HttpServletRequest request,HttpServletResponse response) throws Exception;
+public ModelAndView ItemView(HttpServletRequest request,HttpServletResponse response) throws Exception;
 public ResponseEntity<String> ItemUpdate(primaryVO vo,MultipartHttpServletRequest mr,HttpServletResponse response,
 		@RequestParam("authNum") String authNum,@RequestParam("autoNum") String autoNum)
 	   throws Exception;
